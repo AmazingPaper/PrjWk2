@@ -13,8 +13,10 @@ CORNERGREEN = 4
 IDLETILE = 5
 IDLETILE2 = 6
 BLANK = 7
-LIFEPOINTS = 8
+LIFEPOINTSRED = 8
 CONDITIONPOINTS = 9
+
+
 
 
 #a dictionary tiles to the colors
@@ -27,7 +29,10 @@ textures =   {
                 IDLETILE   : pygame.image.load('Tiles/WhiteTile.png'),
                 IDLETILE2  : pygame.image.load('Tiles/GreyTile.png'),
                 BLANK       : pygame.image.load('Tiles/BlackTile.png'),
-                LIFEPOINTS  : pygame.image.load('Tiles/Lifepoints.png'),
+                LIFEPOINTSRED  : pygame.image.load('Tiles/Lifepoints.png'),
+                LIFEPOINTSBLUE : pygame.image.load('Tiles/LifepointsBlue.png'),
+                LIFEPOINTSGREEN : pygame.image.load('Tiles/LifepointsGreen.png'),
+
                 CONDITIONPOINTS : pygame.image.load('Tiles/Conditionpoints.png')
             } #Image for the tile
 
