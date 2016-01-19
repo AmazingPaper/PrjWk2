@@ -16,7 +16,7 @@ crashed = False                                                 # Crash handler
 
 background = pygame.Surface(DISPLAYSURF.get_size()) # Gets the size of the screen
 background = background.convert()
-background.fill((cl.YELLOW))            # Fills the screen with the given color in the cl
+background.fill((cl.NAVYBLUE))            # Fills the screen with the given color in the cl
 
 while not crashed:
     for event in pygame.event.get():
