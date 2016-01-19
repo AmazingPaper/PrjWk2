@@ -17,6 +17,5 @@ class Player:
             self.name = name
             self.number = number
 
-
         def __str__(self):
             return "{} is player {} and has {} life points ".format(self.Value, self.PlayerNumber, self.HP)
