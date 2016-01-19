@@ -34,7 +34,7 @@ for row in range(MAPHEIGHT):
     for column in range(MAPWIDTH):
         #Row = Y-Axis and Column = the X-Axis
         #draw the resource at that position in the tilemap, using the correct colour
-        pygame.draw.rect(DISPLAYSURF, colours[tilemap[row][column]], (column*TILESIZE,row*TILESIZE,TILESIZE,TILESIZE))
+        DISPLAYSURF.blit(textures[tilemap[row][column]], (column*TILESIZE, row*TILESIZE))# Blit image on the certain Row and Column
 
 
 while not crashed:

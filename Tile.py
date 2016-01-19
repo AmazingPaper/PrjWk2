@@ -4,7 +4,7 @@ from cl import *
 
 # The colors are imported from the Colorlist
 
-#constants representing the different resources
+#constants representing the different Tiles
 FIGHT  = 0
 CORNERYELLOW = 1
 CORNERBLUE = 2
@@ -16,16 +16,16 @@ BLANK = 7
 
 
 #a dictionary tiles to the colors
-colours =   {
-                FIGHT  : PURPLE,
-                CORNERYELLOW : YELLOW,
-                CORNERBLUE : BLUE,
-                CORNERRED  : RED,
-                CORNERGREEN : GREEN,
-                IDLETILE   : WHITE,
-                IDLETILE2  : GREY,
-                BLANK       : BLACK
-            }
+textures =   {
+                FIGHT  : pygame.image.load('FightTile.png'),
+                CORNERYELLOW : pygame.image.load('YellowTile.png'),
+                CORNERBLUE : pygame.image.load('BlueTile.png'),
+                CORNERRED  : pygame.image.load('RedTile.png'),
+                CORNERGREEN : pygame.image.load('GreenTile.png'),
+                IDLETILE   : pygame.image.load('WhiteTile.png'),
+                IDLETILE2  : pygame.image.load('GreyTile.png'),
+                BLANK       : pygame.image.load('BlackTile.png')
+            } #Image for the tile
 
 #a list representing our tilemap
 tilemap = [
@@ -40,7 +40,7 @@ tilemap = [
             [IDLETILE2, BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, IDLETILE2],
             [CORNERYELLOW, BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, BLANK, CORNERGREEN],
             [CORNERYELLOW, CORNERYELLOW, IDLETILE2, IDLETILE, IDLETILE2, FIGHT, IDLETILE2, IDLETILE, IDLETILE2, CORNERGREEN, CORNERGREEN]
-          ]
+          ] # This is the 11x11 format for the map
 
 
 
