@@ -17,14 +17,14 @@ BLANK = 7
 
 #a dictionary tiles to the colors
 textures =   {
-                FIGHT  : pygame.image.load('FightTile.png'),
-                CORNERYELLOW : pygame.image.load('YellowTile.png'),
-                CORNERBLUE : pygame.image.load('BlueTile.png'),
-                CORNERRED  : pygame.image.load('RedTile.png'),
-                CORNERGREEN : pygame.image.load('GreenTile.png'),
-                IDLETILE   : pygame.image.load('WhiteTile.png'),
-                IDLETILE2  : pygame.image.load('GreyTile.png'),
-                BLANK       : pygame.image.load('BlackTile.png')
+                FIGHT  : pygame.image.load('Tiles/FightTile.png'),
+                CORNERYELLOW : pygame.image.load('Tiles/YellowTile.png'),
+                CORNERBLUE : pygame.image.load('Tiles/BlueTile.png'),
+                CORNERRED  : pygame.image.load('Tiles/RedTile.png'),
+                CORNERGREEN : pygame.image.load('Tiles/GreenTile.png'),
+                IDLETILE   : pygame.image.load('Tiles/WhiteTile.png'),
+                IDLETILE2  : pygame.image.load('Tiles/GreyTile.png'),
+                BLANK       : pygame.image.load('Tiles/BlackTile.png')
             } #Image for the tile
 
 #a list representing our tilemap
