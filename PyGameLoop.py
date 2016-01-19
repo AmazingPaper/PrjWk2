@@ -19,16 +19,7 @@ pygame.display.set_caption('Survivor')                          # Title of proje
 clock = pygame.time.Clock()                                     # Add clock
 crashed = False                                                 # Crash handler
 
-background = pygame.Surface(DISPLAYSURF.get_size())             # Gets the size of the screen
-background = background.convert()
-background.fill((GREY))                                  # Fills the screen with the given color in the cl
 
-# Display some text
-# font = pygame.font.Font(None, 36)
-# text = font.render("Player 1's turn", 1, (10, 10, 10))
-# textpos = text.get_rect()
-# textpos.centerx = background.get_rect().centerx
-# background.blit(text, textpos)
 
 for row in range(MAPHEIGHT):
     #loop through each column in the row
