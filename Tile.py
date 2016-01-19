@@ -14,7 +14,10 @@ IDLETILE = 5
 IDLETILE2 = 6
 BLANK = 7
 LIFEPOINTSRED = 8
-CONDITIONPOINTS = 9
+LIFEPOINTSBLUE = 9
+LIFEPOINTSGREEN = 10
+LIFEPOINTSYELLOW = 11
+CONDITIONPOINTS = 12
 
 
 
@@ -32,7 +35,7 @@ textures =   {
                 LIFEPOINTSRED  : pygame.image.load('Tiles/Lifepoints.png'),
                 LIFEPOINTSBLUE : pygame.image.load('Tiles/LifepointsBlue.png'),
                 LIFEPOINTSGREEN : pygame.image.load('Tiles/LifepointsGreen.png'),
-
+                LIFEPOINTSYELLOW : pygame.image.load('Tiles/LifepointsYellow.png'),
                 CONDITIONPOINTS : pygame.image.load('Tiles/Conditionpoints.png')
             } #Image for the tile
 

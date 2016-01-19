@@ -32,7 +32,7 @@ INVFONT = pygame.font.Font('arial.ttf',18)
 
 placePosition = 10
 
-for item in resources:
+for item in resourcesRed:
     DISPLAYSURF.blit(textures[item],(placePosition,MAPHEIGHT*TILESIZE+20))
     placePosition += 30
     #add the text showing the amount in the inventory
@@ -42,7 +42,7 @@ for item in resources:
 
 placePosition = 450
 
-for item in resources:
+for item in resourcesGreen:
     DISPLAYSURF.blit(textures[item],(placePosition,MAPHEIGHT*TILESIZE+20))
     placePosition += 30
     #add the text showing the amount in the inventory
@@ -52,7 +52,7 @@ for item in resources:
 
 placePosition = 10
 
-for item in resources:
+for item in resourcesBlue:
     DISPLAYSURF.blit(textures[item],(placePosition,MAPHEIGHT *TILESIZE+110))
     placePosition += 30
     #add the text showing the amount in the inventory
@@ -62,11 +62,11 @@ for item in resources:
 
 placePosition = 450
 
-for item in resources:
+for item in resourcesYellow:
     DISPLAYSURF.blit(textures[item],(placePosition,MAPHEIGHT *TILESIZE+110))
     placePosition += 30
     #add the text showing the amount in the inventory
-    textObj = INVFONT.render(str(inventoryBlue[item]), True, WHITE, BLACK)
+    textObj = INVFONT.render(str(inventoryYellow[item]), True, WHITE, BLACK)
     DISPLAYSURF.blit(textObj,(placePosition,MAPHEIGHT *TILESIZE+110))
     placePosition += 50
 
