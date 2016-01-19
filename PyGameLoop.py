@@ -28,7 +28,7 @@ for row in range(MAPHEIGHT):
         #draw the resource at that position in the tilemap, using the correct colour
         DISPLAYSURF.blit(textures[tilemap[row][column]], (column*TILESIZE, row*TILESIZE-2))
         # Blit image on the certain Row and Column and -2 is because of the centering on the tile
-INVFONT = pygame.font.Font('arial.ttf',18)
+INVFONT = pygame.font.Font('Minecraft.ttf',18)
 
 placePosition = 10
 
