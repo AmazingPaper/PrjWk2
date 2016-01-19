@@ -8,6 +8,8 @@ class Enemy_Char:
         self.n5 = n5
         self.n6 = n6
 
+
+
     def __str__(self):
         return "This is {},\nhis damage with 1 = {},\nhis damage with 2 = {},\nhis damage with 3 = {},\nhis damage with 4 = {},\nhis damage with 5 = {},\nand his damage with 6 = {}".format(self.name, self.n1, self.n2,self.n3, self.n4, self.n5, self.n6)
 
