@@ -35,8 +35,9 @@ def PlayerCount():
 PlayerCount()
 
 
-
-# print("Player " + str(list[6]).strip("[']") + " has player number " + str(list[7]).strip("[]") + " and is ready to go!")
+for i in range(0,7):
+    print("Player " + str(list[i]).strip("[']") + " has player number " + str(list[i]).strip("[i]") + " and is ready to go!")
+    i= i+1
 
 
 
