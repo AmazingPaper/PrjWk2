@@ -1,12 +1,16 @@
 import pygame, sys
 import os
-import cl
+
+from cl import *
+from Tile import *
 
 from pygame.locals import *
 
 pygame.init()
-
-DISPLAYSURF = pygame.display.set_mode((600,600))
+TILESIZE  = 55
+MAPWIDTH  = 11
+MAPHEIGHT = 11
+DISPLAYSURF = pygame.display.set_mode((MAPWIDTH*TILESIZE, MAPHEIGHT*TILESIZE))
 pygame.display.set_caption('Survivor')                          # Title of project
 
 
@@ -16,14 +20,30 @@ crashed = False                                                 # Crash handler
 
 background = pygame.Surface(DISPLAYSURF.get_size())             # Gets the size of the screen
 background = background.convert()
-background.fill((cl.NAVYBLUE))                                  # Fills the screen with the given color in the cl
+background.fill((GREY))                                  # Fills the screen with the given color in the cl
+
+# Display some text
+# font = pygame.font.Font(None, 36)
+# text = font.render("Player 1's turn", 1, (10, 10, 10))
+# textpos = text.get_rect()
+# textpos.centerx = background.get_rect().centerx
+# background.blit(text, textpos)
+
+for row in range(MAPHEIGHT):
+    #loop through each column in the row
+    for column in range(MAPWIDTH):
+        #Row = Y-Axis and Column = the X-Axis
+        #draw the resource at that position in the tilemap, using the correct colour
+        pygame.draw.rect(DISPLAYSURF, colours[tilemap[row][column]], (column*TILESIZE,row*TILESIZE,TILESIZE,TILESIZE))
+
 
 while not crashed:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             crashed = True
 
-        DISPLAYSURF.blit(background, (0, 0))                    # Shows us the background
+
+        #DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
         pygame.display.update()                                 # Can also be changed to 'pygame.display.flip()'
         clock.tick(60)                                          # Set FPS, PC MASTER RACE
 

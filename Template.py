@@ -1,8 +1,3 @@
-from Colorlist import *
-
-print(Col.Blue)
-
-
 # #This files contains little snippets of code that can be repurposed
 # list = []
 #
