@@ -3,6 +3,7 @@ import os
 
 from cl import *
 from Tile import *
+from Player import *
 
 from pygame.locals import *
 
@@ -34,7 +35,8 @@ for row in range(MAPHEIGHT):
     for column in range(MAPWIDTH):
         #Row = Y-Axis and Column = the X-Axis
         #draw the resource at that position in the tilemap, using the correct colour
-        DISPLAYSURF.blit(textures[tilemap[row][column]], (column*TILESIZE, row*TILESIZE))# Blit image on the certain Row and Column
+        DISPLAYSURF.blit(textures[tilemap[row][column]], (column*TILESIZE, row*TILESIZE))
+        # Blit image on the certain Row and Column
 
 
 while not crashed:
@@ -43,8 +45,14 @@ while not crashed:
             crashed = True
 
 
+        DISPLAYSURF.blit(PLAYERRED,(playerRedPos[0]*TILESIZE,playerRedPos[1]*TILESIZE))
+        DISPLAYSURF.blit(PLAYERBLUE,(playerBluePos[0]*TILESIZE,playerBluePos[1]*TILESIZE))
+        DISPLAYSURF.blit(PLAYERYELLOW,(playerYellowPos[0]*TILESIZE,playerYellowPos[1]*TILESIZE))
+        DISPLAYSURF.blit(PLAYERGREEN,(playerGreenPos[0]*TILESIZE,playerGreenPos[1]*TILESIZE))
+
+
         #DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
-        pygame.display.update()                                 # Can also be changed to 'pygame.display.flip()'
+        pygame.display.flip()                                 # Can also be changed to 'pygame.display.flip()'
         clock.tick(60)                                          # Set FPS, PC MASTER RACE
 
 pygame.quit()                                                   #Quit?
