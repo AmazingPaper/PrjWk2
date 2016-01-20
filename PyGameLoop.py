@@ -37,6 +37,16 @@ INVFONT = pygame.font.Font('Minecraft.ttf',18)
 
 placePosition = 10
 
+for item in resourcesBlue:
+    DISPLAYSURF.blit(textures[item],(placePosition,MAPHEIGHT*TILESIZE+20))
+    placePosition += 30
+    #add the text showing the amount in the inventory
+    textObj = INVFONT.render(str(inventoryBlue[item]), True, WHITE, BLACK)
+    DISPLAYSURF.blit(textObj,(placePosition,MAPHEIGHT*TILESIZE+20))
+    placePosition += 50
+
+placePosition = 450
+
 for item in resourcesRed:
     DISPLAYSURF.blit(textures[item],(placePosition,MAPHEIGHT*TILESIZE+20))
     placePosition += 30
@@ -45,33 +55,23 @@ for item in resourcesRed:
     DISPLAYSURF.blit(textObj,(placePosition,MAPHEIGHT*TILESIZE+20))
     placePosition += 50
 
-placePosition = 450
-
-for item in resourcesGreen:
-    DISPLAYSURF.blit(textures[item],(placePosition,MAPHEIGHT*TILESIZE+20))
-    placePosition += 30
-    #add the text showing the amount in the inventory
-    textObj = INVFONT.render(str(inventoryGreen[item]), True, WHITE, BLACK)
-    DISPLAYSURF.blit(textObj,(placePosition,MAPHEIGHT*TILESIZE+20))
-    placePosition += 50
-
 placePosition = 10
-
-for item in resourcesBlue:
-    DISPLAYSURF.blit(textures[item],(placePosition,MAPHEIGHT *TILESIZE+110))
-    placePosition += 30
-    #add the text showing the amount in the inventory
-    textObj = INVFONT.render(str(inventoryBlue[item]), True, WHITE, BLACK)
-    DISPLAYSURF.blit(textObj,(placePosition,MAPHEIGHT *TILESIZE+110))
-    placePosition += 50
-
-placePosition = 450
 
 for item in resourcesYellow:
     DISPLAYSURF.blit(textures[item],(placePosition,MAPHEIGHT *TILESIZE+110))
     placePosition += 30
     #add the text showing the amount in the inventory
     textObj = INVFONT.render(str(inventoryYellow[item]), True, WHITE, BLACK)
+    DISPLAYSURF.blit(textObj,(placePosition,MAPHEIGHT *TILESIZE+110))
+    placePosition += 50
+
+placePosition = 450
+
+for item in resourcesGreen:
+    DISPLAYSURF.blit(textures[item],(placePosition,MAPHEIGHT *TILESIZE+110))
+    placePosition += 30
+    #add the text showing the amount in the inventory
+    textObj = INVFONT.render(str(inventoryGreen[item]), True, WHITE, BLACK)
     DISPLAYSURF.blit(textObj,(placePosition,MAPHEIGHT *TILESIZE+110))
     placePosition += 50
 
@@ -86,11 +86,12 @@ def gameLoop():
 
 
 
+
         DISPLAYSURF.blit(PLAYERRED,(playerRedPos[0]*TILESIZE,playerRedPos[1]*TILESIZE))
         DISPLAYSURF.blit(PLAYERBLUE,(playerBluePos[0]*TILESIZE,playerBluePos[1]*TILESIZE))
         DISPLAYSURF.blit(PLAYERYELLOW,(playerYellowPos[0]*TILESIZE,playerYellowPos[1]*TILESIZE))
         DISPLAYSURF.blit(PLAYERGREEN,(playerGreenPos[0]*TILESIZE,playerGreenPos[1]*TILESIZE))
-
+        playerBluePos[0] = 3
 
         #DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
         pygame.display.flip()                                 # Can also be changed to 'pygame.display.flip()'
