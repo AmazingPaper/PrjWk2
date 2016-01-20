@@ -1,16 +1,16 @@
 import pygame, sys
 import os
-
+import random
 from cl import *
 from Tile import *
 from Player import *
+
 
 from pygame.locals import *
 def dieRoll():
     thrown = random.randint(1, 6)
     print(thrown)
 
-dieRoll()
 
 pygame.init()
 TILESIZE  = 55
@@ -22,7 +22,7 @@ pygame.display.set_caption('Survivor')                          # Title of proje
 
 
 clock = pygame.time.Clock()                                     # Add clock
-crashed = False                                                 # Crash handler
+
 
 
 
@@ -76,10 +76,12 @@ for item in resourcesYellow:
     placePosition += 50
 
 
-while not crashed:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            crashed = True
+def gameLoop():
+    crashed = False
+    while not crashed:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                crashed = True
 
 
 
@@ -94,5 +96,7 @@ while not crashed:
         pygame.display.flip()                                 # Can also be changed to 'pygame.display.flip()'
         clock.tick(60)                                          # Set FPS, PC MASTER RACE
 
-pygame.quit()                                                   #Quit?
-quit()                                                          #Okay. Doei.
+    pygame.quit()                                                   #Quit?
+    quit()                                                          #Okay. Doei.
+
+gameLoop()
