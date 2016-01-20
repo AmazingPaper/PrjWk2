@@ -1,5 +1,6 @@
 import pygame
 
+
 LIFEPOINTSRED = 8
 LIFEPOINTSBLUE = 9
 LIFEPOINTSGREEN = 10
@@ -11,6 +12,7 @@ resourcesRed = [LIFEPOINTSRED, CONDITIONPOINTS]
 resourcesBlue = [LIFEPOINTSBLUE, CONDITIONPOINTS]
 resourcesGreen = [LIFEPOINTSGREEN, CONDITIONPOINTS]
 resourcesYellow = [LIFEPOINTSYELLOW, CONDITIONPOINTS]
+
 
 PLAYERRED = pygame.image.load('Tiles/PlayerRed.gif')
 #the position of the player [x,y]

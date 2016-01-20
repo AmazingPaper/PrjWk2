@@ -6,6 +6,11 @@ from Tile import *
 from Player import *
 
 from pygame.locals import *
+def dieRoll():
+    thrown = random.randint(1, 6)
+    print(thrown)
+
+dieRoll()
 
 pygame.init()
 TILESIZE  = 55
@@ -75,6 +80,8 @@ while not crashed:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             crashed = True
+
+
 
 
         DISPLAYSURF.blit(PLAYERRED,(playerRedPos[0]*TILESIZE,playerRedPos[1]*TILESIZE))
