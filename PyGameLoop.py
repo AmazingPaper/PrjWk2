@@ -9,11 +9,9 @@ from pygame.locals import *
 #box glove image
 img2 = pygame.image.load('images/boximg.png')
 
-
 def dieRoll():
     thrown = random.randint(1, 6)
     print(thrown)
-
 
 pygame.init()
 TILESIZE  = 55
@@ -21,8 +19,6 @@ MAPWIDTH  = 11
 MAPHEIGHT = 11
 DISPLAYSURF = pygame.display.set_mode((MAPWIDTH*TILESIZE, MAPHEIGHT*TILESIZE + 200))
 pygame.display.set_caption('Survivor')                          # Title of project
-
-
 
 clock = pygame.time.Clock()                                     # Add clock
 
