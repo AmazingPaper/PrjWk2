@@ -86,12 +86,12 @@ def gameLoop():
 
 
 
-
+        playerBluePos[0] = 3
         DISPLAYSURF.blit(PLAYERRED,(playerRedPos[0]*TILESIZE,playerRedPos[1]*TILESIZE))
         DISPLAYSURF.blit(PLAYERBLUE,(playerBluePos[0]*TILESIZE,playerBluePos[1]*TILESIZE))
         DISPLAYSURF.blit(PLAYERYELLOW,(playerYellowPos[0]*TILESIZE,playerYellowPos[1]*TILESIZE))
         DISPLAYSURF.blit(PLAYERGREEN,(playerGreenPos[0]*TILESIZE,playerGreenPos[1]*TILESIZE))
-        playerBluePos[0] = 3
+
 
         #DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
         pygame.display.flip()                                 # Can also be changed to 'pygame.display.flip()'
