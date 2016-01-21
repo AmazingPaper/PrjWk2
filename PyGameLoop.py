@@ -223,18 +223,21 @@ def gameLoop():
                 if(event.key == K_SPACE):
                     number = dieRoll()
                     for x in range(number):
-                        if playerBluePos[0] == 0 and playerBluePos[1] == 0:
-                            DIRECTION = playerBluePos[0]
-                            DIRECTION += 1
-                        if playerBluePos[0] == 11 and playerBluePos[1] == 0:
-                            DIRECTION = playerBluePos[1]
-                            DIRECTION += 1
-                        if playerBluePos[0] == 11 and playerBluePos[1] == 11:
-                            DIRECTION = playerBluePos[0]
-                            DIRECTION += 1
-                        if playerBluePos[0] == 0 and playerBluePos[1] == 11:
-                            DIRECTION = playerBluePos[1]
-                            DIRECTION += 1 #TODO: DAMIEN GAAT HIER NAAR KIJKEN
+                        if playerBluePos[0] == 0 and playerBluePos[1] == 0 or playerBluePos[0] >= 1 and playerBluePos[0] <= 9 and playerBluePos[1] ==0:
+                            DIRECTION = playerBluePos
+                            DIRECTION[0] += 1
+                        elif playerBluePos[0] == 10 and playerBluePos[1] == 0 or playerBluePos[1] >= 1 and playerBluePos[1] <= 9 and playerBluePos[0] ==10:
+                            DIRECTION = playerBluePos
+                            DIRECTION[1] += 1
+                        elif playerBluePos[0] == 10 and playerBluePos[1] == 10 or playerBluePos[0] >= 1 and playerBluePos[0] <= 9 and playerBluePos[1] ==10:
+                            DIRECTION = playerBluePos
+                            DIRECTION[0] -= 1
+                        elif playerBluePos[0] == 0 and playerBluePos[1] == 10 or playerBluePos[1] >= 1 and playerBluePos[1] <= 9 and playerBluePos[0] ==0:
+                            DIRECTION = playerBluePos
+                            DIRECTION[1] -= 1 #TODO: DAMIEN GAAT HIER NAAR KIJKEN
+
+
+
 
 
 
