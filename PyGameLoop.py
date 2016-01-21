@@ -77,7 +77,7 @@ def GameBoard():
         placePosition += 50
 
     #menu knop in game
-    if 250+100 > mouseLocation[0] > 250 and 675 + 50 > mouseLocation[1] > 500:
+    if 250+100 > mouseLocation[0] > 250 and 675 + 50 > mouseLocation[1] > 675:
         pygame.draw.rect(DISPLAYSURF,YELLOW,(250,675,100,50))
         DISPLAYSURF.blit(img2,(200,675))
         if mouseClick[0] == 1:

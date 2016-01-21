@@ -13,34 +13,43 @@ resourcesBlue = [LIFEPOINTSBLUE, CONDITIONPOINTS]
 resourcesGreen = [LIFEPOINTSGREEN, CONDITIONPOINTS]
 resourcesYellow = [LIFEPOINTSYELLOW, CONDITIONPOINTS]
 
+HPRED = 100
+HPBLUE = 100
+HPYELLOW = 100
+HPGREEN = 100
+
+CPRED = 15
+CPBLUE = 15
+CPYELLOW = 15
+CPGREEN = 15
 
 PLAYERRED = pygame.image.load('Tiles/PlayerRed.gif')
 #the position of the player [x,y]
 playerRedPos = [10,0]
 inventoryRed = {
-                LIFEPOINTSRED          : 100,
-                CONDITIONPOINTS     : 15
+                LIFEPOINTSRED          : HPRED,
+                CONDITIONPOINTS     : CPRED
                 }
 
 PLAYERBLUE = pygame.image.load('Tiles/PlayerBlue.gif')
 playerBluePos = [0,0]
 inventoryBlue = {
-                LIFEPOINTSBLUE         : 100,
-                CONDITIONPOINTS     : 15
+                LIFEPOINTSBLUE         : HPBLUE,
+                CONDITIONPOINTS     : CPBLUE
                 }
 
 PLAYERYELLOW = pygame.image.load('Tiles/PlayerYellow.gif')
 playerYellowPos = [0,10]
 inventoryYellow = {
-                LIFEPOINTSYELLOW          : 100,
-                CONDITIONPOINTS     : 15
+                LIFEPOINTSYELLOW          : HPYELLOW,
+                CONDITIONPOINTS     : CPYELLOW
                 }
 
 PLAYERGREEN = pygame.image.load('Tiles/PlayerGreen.gif')
 playerGreenPos = [10,10]
 inventoryGreen = {
-                LIFEPOINTSGREEN          : 100,
-                CONDITIONPOINTS     : 15
+                LIFEPOINTSGREEN          : HPGREEN,
+                CONDITIONPOINTS     : CPGREEN
                 }
 
 
