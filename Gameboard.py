@@ -1,27 +1,8 @@
-import pygame, sys
-import os
-import random
+import pygame
 from cl import *
-from Tile import *
-from Player import *
-from pygame.locals import *
+from PyGameLoop import *
 
-#box glove image
-img2 = pygame.image.load('images/boximg.png')
 
-def dieRoll():
-    number = random.randint(1, 6)
-    print(number)
-    return(number)
-
-pygame.init()
-TILESIZE  = 55
-MAPWIDTH  = 11
-MAPHEIGHT = 11
-DISPLAYSURF = pygame.display.set_mode((MAPWIDTH*TILESIZE, MAPHEIGHT*TILESIZE + 200))
-pygame.display.set_caption('Survivor')                          # Title of project
-
-clock = pygame.time.Clock()                                     # Add clock
 
 def GameBoard():
     mouseLocation = pygame.mouse.get_pos()
@@ -206,59 +187,3 @@ def intro_menu():
         TextSurf, TextRect = text_objects3("RULES", smallText)
         TextRect.center = (((MAPWIDTH*TILESIZE)/2),((MAPHEIGHT*TILESIZE)/1.15))
         DISPLAYSURF.blit(TextSurf, TextRect)
-
-        pygame.display.update()
-        clock.tick(30)
-
-
-def gameLoop():
-    crashed = False
-
-
-    while not crashed:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                crashed = True
-            elif event.type == KEYDOWN:
-                if(event.key == K_SPACE):
-                    number = dieRoll()
-                    for x in range(number):
-                        if playerBluePos[0] == 0 and playerBluePos[1] == 0:
-                            DIRECTION = playerBluePos[0]
-                            DIRECTION += 1
-                        if playerBluePos[0] == 11 and playerBluePos[1] == 0:
-                            DIRECTION = playerBluePos[1]
-                            DIRECTION += 1
-                        if playerBluePos[0] == 11 and playerBluePos[1] == 11:
-                            DIRECTION = playerBluePos[0]
-                            DIRECTION += 1
-                        if playerBluePos[0] == 0 and playerBluePos[1] == 11:
-                            DIRECTION = playerBluePos[1]
-                            DIRECTION += 1 #TODO: DAMIEN GAAT HIER NAAR KIJKEN
-
-
-
-
-
-
-
-
-
-        GameBoard()
-
-
-        DISPLAYSURF.blit(PLAYERRED,(playerRedPos[0]*TILESIZE,playerRedPos[1]*TILESIZE))
-        DISPLAYSURF.blit(PLAYERBLUE,(playerBluePos[0]*TILESIZE,playerBluePos[1]*TILESIZE))
-        DISPLAYSURF.blit(PLAYERYELLOW,(playerYellowPos[0]*TILESIZE,playerYellowPos[1]*TILESIZE))
-        DISPLAYSURF.blit(PLAYERGREEN,(playerGreenPos[0]*TILESIZE,playerGreenPos[1]*TILESIZE))
-
-
-        #DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
-        pygame.display.flip()                                 # Can also be changed to 'pygame.display.flip()'
-        clock.tick(60)                                          # Set FPS, PC MASTER RACE
-
-    pygame.quit()                                                   #Quit?
-    quit()                                                          #Okay. Doei.
-
-intro_menu()
-

@@ -23,6 +23,8 @@ CPBLUE = 15
 CPYELLOW = 15
 CPGREEN = 15
 
+DIRECTION = 0
+
 PLAYERRED = pygame.image.load('Tiles/PlayerRed.gif')
 #the position of the player [x,y]
 playerRedPos = [10,0]
