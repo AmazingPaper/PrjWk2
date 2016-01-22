@@ -34,5 +34,28 @@ Aqua_man = Enemy_Char('Aqua Man', 12, 15, 9, 7, 7, 13)
 Jackie_Chen = Enemy_Char('Jackie Chen', 12, 10, 15, 9, 10, 25)
 Bruce_Lee = Enemy_Char('Bruce Lee', 20, 15, 5, 7, 8, 26)
 
-print(Dexter)
+# print(Dexter)
+
+
+class Player:
+    def __init__(self, name, position):
+        self.Name = name
+        self.Position = position
+        self.Health = 100
+        self.Stamina = 15
+
+
+# Decrepated Player function, in favour of node lists.
+# list = []
+#
+#
+# def Players():
+#     for i in range(1, 5):
+#         name = str(input("Player " + str(i) + " please enter your name: "))
+#         list.append([name])
+#         list.append([i])
+#
+# Players()
+# for x in range(0,7,2):
+#     print("\nPlayer " + str(list[x]).strip("[']") + " has player number " + str(list[x+1]).strip("[]") + " and is ready to go!")
 

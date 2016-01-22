@@ -1,6 +1,4 @@
-import pygame, sys
-from pygame.locals import *
-from cl import *
+from Functions import *
 
 # The colors are imported from the Colorlist
 
