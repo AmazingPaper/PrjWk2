@@ -221,22 +221,22 @@ def gameLoop():
             if event.type == pygame.QUIT:
                 crashed = True
             elif event.type == KEYDOWN:
-                if(event.key == K_SPACE):
+                if(event.key == K_1):
                     number = dieRoll()
                     for x in range(number):
-                        if playerBluePos[0] == 0 and playerBluePos[1] == 0 or playerBluePos[0] >= 1 and playerBluePos[0] <= 9 and playerBluePos[1] ==0:
-                            DIRECTION = playerBluePos
-                            DIRECTION[0] += 1
-                        elif playerBluePos[0] == 10 and playerBluePos[1] == 0 or playerBluePos[1] >= 1 and playerBluePos[1] <= 9 and playerBluePos[0] ==10:
-                            DIRECTION = playerBluePos
-                            DIRECTION[1] += 1
-                        elif playerBluePos[0] == 10 and playerBluePos[1] == 10 or playerBluePos[0] >= 1 and playerBluePos[0] <= 9 and playerBluePos[1] ==10:
-                            DIRECTION = playerBluePos
-                            DIRECTION[0] -= 1
-                        elif playerBluePos[0] == 0 and playerBluePos[1] == 10 or playerBluePos[1] >= 1 and playerBluePos[1] <= 9 and playerBluePos[0] ==0:
-                            DIRECTION = playerBluePos
-                            DIRECTION[1] -= 1 #TODO: DAMIEN GAAT HIER NAAR KIJKEN
-
+                        PlayerPosBlue()
+                if (event.key == K_2):
+                    number = dieRoll()
+                    for x in range(number):
+                        PlayerPosRed()
+                if (event.key == K_3):
+                    number = dieRoll()
+                    for x in range(number):
+                        PlayerPosYellow()
+                if (event.key == K_4):
+                    number = dieRoll()
+                    for x in range(number):
+                        PlayerPosGreen()
 
 
 
