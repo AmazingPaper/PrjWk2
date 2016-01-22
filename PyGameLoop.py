@@ -5,6 +5,7 @@ from cl import *
 from Tile import *
 from Player import *
 from pygame.locals import *
+from FighterClasses import *
 
 #box glove image
 img2 = pygame.image.load('images/boximg.png')
@@ -250,10 +251,10 @@ def gameLoop():
         GameBoard()
 
 
-        DISPLAYSURF.blit(PLAYERRED,(playerRedPos[0]*TILESIZE,playerRedPos[1]*TILESIZE))
-        DISPLAYSURF.blit(PLAYERBLUE,(playerBluePos[0]*TILESIZE,playerBluePos[1]*TILESIZE))
-        DISPLAYSURF.blit(PLAYERYELLOW,(playerYellowPos[0]*TILESIZE,playerYellowPos[1]*TILESIZE))
-        DISPLAYSURF.blit(PLAYERGREEN,(playerGreenPos[0]*TILESIZE,playerGreenPos[1]*TILESIZE))
+        DISPLAYSURF.blit(PR,(playerRedPos[0]*TILESIZE,playerRedPos[1]*TILESIZE))
+        DISPLAYSURF.blit(PB,(playerBluePos[0]*TILESIZE,playerBluePos[1]*TILESIZE))
+        DISPLAYSURF.blit(PY,(playerYellowPos[0]*TILESIZE,playerYellowPos[1]*TILESIZE))
+        DISPLAYSURF.blit(PG,(playerGreenPos[0]*TILESIZE,playerGreenPos[1]*TILESIZE))
 
 
         #DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
