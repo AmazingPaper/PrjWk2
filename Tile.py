@@ -1,4 +1,4 @@
-from Functions import *
+import pygame
 
 # The colors are imported from the Colorlist
 
