@@ -1,8 +1,0 @@
-import random
-def die():
-    print("Press enter to roll:")
-    dierollings = input()
-    dierollings = random.randrange(1, 6)
-    print(dierollings)
-
-die()
