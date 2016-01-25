@@ -3,7 +3,6 @@ import random
 from pygame.locals import *
 
 from Classes import *
-
 from Tile import *
 
 pygame.init()
@@ -396,11 +395,6 @@ def corner():
 
 
 
-
-
-
-<<<<<<< HEAD
-=======
 def gameLoop():
     crashed = False
 
@@ -457,5 +451,4 @@ def gameLoop():
         pygame.display.flip()  # Can also be changed to 'pygame.display.flip()'
         clock.tick(60)  # Set FPS, PC MASTER RACE
         GameBoard()
->>>>>>> origin/master
 
