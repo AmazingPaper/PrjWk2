@@ -17,13 +17,30 @@ pygame.display.set_caption('Survivor')  # Title of project
 clock = pygame.time.Clock()  # Add clock
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#_____________________________________________________________________________________________________________________________________
+
 LIFEPOINTSRED = 8
 LIFEPOINTSBLUE = 9
 LIFEPOINTSGREEN = 10
 LIFEPOINTSYELLOW = 11
 CONDITIONPOINTS = 12
-
-#TODO: Hey, you just wrote this, and this is crazy, but I love classes, let's do this, maybe?
 
 # Lifepoints and ConditionPoints
 resourcesRed = [LIFEPOINTSRED, CONDITIONPOINTS]
@@ -146,20 +163,25 @@ def gameLoop():
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosBlue()
+                    FightTile()
                 if (event.key == K_2):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosRed()
+                    FightTile()
                 if (event.key == K_3):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosYellow()
+                    FightTile()
                 if (event.key == K_4):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosGreen()
+                    FightTile()
 
         GameBoard()
+
 
         DISPLAYSURF.blit(PR, (playerRedPos[0] * TILESIZE, playerRedPos[1] * TILESIZE))
         DISPLAYSURF.blit(PB, (playerBluePos[0] * TILESIZE, playerBluePos[1] * TILESIZE))
@@ -172,6 +194,15 @@ def gameLoop():
 
     pygame.quit()  # Quit?
     quit()  # Okay. Doei.
+
+
+def FightTile():
+    if playerBluePos[0] == 5 and playerBluePos[1] == 0:
+        inventoryBlue[LIFEPOINTSBLUE] -= 10
+        print(PlayerBlue.Lifepoints)
+
+FightTile()
+
 
 #__________________________________________________________________________________________________________________________________________
 
@@ -286,6 +317,7 @@ def intro_menu():
 
         pygame.display.update()
         clock.tick(30)
+
 
 
 def GameBoard():
