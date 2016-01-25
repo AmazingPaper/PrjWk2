@@ -35,6 +35,7 @@ LIFEPOINTSGREEN = 10
 LIFEPOINTSYELLOW = 11
 CONDITIONPOINTS = 12
 
+
 # a dictionary tiles to the colors
 textures = {
     FIGHT: pygame.image.load('Tiles/FightTile.png'),
@@ -49,7 +50,8 @@ textures = {
     LIFEPOINTSBLUE: pygame.image.load('Tiles/LifepointsBlue.png'),
     LIFEPOINTSGREEN: pygame.image.load('Tiles/LifepointsGreen.png'),
     LIFEPOINTSYELLOW: pygame.image.load('Tiles/LifepointsYellow.png'),
-    CONDITIONPOINTS: pygame.image.load('Tiles/Conditionpoints.png')
+    CONDITIONPOINTS: pygame.image.load('Tiles/Conditionpoints.png'),
+
 }  # Image for the tile
 
 # a list representing our tilemap

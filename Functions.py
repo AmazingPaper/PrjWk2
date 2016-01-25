@@ -40,13 +40,24 @@ LIFEPOINTSRED = 8
 LIFEPOINTSBLUE = 9
 LIFEPOINTSGREEN = 10
 LIFEPOINTSYELLOW = 11
-CONDITIONPOINTS = 12
+CONDITIONPOINTSRED = 12
+CONDITIONPOINTSYELLOW = 12
+CONDITIONPOINTSBLUE = 12
+CONDITIONPOINTSGREEN = 12
+
+ROLL1 = pygame.image.load('Tiles/Roll1.png')
+ROLL2 = pygame.image.load('Tiles/Roll2.png')
+ROLL3 = pygame.image.load('Tiles/Roll3.png')
+ROLL4 = pygame.image.load('Tiles/Roll4.png')
+ROLL5 = pygame.image.load('Tiles/Roll5.png')
+ROLL6 = pygame.image.load('Tiles/Roll6.png')
+
 
 # Lifepoints and ConditionPoints
-resourcesRed = [LIFEPOINTSRED, CONDITIONPOINTS]
-resourcesBlue = [LIFEPOINTSBLUE, CONDITIONPOINTS]
-resourcesGreen = [LIFEPOINTSGREEN, CONDITIONPOINTS]
-resourcesYellow = [LIFEPOINTSYELLOW, CONDITIONPOINTS]
+resourcesRed = [LIFEPOINTSRED, CONDITIONPOINTSRED]
+resourcesBlue = [LIFEPOINTSBLUE, CONDITIONPOINTSBLUE]
+resourcesGreen = [LIFEPOINTSGREEN, CONDITIONPOINTSGREEN]
+resourcesYellow = [LIFEPOINTSYELLOW, CONDITIONPOINTSYELLOW]
 
 DIRECTION = 0
 
@@ -55,25 +66,25 @@ PR = pygame.image.load('Tiles/PlayerRed.gif')
 #the position of the player [x,y]
 playerRedPos = PlayerRed.position
 inventoryRed = {LIFEPOINTSRED: PlayerBlue.Lifepoints,
-                CONDITIONPOINTS: PlayerBlue.Conditionpoints}
+                CONDITIONPOINTSRED: PlayerBlue.Conditionpoints}
 
 #Player Blue Information
 PB = pygame.image.load('Tiles/PlayerBlue.gif')
 playerBluePos = PlayerBlue.position
 inventoryBlue = {LIFEPOINTSBLUE: PlayerBlue.Lifepoints,
-                 CONDITIONPOINTS: PlayerBlue.Conditionpoints}
+                 CONDITIONPOINTSBLUE: PlayerBlue.Conditionpoints}
 
 #Player Yellow Information
 PY = pygame.image.load('Tiles/PlayerYellow.gif')
 playerYellowPos = PlayerYellow.position
 inventoryYellow = {LIFEPOINTSYELLOW: PlayerYellow.Lifepoints,
-                    CONDITIONPOINTS: PlayerYellow.Conditionpoints}
+                    CONDITIONPOINTSYELLOW: PlayerYellow.Conditionpoints}
 
 #Player Green Information.
 PG = pygame.image.load('Tiles/PlayerGreen.gif')
 playerGreenPos = PlayerGreen.position
 inventoryGreen = {LIFEPOINTSGREEN: PlayerGreen.Lifepoints,
-                  CONDITIONPOINTS: PlayerGreen.Conditionpoints}
+                  CONDITIONPOINTSGREEN: PlayerGreen.Conditionpoints}
 
 #_______________________________________________________________________________________________________________________________________________________________
 
@@ -377,5 +388,74 @@ def GameBoard():
     #menu knop in game
     button("MENU",250,675,100,50,YELLOW,DIM_YELLOW,intro_menu)
 
+def fighting():
+    hello
 
+def corner():
+    hello1
+
+
+
+
+
+
+<<<<<<< HEAD
+=======
+def gameLoop():
+    crashed = False
+
+
+    while not crashed:
+        GameBoard()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                crashed = True
+            elif event.type == KEYDOWN:
+                if (event.key == K_1):
+                    number = dieRoll()
+                    for x in range(number):
+                        PlayerPosBlue()
+                    if playerBluePos[0] == 0 and playerBluePos[1] == 0 or playerBluePos[0] == 1 and playerBluePos[1] == 0 or playerBluePos[0] == 0 and playerBluePos[1] == 1:
+                        inventoryBlue[LIFEPOINTSBLUE] += 10
+                if (event.key == K_2):
+                    number = dieRoll()
+                    for x in range(number):
+                        PlayerPosRed()
+                    if playerRedPos[0] == 9 and playerRedPos[1] == 0 or playerRedPos[0] == 10 and playerRedPos[1] == 0 or playerRedPos[0] == 10 and playerRedPos[1] == 1:
+                        inventoryRed[LIFEPOINTSRED] += 10
+                if (event.key == K_3):
+                    number = dieRoll()
+                    for x in range(number):
+                        PlayerPosYellow()
+                    if playerYellowPos[0] == 1 and playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and playerYellowPos[1] == 9:
+                        inventoryYellow[LIFEPOINTSYELLOW] += 10
+                if (event.key == K_4):
+                    number = dieRoll()
+                    for x in range(number):
+                        PlayerPosGreen()
+
+                    if playerGreenPos[0] == 10 and playerGreenPos[1] == 9 or playerGreenPos[0] == 10 and playerGreenPos[1] == 10 or playerGreenPos[0] == 9 and playerGreenPos[1] == 10:
+                        inventoryGreen[LIFEPOINTSGREEN] += 10
+
+
+
+
+
+
+        if PlayerRed.Lifepoints >=1:
+            DISPLAYSURF.blit(PR, (playerRedPos[0] * TILESIZE, playerRedPos[1] * TILESIZE))
+        if inventoryBlue[LIFEPOINTSBLUE] >=1:
+            DISPLAYSURF.blit(PB, (playerBluePos[0] * TILESIZE, playerBluePos[1] * TILESIZE))
+        if PlayerYellow.Lifepoints >=1:
+            DISPLAYSURF.blit(PY, (playerYellowPos[0] * TILESIZE, playerYellowPos[1] * TILESIZE))
+        if PlayerGreen.Lifepoints >=1:
+            DISPLAYSURF.blit(PG, (playerGreenPos[0] * TILESIZE, playerGreenPos[1] * TILESIZE))
+
+
+
+        # DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
+        pygame.display.flip()  # Can also be changed to 'pygame.display.flip()'
+        clock.tick(60)  # Set FPS, PC MASTER RACE
+        GameBoard()
+>>>>>>> origin/master
 
