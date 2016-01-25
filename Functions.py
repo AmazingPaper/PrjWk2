@@ -15,25 +15,7 @@ pygame.display.set_caption('Survivor')  # Title of project
 
 clock = pygame.time.Clock()  # Add clock
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#_____________________________________________________________________________________________________________________________________
+# _____________________________________________________________________________________________________________________________________
 
 LIFEPOINTSRED = 8
 LIFEPOINTSBLUE = 9
@@ -50,7 +32,6 @@ ROLL3 = pygame.image.load('Tiles/Roll3.png')
 ROLL4 = pygame.image.load('Tiles/Roll4.png')
 ROLL5 = pygame.image.load('Tiles/Roll5.png')
 ROLL6 = pygame.image.load('Tiles/Roll6.png')
-
 
 # Lifepoints and ConditionPoints
 resourcesRed = [LIFEPOINTSRED, CONDITIONPOINTSRED]
@@ -77,7 +58,7 @@ inventoryBlue = {LIFEPOINTSBLUE: PlayerBlue.Lifepoints,
 PY = pygame.image.load('Tiles/PlayerYellow.gif')
 playerYellowPos = PlayerYellow.position
 inventoryYellow = {LIFEPOINTSYELLOW: PlayerYellow.Lifepoints,
-                    CONDITIONPOINTSYELLOW: PlayerYellow.Conditionpoints}
+                   CONDITIONPOINTSYELLOW: PlayerYellow.Conditionpoints}
 
 #Player Green Information.
 PG = pygame.image.load('Tiles/PlayerGreen.gif')
@@ -85,9 +66,54 @@ playerGreenPos = PlayerGreen.position
 inventoryGreen = {LIFEPOINTSGREEN: PlayerGreen.Lifepoints,
                   CONDITIONPOINTSGREEN: PlayerGreen.Conditionpoints}
 
-#_______________________________________________________________________________________________________________________________________________________________
+
+# Ability to roll die.
+def dieRoll():
+    number = random.randint(1, 6)
+    print(number)
+    return number
 
 
+# TODO: Make one text_objects function.
+def text_objects(text, font):
+    textSurface = font.render(text, True, SURV_BLUE)
+    return textSurface, textSurface.get_rect()
+
+
+def text_objects2(text, font):
+    textSurface = font.render(text, True, WHITE)
+    return textSurface, textSurface.get_rect()
+
+
+def text_objects3(text, font):
+    textSurface = font.render(text, True, BLACK)
+    return textSurface, textSurface.get_rect()
+
+
+def button(text, x, y, w, h, ac, ic, action=None):
+    mouseLocation = pygame.mouse.get_pos()
+    mouseClick = pygame.mouse.get_pressed()
+
+    img2 = pygame.image.load('images/boximg.png')
+
+    pygame.draw.ellipse(DISPLAYSURF, ic, (x, y, w, h))
+    smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
+    TextSurf, TextRect = text_objects3(text, smallText)
+    TextRect.center = ((x + (w / 2)), (y + (h / 2)))
+
+    if x + w > mouseLocation[0] > x and y + h > mouseLocation[1] > y:
+        pygame.draw.ellipse(DISPLAYSURF, ac, (x, y, w, h))
+        DISPLAYSURF.blit(img2, ((x - 50), y))
+        if mouseClick[0] == 1 and action != None:
+            pygame.mixer.music.stop()
+            action()
+        else:
+            pygame.draw.ellipse(DISPLAYSURF, ic, (x, y, w, h))
+
+    DISPLAYSURF.blit(TextSurf, TextRect)
+
+
+# TODO: make one movement function for every player.
 #Movement on the board Player Blue
 def PlayerPosBlue():
     if playerBluePos[0] == 0 and playerBluePos[1] == 0 or playerBluePos[0] >= 1 and playerBluePos[0] <= 9 and playerBluePos[1] ==0:
@@ -153,13 +179,8 @@ def quitGame():
     pygame.quit()
     quit()
 
-# Ability to roll die.
-def dieRoll():
-    number = random.randint(1, 6)
-    print(number)
-    return number
 
-#_____________________________________________________________________________________________________________________________________________________________
+# _____________________________________________________________________________________________________________________________________________________________
 
 def gameLoop():
     crashed = False
@@ -192,7 +213,6 @@ def gameLoop():
 
         GameBoard()
 
-
         DISPLAYSURF.blit(PR, (playerRedPos[0] * TILESIZE, playerRedPos[1] * TILESIZE))
         DISPLAYSURF.blit(PB, (playerBluePos[0] * TILESIZE, playerBluePos[1] * TILESIZE))
         DISPLAYSURF.blit(PY, (playerYellowPos[0] * TILESIZE, playerYellowPos[1] * TILESIZE))
@@ -211,13 +231,14 @@ def FightTile():
         inventoryBlue[LIFEPOINTSBLUE] -= 10
         print(PlayerBlue.Lifepoints)
 
+
 FightTile()
 
 
-#__________________________________________________________________________________________________________________________________________
+# __________________________________________________________________________________________________________________________________________
 
 
-#TODO: Make one text_objects function.
+# TODO: Make one text_objects function.
 def text_objects(text, font):
     textSurface = font.render(text, True, SURV_BLUE)
     return textSurface, textSurface.get_rect()
@@ -232,29 +253,8 @@ def text_objects3(text, font):
     textSurface = font.render(text, True, BLACK)
     return textSurface, textSurface.get_rect()
 
-def button(text,x,y,w,h,ac,ic,action=None):
-    mouseLocation = pygame.mouse.get_pos()
-    mouseClick    = pygame.mouse.get_pressed()
 
-    img2 = pygame.image.load('images/boximg.png')
-
-    pygame.draw.rect(DISPLAYSURF,ic,(x,y,w,h))
-    smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
-    TextSurf, TextRect = text_objects3(text, smallText)
-    TextRect.center = ( (x+(w/2)), (y+(h/2)))
-
-    if x+w > mouseLocation[0] > x and y + h > mouseLocation[1] > y:
-        pygame.draw.rect(DISPLAYSURF,ac,(x,y,w,h))
-        DISPLAYSURF.blit(img2,((x-50),y))
-        if mouseClick[0] == 1 and action != None:
-            pygame.mixer.music.stop()
-            action()
-        else:
-            pygame.draw.rect(DISPLAYSURF,ic,(x,y,w,h))
-
-    DISPLAYSURF.blit(TextSurf, TextRect)
-
-#TODO: make one movement function for every player.
+# TODO: make one movement function for every player.
 
 
 
@@ -267,26 +267,33 @@ def intro_music():
 
 #TODO: CREATE RULES MENU
 def rules_menu():
+
     #Kopie van Menu objecten
     mouseLocation = pygame.mouse.get_pos()
     mouseClick    = pygame.mouse.get_pressed()
+    intro = True
 
-    DISPLAYSURF.fill(SURV_BLUE)
+    while intro:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
 
-    #TOP TEXT
-    pygame.draw.rect(DISPLAYSURF,YELLOW,(20,70,570,100)) #title box
-    largeText = pygame.font.Font('8-BIT WONDER.TTF',75)
-    TextSurf, TextRect = text_objects("SURVIVOR", largeText)
-    TextRect.center = (((MAPWIDTH*TILESIZE)/1.95),((MAPHEIGHT*TILESIZE)/5))
-    DISPLAYSURF.blit(TextSurf, TextRect)
+        DISPLAYSURF.fill(SURV_BLUE)
 
-    smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
-    TextSurf, TextRect = text_objects2("MENU", smallText)
-    TextRect.center = (((MAPWIDTH*TILESIZE)/2),((MAPHEIGHT*TILESIZE)/12))
-    DISPLAYSURF.blit(TextSurf, TextRect)
+        smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
+        TextSurf, TextRect = text_objects2("RULES", smallText)
+        TextRect.center = (((MAPWIDTH * TILESIZE) / 2), ((MAPHEIGHT * TILESIZE) / 12))
+        DISPLAYSURF.blit(TextSurf, TextRect)
 
-    pygame.display.update()
-    clock.tick(30)
+        img3 = pygame.image.load('images/regels.png')
+        DISPLAYSURF.blit(img3, (30, 80))
+
+        button("MENU", 50, 740, 100, 50, YELLOW, WHITE, intro_menu)
+        button("FIGHT", 450, 740, 100, 50, RED, DIM_RED, gameLoop)
+
+        pygame.display.update()
+        clock.tick(30)
 
 def intro_menu():
     intro = True
@@ -297,6 +304,7 @@ def intro_menu():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+
         DISPLAYSURF.fill(SURV_BLUE)
 
         #TOP TEXT
@@ -319,15 +327,17 @@ def intro_menu():
         #als muis tussen x vh object (250+100) en begin (250) zit en
         #muis zit tussen y vh object (400+50) en begin vh object (400)
 
-        button("FIGHT",250,400,100,50,RED,DIM_RED,gameLoop)
-        button("EXIT",50,500,100,50,GREY,DIM_GREY,quitGame)
-        button("OPTIONS",450,500,100,50,BLUE,DIM_BLUE,)
-        button("RULES",250,500,100,50,YELLOW,DIM_YELLOW,rules_menu)
+
+        # button(text,x,y,w,h,ac,ic,action=None)
+
+        button("FIGHT", 250, 600, 100, 50, RED, DIM_RED, gameLoop)
+        button("EXIT", 50, 700, 100, 50, GREY, DIM_GREY, quitGame)
+        button("OPTIONS", 450, 700, 100, 50, BLUE, DIM_BLUE, )
+        button("RULES", 250, 700, 100, 50, YELLOW, DIM_YELLOW, rules_menu)
 
 
         pygame.display.update()
         clock.tick(30)
-
 
 
 def GameBoard():
@@ -385,15 +395,16 @@ def GameBoard():
         placePosition += 50
 
     #menu knop in game
-    button("MENU",250,675,100,50,YELLOW,DIM_YELLOW,intro_menu)
+    button("MENU", 250, 675, 100, 50, YELLOW, WHITE, intro_menu)
+    button("RULES", 250, 730, 100, 50, YELLOW, DIM_YELLOW, rules_menu)
+
 
 def fighting():
     hello
 
+
 def corner():
     hello1
-
-
 
 def gameLoop():
     crashed = False
@@ -409,46 +420,45 @@ def gameLoop():
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosBlue()
-                    if playerBluePos[0] == 0 and playerBluePos[1] == 0 or playerBluePos[0] == 1 and playerBluePos[1] == 0 or playerBluePos[0] == 0 and playerBluePos[1] == 1:
+                    if playerBluePos[0] == 0 and playerBluePos[1] == 0 or playerBluePos[0] == 1 and playerBluePos[
+                        1] == 0 or playerBluePos[0] == 0 and playerBluePos[1] == 1:
                         inventoryBlue[LIFEPOINTSBLUE] += 10
                 if (event.key == K_2):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosRed()
-                    if playerRedPos[0] == 9 and playerRedPos[1] == 0 or playerRedPos[0] == 10 and playerRedPos[1] == 0 or playerRedPos[0] == 10 and playerRedPos[1] == 1:
+                    if playerRedPos[0] == 9 and playerRedPos[1] == 0 or playerRedPos[0] == 10 and playerRedPos[
+                        1] == 0 or playerRedPos[0] == 10 and playerRedPos[1] == 1:
                         inventoryRed[LIFEPOINTSRED] += 10
                 if (event.key == K_3):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosYellow()
-                    if playerYellowPos[0] == 1 and playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and playerYellowPos[1] == 9:
+                    if playerYellowPos[0] == 1 and playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and \
+                                    playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and playerYellowPos[1] == 9:
                         inventoryYellow[LIFEPOINTSYELLOW] += 10
                 if (event.key == K_4):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosGreen()
 
-                    if playerGreenPos[0] == 10 and playerGreenPos[1] == 9 or playerGreenPos[0] == 10 and playerGreenPos[1] == 10 or playerGreenPos[0] == 9 and playerGreenPos[1] == 10:
+                    if playerGreenPos[0] == 10 and playerGreenPos[1] == 9 or playerGreenPos[0] == 10 and playerGreenPos[
+                        1] == 10 or playerGreenPos[0] == 9 and playerGreenPos[1] == 10:
                         inventoryGreen[LIFEPOINTSGREEN] += 10
 
-
-
-
-
-
-        if PlayerRed.Lifepoints >=1:
+        if PlayerRed.Lifepoints >= 1:
             DISPLAYSURF.blit(PR, (playerRedPos[0] * TILESIZE, playerRedPos[1] * TILESIZE))
-        if inventoryBlue[LIFEPOINTSBLUE] >=1:
+        if inventoryBlue[LIFEPOINTSBLUE] >= 1:
             DISPLAYSURF.blit(PB, (playerBluePos[0] * TILESIZE, playerBluePos[1] * TILESIZE))
-        if PlayerYellow.Lifepoints >=1:
+        if PlayerYellow.Lifepoints >= 1:
             DISPLAYSURF.blit(PY, (playerYellowPos[0] * TILESIZE, playerYellowPos[1] * TILESIZE))
-        if PlayerGreen.Lifepoints >=1:
+        if PlayerGreen.Lifepoints >= 1:
             DISPLAYSURF.blit(PG, (playerGreenPos[0] * TILESIZE, playerGreenPos[1] * TILESIZE))
-
-
 
         # DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
         pygame.display.flip()  # Can also be changed to 'pygame.display.flip()'
         clock.tick(60)  # Set FPS, PC MASTER RACE
         GameBoard()
 
+    pygame.quit()  # Quit?
+    quit()  # Okay. Doei.
