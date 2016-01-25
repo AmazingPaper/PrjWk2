@@ -3,7 +3,6 @@ import random
 from pygame.locals import *
 
 from Classes import *
-
 from Tile import *
 
 pygame.init()
@@ -16,25 +15,7 @@ pygame.display.set_caption('Survivor')  # Title of project
 
 clock = pygame.time.Clock()  # Add clock
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#_____________________________________________________________________________________________________________________________________
+# _____________________________________________________________________________________________________________________________________
 
 LIFEPOINTSRED = 8
 LIFEPOINTSBLUE = 9
@@ -51,7 +32,6 @@ ROLL3 = pygame.image.load('Tiles/Roll3.png')
 ROLL4 = pygame.image.load('Tiles/Roll4.png')
 ROLL5 = pygame.image.load('Tiles/Roll5.png')
 ROLL6 = pygame.image.load('Tiles/Roll6.png')
-
 
 # Lifepoints and ConditionPoints
 resourcesRed = [LIFEPOINTSRED, CONDITIONPOINTSRED]
@@ -78,7 +58,7 @@ inventoryBlue = {LIFEPOINTSBLUE: PlayerBlue.Lifepoints,
 PY = pygame.image.load('Tiles/PlayerYellow.gif')
 playerYellowPos = PlayerYellow.position
 inventoryYellow = {LIFEPOINTSYELLOW: PlayerYellow.Lifepoints,
-                    CONDITIONPOINTSYELLOW: PlayerYellow.Conditionpoints}
+                   CONDITIONPOINTSYELLOW: PlayerYellow.Conditionpoints}
 
 #Player Green Information.
 PG = pygame.image.load('Tiles/PlayerGreen.gif')
@@ -86,7 +66,8 @@ playerGreenPos = PlayerGreen.position
 inventoryGreen = {LIFEPOINTSGREEN: PlayerGreen.Lifepoints,
                   CONDITIONPOINTSGREEN: PlayerGreen.Conditionpoints}
 
-#_______________________________________________________________________________________________________________________________________________________________
+
+# _______________________________________________________________________________________________________________________________________________________________
 
 
 #Movement on the board Player Blue
@@ -154,13 +135,15 @@ def quitGame():
     pygame.quit()
     quit()
 
+
 # Ability to roll die.
 def dieRoll():
     number = random.randint(1, 6)
     print(number)
     return number
 
-#_____________________________________________________________________________________________________________________________________________________________
+
+# _____________________________________________________________________________________________________________________________________________________________
 
 def gameLoop():
     crashed = False
@@ -193,7 +176,6 @@ def gameLoop():
 
         GameBoard()
 
-
         DISPLAYSURF.blit(PR, (playerRedPos[0] * TILESIZE, playerRedPos[1] * TILESIZE))
         DISPLAYSURF.blit(PB, (playerBluePos[0] * TILESIZE, playerBluePos[1] * TILESIZE))
         DISPLAYSURF.blit(PY, (playerYellowPos[0] * TILESIZE, playerYellowPos[1] * TILESIZE))
@@ -212,13 +194,14 @@ def FightTile():
         inventoryBlue[LIFEPOINTSBLUE] -= 10
         print(PlayerBlue.Lifepoints)
 
+
 FightTile()
 
 
-#__________________________________________________________________________________________________________________________________________
+# __________________________________________________________________________________________________________________________________________
 
 
-#TODO: Make one text_objects function.
+# TODO: Make one text_objects function.
 def text_objects(text, font):
     textSurface = font.render(text, True, SURV_BLUE)
     return textSurface, textSurface.get_rect()
@@ -233,29 +216,31 @@ def text_objects3(text, font):
     textSurface = font.render(text, True, BLACK)
     return textSurface, textSurface.get_rect()
 
-def button(text,x,y,w,h,ac,ic,action=None):
+
+def button(text, x, y, w, h, ac, ic, action=None):
     mouseLocation = pygame.mouse.get_pos()
-    mouseClick    = pygame.mouse.get_pressed()
+    mouseClick = pygame.mouse.get_pressed()
 
     img2 = pygame.image.load('images/boximg.png')
 
-    pygame.draw.rect(DISPLAYSURF,ic,(x,y,w,h))
+    pygame.draw.rect(DISPLAYSURF, ic, (x, y, w, h))
     smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
     TextSurf, TextRect = text_objects3(text, smallText)
-    TextRect.center = ( (x+(w/2)), (y+(h/2)))
+    TextRect.center = ((x + (w / 2)), (y + (h / 2)))
 
-    if x+w > mouseLocation[0] > x and y + h > mouseLocation[1] > y:
-        pygame.draw.rect(DISPLAYSURF,ac,(x,y,w,h))
-        DISPLAYSURF.blit(img2,((x-50),y))
+    if x + w > mouseLocation[0] > x and y + h > mouseLocation[1] > y:
+        pygame.draw.rect(DISPLAYSURF, ac, (x, y, w, h))
+        DISPLAYSURF.blit(img2, ((x - 50), y))
         if mouseClick[0] == 1 and action != None:
             pygame.mixer.music.stop()
             action()
         else:
-            pygame.draw.rect(DISPLAYSURF,ic,(x,y,w,h))
+            pygame.draw.rect(DISPLAYSURF, ic, (x, y, w, h))
 
     DISPLAYSURF.blit(TextSurf, TextRect)
 
-#TODO: make one movement function for every player.
+
+# TODO: make one movement function for every player.
 
 
 
@@ -388,19 +373,16 @@ def GameBoard():
     #menu knop in game
     button("MENU",250,675,100,50,YELLOW,DIM_YELLOW,intro_menu)
 
+
 def fighting():
     hello
+
 
 def corner():
     hello1
 
-
-
-
-
-
-<<<<<<< HEAD
-=======
+<< << << < HEAD
+== == == =
 def gameLoop():
     crashed = False
 
@@ -415,47 +397,44 @@ def gameLoop():
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosBlue()
-                    if playerBluePos[0] == 0 and playerBluePos[1] == 0 or playerBluePos[0] == 1 and playerBluePos[1] == 0 or playerBluePos[0] == 0 and playerBluePos[1] == 1:
+                    if playerBluePos[0] == 0 and playerBluePos[1] == 0 or playerBluePos[0] == 1 and playerBluePos[
+                        1] == 0 or playerBluePos[0] == 0 and playerBluePos[1] == 1:
                         inventoryBlue[LIFEPOINTSBLUE] += 10
                 if (event.key == K_2):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosRed()
-                    if playerRedPos[0] == 9 and playerRedPos[1] == 0 or playerRedPos[0] == 10 and playerRedPos[1] == 0 or playerRedPos[0] == 10 and playerRedPos[1] == 1:
+                    if playerRedPos[0] == 9 and playerRedPos[1] == 0 or playerRedPos[0] == 10 and playerRedPos[
+                        1] == 0 or playerRedPos[0] == 10 and playerRedPos[1] == 1:
                         inventoryRed[LIFEPOINTSRED] += 10
                 if (event.key == K_3):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosYellow()
-                    if playerYellowPos[0] == 1 and playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and playerYellowPos[1] == 9:
+                    if playerYellowPos[0] == 1 and playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and \
+                                    playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and playerYellowPos[1] == 9:
                         inventoryYellow[LIFEPOINTSYELLOW] += 10
                 if (event.key == K_4):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosGreen()
 
-                    if playerGreenPos[0] == 10 and playerGreenPos[1] == 9 or playerGreenPos[0] == 10 and playerGreenPos[1] == 10 or playerGreenPos[0] == 9 and playerGreenPos[1] == 10:
+                    if playerGreenPos[0] == 10 and playerGreenPos[1] == 9 or playerGreenPos[0] == 10 and playerGreenPos[
+                        1] == 10 or playerGreenPos[0] == 9 and playerGreenPos[1] == 10:
                         inventoryGreen[LIFEPOINTSGREEN] += 10
 
-
-
-
-
-
-        if PlayerRed.Lifepoints >=1:
+        if PlayerRed.Lifepoints >= 1:
             DISPLAYSURF.blit(PR, (playerRedPos[0] * TILESIZE, playerRedPos[1] * TILESIZE))
-        if inventoryBlue[LIFEPOINTSBLUE] >=1:
+        if inventoryBlue[LIFEPOINTSBLUE] >= 1:
             DISPLAYSURF.blit(PB, (playerBluePos[0] * TILESIZE, playerBluePos[1] * TILESIZE))
-        if PlayerYellow.Lifepoints >=1:
+        if PlayerYellow.Lifepoints >= 1:
             DISPLAYSURF.blit(PY, (playerYellowPos[0] * TILESIZE, playerYellowPos[1] * TILESIZE))
-        if PlayerGreen.Lifepoints >=1:
+        if PlayerGreen.Lifepoints >= 1:
             DISPLAYSURF.blit(PG, (playerGreenPos[0] * TILESIZE, playerGreenPos[1] * TILESIZE))
-
-
 
         # DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
         pygame.display.flip()  # Can also be changed to 'pygame.display.flip()'
         clock.tick(60)  # Set FPS, PC MASTER RACE
         GameBoard()
->>>>>>> origin/master
 
+>> >> >> > origin / master
