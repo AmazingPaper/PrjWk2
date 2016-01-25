@@ -87,19 +87,19 @@ def button(text,x,y,w,h,ac,ic,action=None):
 
     img2 = pygame.image.load('images/boximg.png')
 
-    pygame.draw.rect(DISPLAYSURF,ic,(x,y,w,h))
+    pygame.draw.ellipse(DISPLAYSURF,ic,(x,y,w,h))
     smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
     TextSurf, TextRect = text_objects3(text, smallText)
     TextRect.center = ( (x+(w/2)), (y+(h/2)))
 
     if x+w > mouseLocation[0] > x and y + h > mouseLocation[1] > y:
-        pygame.draw.rect(DISPLAYSURF,ac,(x,y,w,h))
+        pygame.draw.ellipse(DISPLAYSURF,ac,(x,y,w,h))
         DISPLAYSURF.blit(img2,((x-50),y))
         if mouseClick[0] == 1 and action != None:
             pygame.mixer.music.stop()
             action()
         else:
-            pygame.draw.rect(DISPLAYSURF,ic,(x,y,w,h))
+            pygame.draw.ellipse(DISPLAYSURF,ic,(x,y,w,h))
 
     DISPLAYSURF.blit(TextSurf, TextRect)
 
@@ -164,11 +164,9 @@ def PlayerPosGreen():
         DIRECTION = playerGreenPos
         DIRECTION[1] -= 1
 
-
 def quitGame():
     pygame.quit()
     quit()
-
 
 # TODO: change format to .ogg for Mac OS X compatibility
 # Adds game music
@@ -179,26 +177,33 @@ def intro_music():
 
 #TODO: CREATE RULES MENU
 def rules_menu():
+
     #Kopie van Menu objecten
     mouseLocation = pygame.mouse.get_pos()
     mouseClick    = pygame.mouse.get_pressed()
+    intro = True
 
-    DISPLAYSURF.fill(SURV_BLUE)
+    while intro:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
 
-    #TOP TEXT
-    pygame.draw.rect(DISPLAYSURF,YELLOW,(20,70,570,100)) #title box
-    largeText = pygame.font.Font('8-BIT WONDER.TTF',75)
-    TextSurf, TextRect = text_objects("SURVIVOR", largeText)
-    TextRect.center = (((MAPWIDTH*TILESIZE)/1.95),((MAPHEIGHT*TILESIZE)/5))
-    DISPLAYSURF.blit(TextSurf, TextRect)
+        DISPLAYSURF.fill(SURV_BLUE)
 
-    smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
-    TextSurf, TextRect = text_objects2("MENU", smallText)
-    TextRect.center = (((MAPWIDTH*TILESIZE)/2),((MAPHEIGHT*TILESIZE)/12))
-    DISPLAYSURF.blit(TextSurf, TextRect)
+        smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
+        TextSurf, TextRect = text_objects2("RULES", smallText)
+        TextRect.center = (((MAPWIDTH*TILESIZE)/2),((MAPHEIGHT*TILESIZE)/12))
+        DISPLAYSURF.blit(TextSurf, TextRect)
 
-    pygame.display.update()
-    clock.tick(30)
+        img3 = pygame.image.load('images/regels.png')
+        DISPLAYSURF.blit(img3,(30,80))
+
+        button("MENU",50,740,100,50,YELLOW,WHITE,intro_menu)
+        button("FIGHT",450,740,100,50,RED,DIM_RED,gameLoop)
+
+        pygame.display.update()
+        clock.tick(30)
 
 def intro_menu():
     intro = True
@@ -209,6 +214,7 @@ def intro_menu():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+
         DISPLAYSURF.fill(SURV_BLUE)
 
         #TOP TEXT
@@ -231,10 +237,13 @@ def intro_menu():
         #als muis tussen x vh object (250+100) en begin (250) zit en
         #muis zit tussen y vh object (400+50) en begin vh object (400)
 
-        button("FIGHT",250,400,100,50,RED,DIM_RED,gameLoop)
-        button("EXIT",50,500,100,50,GREY,DIM_GREY,quitGame)
-        button("OPTIONS",450,500,100,50,BLUE,DIM_BLUE,)
-        button("RULES",250,500,100,50,YELLOW,DIM_YELLOW,rules_menu)
+
+        # button(text,x,y,w,h,ac,ic,action=None)
+
+        button("FIGHT",250,600,100,50,RED,DIM_RED,gameLoop)
+        button("EXIT",50,700,100,50,GREY,DIM_GREY,quitGame)
+        button("OPTIONS",450,700,100,50,BLUE,DIM_BLUE,)
+        button("RULES",250,700,100,50,YELLOW,DIM_YELLOW,rules_menu)
 
 
         pygame.display.update()
@@ -296,7 +305,8 @@ def GameBoard():
         placePosition += 50
 
     #menu knop in game
-    button("MENU",250,675,100,50,YELLOW,DIM_YELLOW,intro_menu)
+    button("MENU",250,675,100,50,YELLOW,WHITE,intro_menu)
+    button("RULES",250,730,100,50,YELLOW,DIM_YELLOW,rules_menu)
 
 
 def gameLoop():
