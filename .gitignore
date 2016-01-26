@@ -4,9 +4,6 @@
 *.xml
 .idea/vcs.xml
 *.name
-<<<<<<< HEAD
 *.pyc
-=======
 
 __pycache__/Colorlist.cpython-34.pyc
->>>>>>> 5e2759eb3b4d705c1b3ff2334d7d54d185b7e458
