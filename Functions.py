@@ -306,6 +306,11 @@ def GameBoard():
         DISPLAYSURF.blit(textObj, (placePosition, MAPHEIGHT * TILESIZE + 110))
         placePosition += 50
 
+    if PlayerBlue.Lifepoints <= 0:
+        SkullBlue = pygame.image.load('Tiles/SkullBlue.jpg')
+        placePosition = 10
+        DISPLAYSURF.blit(SkullBlue, (placePosition, MAPHEIGHT * TILESIZE + 20))
+
     #menu knop in game
     button("MENU",250,675,100,50,YELLOW,DIM_YELLOW,intro_menu)
 
@@ -332,27 +337,35 @@ def gameLoop():
             elif event.type == KEYDOWN:
                 if (event.key == K_1):
                     number = dieRoll()
+                    inventoryBlue[LIFEPOINTSBLUE] -=10
                     for x in range(number):
                         PlayerPosBlue()
+                        if playerBluePos[0] == 2 and playerBluePos[1] == 0:
+                            inventoryBlue[CONDITIONPOINTSBLUE] = 15
                     if playerBluePos[0] == 0 and playerBluePos[1] == 0 or playerBluePos[0] == 1 and playerBluePos[1] == 0 or playerBluePos[0] == 0 and playerBluePos[1] == 1:
                         inventoryBlue[LIFEPOINTSBLUE] += 10
                 if (event.key == K_2):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosRed()
+                        if playerRedPos[0] == 10 and playerRedPos[1] == 2:
+                            inventoryRed[CONDITIONPOINTSRED] = 15
                     if playerRedPos[0] == 9 and playerRedPos[1] == 0 or playerRedPos[0] == 10 and playerRedPos[1] == 0 or playerRedPos[0] == 10 and playerRedPos[1] == 1:
                         inventoryRed[LIFEPOINTSRED] += 10
                 if (event.key == K_3):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosYellow()
+                        if playerYellowPos[0] == 0 and playerYellowPos[1] == 8:
+                            inventoryYellow[CONDITIONPOINTSYELLOW] = 15
                     if playerYellowPos[0] == 1 and playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and playerYellowPos[1] == 10 or playerYellowPos[0] == 0 and playerYellowPos[1] == 9:
                         inventoryYellow[LIFEPOINTSYELLOW] += 10
                 if (event.key == K_4):
                     number = dieRoll()
                     for x in range(number):
                         PlayerPosGreen()
-
+                        if playerGreenPos[0] == 8 and playerGreenPos[1] == 10:
+                            inventoryGreen[CONDITIONPOINTSGREEN] = 15
                     if playerGreenPos[0] == 10 and playerGreenPos[1] == 9 or playerGreenPos[0] == 10 and playerGreenPos[1] == 10 or playerGreenPos[0] == 9 and playerGreenPos[1] == 10:
                         inventoryGreen[LIFEPOINTSGREEN] += 10
 
@@ -372,10 +385,15 @@ def gameLoop():
 
 
 
+
+
+
+
         # DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
         pygame.display.flip()  # Can also be changed to 'pygame.display.flip()'
         clock.tick(60)  # Set FPS, PC MASTER RACE
         GameBoard()
+
 
     pygame.quit()  # Quit?
     quit()  # Okay. Doei.
