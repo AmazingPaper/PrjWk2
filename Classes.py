@@ -14,7 +14,7 @@ class Char:
 
 
 
-class Player:
+class PlayerOld:
     def __init__(self, name, LP, CP, position):
         self.Name = name
         self.Lifepoints = LP
@@ -25,16 +25,16 @@ class Player:
         return "{} {} {} {}".format(self.Name, self.Lifepoints, self.Conditionpoints, self.position)
 
 #Player Blue Info
-PlayerBlue = Player('Mike Tysen', 100, 15, [0,0])
+PlayerBlue = PlayerOld('Mike Tysen', 100, 15, [0,0])
 
 #Player Red Info
-PlayerRed = Player('Rocky Belboa', 100, 15, [10,0])
+PlayerRed = PlayerOld('Rocky Belboa', 100, 15, [10,0])
 
 #Player Yellow Info
-PlayerYellow = Player('Manny Pecquiao', 100, 15, [0,10])
+PlayerYellow = PlayerOld('Manny Pecquiao', 100, 15, [0,10])
 
 #Player Green Info
-PlayerGreen = Player('Badr Heri', 100, 15, [10,10])
+PlayerGreen = PlayerOld('Badr Heri', 100, 15, [10,10])
 
 # class Player123:
 #     def __init__(self, name, LP, CP, posx, posy):
