@@ -324,6 +324,11 @@ def GameBoard():
         DISPLAYSURF.blit(textObj, (placePosition, MapHeight * TileSize + 110))
         placePosition += 50
 
+    if PlayerBlue.Lifepoints <= 0:
+        SkullBlue = pygame.image.load('Tiles/SkullBlue.jpg')
+        placePosition = 10
+        DISPLAYSURF.blit(SkullBlue, (placePosition, MAPHEIGHT * TILESIZE + 20))
+
     #menu knop in game
     button("MENU", 250, 675, 100, 50, YELLOW, WHITE, intro_menu)
     button("RULES", 250, 730, 100, 50, YELLOW, DIM_YELLOW, rules_menu)
