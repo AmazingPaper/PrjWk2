@@ -55,8 +55,8 @@ class Board:
 
         # creates each tile at specified location
         # and which player this tile belongs if is corner tile
-        self.Add(self.__createCornerTile(0, 0, PlayerType.Red))
-        self.Add(self.__createCornerTile(0, 1, PlayerType.Red))
+        self.Add(self.__createCornerTile(0, 0, PlayerType.Blue))
+        self.Add(self.__createCornerTile(0, 1, PlayerType.Blue))
         self.Add(self.__createBlackTile(0, 2))
         self.Add(self.__createBlackTile(0, 3))
         self.Add(self.__createWhiteTile(0, 4))
@@ -64,9 +64,9 @@ class Board:
         self.Add(self.__createBlackTile(0, 6))
         self.Add(self.__createWhiteTile(0, 7))
         self.Add(self.__createBlackTile(0, 8))
-        self.Add(self.__createCornerTile(0, 9, PlayerType.Blue))
-        self.Add(self.__createCornerTile(0, 10, PlayerType.Blue))
-        self.Add(self.__createCornerTile(1, 10, PlayerType.Blue))
+        self.Add(self.__createCornerTile(0, 9, PlayerType.Red))
+        self.Add(self.__createCornerTile(0, 10, PlayerType.Red))
+        self.Add(self.__createCornerTile(1, 10, PlayerType.Red))
         self.Add(self.__createBlackTile(2, 10))
         self.Add(self.__createWhiteTile(3, 10))
         self.Add(self.__createBlackTile(4, 10))
@@ -94,7 +94,7 @@ class Board:
         self.Add(self.__createBlackTile(4, 0))
         self.Add(self.__createWhiteTile(3, 0))
         self.Add(self.__createBlackTile(2, 0))
-        self.Add(self.__createCornerTile(1, 0, PlayerType.Red))
+        self.Add(self.__createCornerTile(1, 0, PlayerType.Blue))
         self.Add(self.head)
 
     # adds a new tile at the end of last tile
@@ -286,8 +286,8 @@ yellowPlayer = Player(PlayerType.Yellow)
 greenPlayer = Player(PlayerType.Green)
 
 # place players on board
-board.placePlayer(redPlayer, 0, 0)
-board.placePlayer(bluePlayer, 0, 6)
+board.placePlayer(redPlayer, 0, 6)
+board.placePlayer(bluePlayer, 0, 0)
 board.placePlayer(yellowPlayer, 0, 6)
 board.placePlayer(greenPlayer, 0, 8)
 
