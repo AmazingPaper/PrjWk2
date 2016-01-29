@@ -28,14 +28,14 @@ players = {
 }
 
 keyPlayerMapping = {
-    K_1 : PlayerType.Red,
-    K_2 : PlayerType.Blue,
+    K_1 : PlayerType.Blue,
+    K_2 : PlayerType.Red,
     K_3 : PlayerType.Green,
     K_4 : PlayerType.Yellow
 }
 
-board.placePlayer(players[PlayerType.Red], 0, 0)
-board.placePlayer(players[PlayerType.Blue], 0, 10)
+board.placePlayer(players[PlayerType.Red], 0, 10)
+board.placePlayer(players[PlayerType.Blue], 0, 0)
 board.placePlayer(players[PlayerType.Green], 10, 10)
 board.placePlayer(players[PlayerType.Yellow], 10, 0)
 
@@ -93,8 +93,11 @@ inventoryGreen = {LIFEPOINTSGREEN: PlayerGreen.Lifepoints,
 
 # Ability to roll die.
 def dieRoll():
+    global number
     number = random.randint(1, 6)
+    print(number)
     return number
+
 
 
 # TODO: Make one text_objects function.
@@ -139,23 +142,49 @@ def quitGame():
     pygame.quit()
     quit()
 
+def dieImage():
+    number = 0
+
+
+
 
 # _____________________________________________________________________________________________________________________________________________________________
 
 def gameLoop():
-    crashed = False
 
+    crashed = False
+    dieRoll()
     while not crashed:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 crashed = True
             elif event.type == KEYDOWN:
                 if event.key in keyPlayerMapping.keys():
-                    number = dieRoll()
+                    dieRoll()
                     playerType = keyPlayerMapping[event.key]
                     player = players[playerType].moveTimes(number)
         GameBoard()
+        if number == 1:
+            DISPLAYSURF.blit(ROLL1,(275,275))
+        if number == 2:
+            DISPLAYSURF.blit(ROLL2,(275,275))
+        if number == 3:
+            DISPLAYSURF.blit(ROLL3,(275,275))
+        if number == 4:
+            DISPLAYSURF.blit(ROLL4,(275,275))
+        if number == 5:
+            DISPLAYSURF.blit(ROLL5,(275,275))
+        if number == 6:
+            DISPLAYSURF.blit(ROLL6,(275,275))
 
+
+
+        # DISPLAYSURF.blit(PR, (playerRedPos[0] * TILESIZE, playerRedPos[1] * TILESIZE))
+        # DISPLAYSURF.blit(PB, (playerBluePos[0] * TILESIZE, playerBluePos[1] * TILESIZE))
+        # DISPLAYSURF.blit(PY, (playerYellowPos[0] * TILESIZE, playerYellowPos[1] * TILESIZE))
+        # DISPLAYSURF.blit(PG, (playerGreenPos[0] * TILESIZE, playerGreenPos[1] * TILESIZE))
+
+        # DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
         pygame.display.flip()  # Can also be changed to 'pygame.display.flip()'
         clock.tick(60)  # Set FPS, PC MASTER RACE
 
@@ -164,22 +193,6 @@ def gameLoop():
 
 
 # __________________________________________________________________________________________________________________________________________
-
-
-# TODO: Make one text_objects function.
-def text_objects(text, font):
-    textSurface = font.render(text, True, SURV_BLUE)
-    return textSurface, textSurface.get_rect()
-
-
-def text_objects2(text, font):
-    textSurface = font.render(text, True, WHITE)
-    return textSurface, textSurface.get_rect()
-
-
-def text_objects3(text, font):
-    textSurface = font.render(text, True, BLACK)
-    return textSurface, textSurface.get_rect()
 
 
 # TODO: make one movement function for every player.
@@ -271,9 +284,10 @@ def intro_menu():
 def GameBoard():
     mouseLocation = pygame.mouse.get_pos()
     mouseClick = pygame.mouse.get_pressed()
+    background = pygame.image.load('Tiles/background.png')
 
     DISPLAYSURF.fill(SURV_BLUE)  # maakt achtergrond weer blauw ipv menu achtergrond
-
+    DISPLAYSURF.blit(background,(55,55))
     boardGraphics.draw()
 
     INVFONT = pygame.font.Font('Minecraft.ttf', 18)
@@ -321,7 +335,7 @@ def GameBoard():
     if PlayerBlue.Lifepoints <= 0:
         SkullBlue = pygame.image.load('Tiles/SkullBlue.jpg')
         placePosition = 10
-        DISPLAYSURF.blit(SkullBlue, (placePosition, MAPHEIGHT * TILESIZE + 20))
+        DISPLAYSURF.blit(SkullBlue, (placePosition, MapHeight * TileSize + 20))
 
     #menu knop in game
     button("MENU", 250, 675, 100, 50, YELLOW, WHITE, intro_menu)
@@ -335,25 +349,3 @@ def fighting():
 def corner():
     hello1
 
-def gameLoop():
-    crashed = False
-
-
-    while not crashed:
-        GameBoard()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                crashed = True
-            elif event.type == KEYDOWN:
-                if event.key in keyPlayerMapping.keys():
-                    number = dieRoll()
-                    playerType = keyPlayerMapping[event.key]
-                    players[playerType].moveTimes(number)
-
-
-        pygame.display.flip()  # Can also be changed to 'pygame.display.flip()'
-        clock.tick(60)  # Set FPS, PC MASTER RACE
-        GameBoard()
-
-    pygame.quit()  # Quit?
-    quit()  # Okay. Doei.
