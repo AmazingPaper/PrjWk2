@@ -95,7 +95,6 @@ inventoryGreen = {LIFEPOINTSGREEN: PlayerGreen.Lifepoints,
 def dieRoll():
     global number
     number = random.randint(1, 6)
-    print(number)
     return number
 
 
@@ -340,12 +339,4 @@ def GameBoard():
     #menu knop in game
     button("MENU", 250, 675, 100, 50, YELLOW, WHITE, intro_menu)
     button("RULES", 250, 730, 100, 50, YELLOW, DIM_YELLOW, rules_menu)
-
-
-def fighting():
-    hello
-
-
-def corner():
-    hello1
 
