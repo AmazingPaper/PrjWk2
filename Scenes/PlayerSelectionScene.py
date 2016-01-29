@@ -68,3 +68,4 @@ class PlayerSelectionScene(SceneBase):
 
 	def switchToGameScene(self, numberOfPlayers):
 		self.SwitchToScene(GameScene(numberOfPlayers))
+
