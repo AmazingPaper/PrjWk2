@@ -142,6 +142,32 @@ def quitGame():
 
 # _____________________________________________________________________________________________________________________________________________________________
 
+def gameLoop():
+    crashed = False
+
+    while not crashed:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                crashed = True
+            elif event.type == KEYDOWN:
+                if event.key in keyPlayerMapping.keys():
+                    number = dieRoll()
+                    playerType = keyPlayerMapping[event.key]
+                    player = players[playerType].moveTimes(number)
+        GameBoard()
+
+        # DISPLAYSURF.blit(PR, (playerRedPos[0] * TILESIZE, playerRedPos[1] * TILESIZE))
+        # DISPLAYSURF.blit(PB, (playerBluePos[0] * TILESIZE, playerBluePos[1] * TILESIZE))
+        # DISPLAYSURF.blit(PY, (playerYellowPos[0] * TILESIZE, playerYellowPos[1] * TILESIZE))
+        # DISPLAYSURF.blit(PG, (playerGreenPos[0] * TILESIZE, playerGreenPos[1] * TILESIZE))
+
+        # DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
+        pygame.display.flip()  # Can also be changed to 'pygame.display.flip()'
+        clock.tick(60)  # Set FPS, PC MASTER RACE
+
+    pygame.quit()  # Quit?
+    quit()  # Okay. Doei.
+
 
 # __________________________________________________________________________________________________________________________________________
 
@@ -329,13 +355,11 @@ def gameLoop():
                     number = dieRoll()
                     playerType = keyPlayerMapping[event.key]
                     players[playerType].moveTimes(number)
-                    print()
 
 
         pygame.display.flip()  # Can also be changed to 'pygame.display.flip()'
         clock.tick(60)  # Set FPS, PC MASTER RACE
         GameBoard()
-
 
     pygame.quit()  # Quit?
     quit()  # Okay. Doei.
