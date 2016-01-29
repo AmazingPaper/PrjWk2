@@ -156,12 +156,6 @@ def gameLoop():
                     player = players[playerType].moveTimes(number)
         GameBoard()
 
-        # DISPLAYSURF.blit(PR, (playerRedPos[0] * TILESIZE, playerRedPos[1] * TILESIZE))
-        # DISPLAYSURF.blit(PB, (playerBluePos[0] * TILESIZE, playerBluePos[1] * TILESIZE))
-        # DISPLAYSURF.blit(PY, (playerYellowPos[0] * TILESIZE, playerYellowPos[1] * TILESIZE))
-        # DISPLAYSURF.blit(PG, (playerGreenPos[0] * TILESIZE, playerGreenPos[1] * TILESIZE))
-
-        # DISPLAYSURF.blit(background, (0, 0))                   # Shows us the background
         pygame.display.flip()  # Can also be changed to 'pygame.display.flip()'
         clock.tick(60)  # Set FPS, PC MASTER RACE
 
