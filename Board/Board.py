@@ -138,7 +138,7 @@ class Board:
 	def __createBlackTile(self, posX, posY):
 		return TileNode(posX, posY, TileType.IdleBlack)
 
-	# cretates a fight tile at specified location
+	# creates a fight tile at specified location
 	# if user comes here, has to fight with superfighter
 	def __createFightTile(self, posX, posY):
 		return TileNode(posX, posY, TileType.Fight)
