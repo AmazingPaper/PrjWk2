@@ -4,9 +4,11 @@ import pygame
 
 
 class SceneBase:
-	def __init__(self):
+	def __init__(self, game):
+		self.game = game
 		self.next = self
 
+		print("IN SCENE : {}".format(type(self).__name__))
 	def ProcessInput(self, events, pressed_keys):
 		print("uh-oh, you didn't override this in the child class")
 

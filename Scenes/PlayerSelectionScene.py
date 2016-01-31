@@ -7,8 +7,8 @@ from Scenes.SceneBase import *
 
 
 class PlayerSelectionScene(SceneBase):
-	def __init__(self):
-		SceneBase.__init__(self)
+	def __init__(self, game):
+		SceneBase.__init__(self, game)
 		self.buttons = []
 		self.createdButtons = False
 
@@ -67,5 +67,6 @@ class PlayerSelectionScene(SceneBase):
 			self.buttons.append(buttonRect)
 
 	def switchToGameScene(self, numberOfPlayers):
-		self.SwitchToScene(GameScene(numberOfPlayers))
+		self.game.Reset(numberOfPlayers)
+		self.SwitchToScene(GameScene(self.game))
 

@@ -1,9 +1,10 @@
 from pygame.constants import *
 
-from Scenes.SceneBase import *
+from GraphicsHelpers import SURV_BLUE
+from Scenes.SceneBase import SceneBase
 
 
-class OptionsScene(SceneBase):
+class RulesScene(SceneBase):
 	def __init__(self, game):
 		SceneBase.__init__(self, game)
 
@@ -17,5 +18,6 @@ class OptionsScene(SceneBase):
 		pass
 
 	def Render(self, screen):
-		# The game scene is just a blank blue screen
-		screen.fill((0, 0, 255))
+		screen.fill(SURV_BLUE)
+
+		screen.blit(self.game.images['rules'], (40, 40))

@@ -1,5 +1,3 @@
-import pygame
-
 from Board.BoardTextures import *
 from Board.Enumerations import TileType
 from Board.GraphicsConstants import *
@@ -19,7 +17,7 @@ def getTileTexture(tile):
 
 class BoardGraphics():
 	def __init__(self, surface, board):
-		self.DISPLAYSURF = surface
+		self.screen = surface
 		self.board = board
 
 	def draw(self):
@@ -30,8 +28,8 @@ class BoardGraphics():
 		texture = getTileTexture(tile)
 		position = (tile.posY * TileSize, tile.posX * TileSize - 2)
 
-		self.DISPLAYSURF.blit(texture, position)
-		playerGraphics = PlayerGraphics(self.DISPLAYSURF)
+		self.screen.blit(texture, position)
+		playerGraphics = PlayerGraphics(self.screen)
 
 		for player in tile.players:
 			playerGraphics.draw(player)
