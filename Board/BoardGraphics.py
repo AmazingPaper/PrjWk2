@@ -33,3 +33,4 @@ class BoardGraphics():
 
 		for player in tile.players:
 			playerGraphics.draw(player)
+

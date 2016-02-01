@@ -42,7 +42,7 @@ class SurvivorGame:
 		self.__setPlayers(numberOfPlayers)
 
 	def __setPlayers(self, numberOfPlayers):
-		players = [Player(PlayerType.Red), Player(PlayerType.Blue)]
+		players = [Player(PlayerType.Blue), Player(PlayerType.Red)]
 
 		self.board.placePlayer(players[0], 0, 0)
 		self.board.placePlayer(players[1], 0, 10)
@@ -77,7 +77,7 @@ class SurvivorGame:
 		return fightType
 
 	def IsPlayerIsInGame(self, playerType):
-		len([player for player in self.tile.players if player.playerType == playerType]) == 1
+		len([player for player in self.players if player.playerType == playerType]) == 1
 
 	# move this player n times on the board
 	def MovePlayer(self, player, n):
@@ -120,7 +120,7 @@ class SurvivorGame:
 			else:
 				fightType = FightType.SuperFighter
 # if new position is other player's corner then player has to fight with owner
-		elif player.isAtOtherPlayersCorner():
+		elif player.isAtOtherPlayersCorner() and self.IsPlayerIsInGame(player.tile.cornerOfPlayer):
 			fightType = FightType.Player
 
 		return fightType
