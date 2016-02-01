@@ -2,8 +2,6 @@ from pygame.constants import *
 
 from Board.BoardGraphics import BoardGraphics
 from Board.FightType import FightType
-from Board.GraphicsConstants import *
-from Board.PlayerStatisticsGraphics import PlayerStatisticsGraphics
 from Board.StatisticsGraphics import StatisticsGraphics
 from GraphicsHelpers import *
 from Scenes.RulesScene import RulesScene
@@ -72,9 +70,10 @@ class GameScene(SceneBase):
 		self.buttons = []
 
 		buttonRect = (
-			button("MENU", 250, 675, 100, 50, YELLOW, WHITE, screen), lambda: self.SwitchToScene(IntroScene(self.game)))
+			button("MENU", 250, 630, 100, 50, DIM_YELLOW, YELLOW, screen),
+			lambda: self.SwitchToScene(IntroScene(self.game)))
 		self.buttons.append(buttonRect)
 
-		buttonRect = (button("RULES", 250, 730, 100, 50, YELLOW, DIM_YELLOW, screen),
-		              lambda: self.SwitchToScene(RulesScene(self.game)))
+		buttonRect = (button("RULES", 250, 700, 100, 50, DIM_YELLOW, YELLOW, screen),
+					  lambda: self.SwitchToScene(RulesScene(self.game)))
 		self.buttons.append(buttonRect)

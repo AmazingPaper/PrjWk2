@@ -36,7 +36,7 @@ class PlayerSelectionScene(SceneBase):
 		screen.blit(TextSurf, TextRect)
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
-		TextSurf, TextRect = text_objects2("PLAYER SELECT", smallText)
+		TextSurf, TextRect = text_objects2("SETTINGS", smallText)
 		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 12))
 		screen.blit(TextSurf, TextRect)
 

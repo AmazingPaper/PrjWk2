@@ -1,6 +1,5 @@
 # The rest is code where you implement your game using the Scenes model
 
-from Board.GraphicsConstants import *
 from Scenes import OptionsScene
 from Scenes import PlayerSelectionScene
 from Scenes.GameScene import *
@@ -41,9 +40,8 @@ class IntroScene(SceneBase):
 
 		self.buttons = []
 
-		self.buttons.append((button("FIGHT", 250, 600, 100, 50, RED, DIM_RED, screen), self.switchToPlayerSelectScene))
-		self.buttons.append((button("EXIT", 50, 700, 100, 50, GREY, DIM_GREY, screen), self.quitGame))
-		self.buttons.append((button("OPTIONS", 450, 700, 100, 50, BLUE, DIM_BLUE, screen), self.switchToOptionsScene))
+		self.buttons.append((button("FIGHT", 450, 700, 100, 50, DIM_RED, RED, screen), self.switchToPlayerSelectScene))
+		self.buttons.append((button("EXIT", 40, 700, 100, 50, DIM_GREY, GREY, screen), self.quitGame))
 
 	def switchToPlayerSelectScene(self):
 		self.SwitchToScene(PlayerSelectionScene.PlayerSelectionScene(self.game))
