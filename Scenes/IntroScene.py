@@ -7,8 +7,8 @@ from Scenes.GameScene import *
 
 
 class IntroScene(SceneBase):
-	def __init__(self):
-		SceneBase.__init__(self)
+	def __init__(self, game):
+		SceneBase.__init__(self, game)
 		self.buttons = []
 
 	def ProcessInput(self, events, pressed_keys):
@@ -37,24 +37,16 @@ class IntroScene(SceneBase):
 		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 12))
 		screen.blit(TextSurf, TextRect)
 
-		# images
-		img = pygame.image.load('images/survivorstockimage.png')
-		screen.blit(img, (20, 180))
+		screen.blit(self.game.images['introbackground'], (20, 180))
 
-		# interactive button
-		# als muis tussen x vh object (250+100) en begin (250) zit en
-		# muis zit tussen y vh object (400+50) en begin vh object (400)
+		self.buttons = []
 
-		# button(text,x,y,w,h,ac,ic,action=None)
-
-		self.buttons.append((button("FIGHT", 250, 600, 100, 50, RED, DIM_RED, screen), self.player_select))
+		self.buttons.append((button("FIGHT", 250, 600, 100, 50, RED, DIM_RED, screen), self.switchToPlayerSelectScene))
 		self.buttons.append((button("EXIT", 50, 700, 100, 50, GREY, DIM_GREY, screen), self.quitGame))
-		self.buttons.append((button("OPTIONS", 450, 700, 100, 50, BLUE, DIM_BLUE, screen), self.options))
+		self.buttons.append((button("OPTIONS", 450, 700, 100, 50, BLUE, DIM_BLUE, screen), self.switchToOptionsScene))
 
-		pygame.display.update()
+	def switchToPlayerSelectScene(self):
+		self.SwitchToScene(PlayerSelectionScene.PlayerSelectionScene(self.game))
 
-	def player_select(self):
-		self.SwitchToScene(PlayerSelectionScene.PlayerSelectionScene())
-
-	def options(self):
-		self.SwitchToScene(OptionsScene.OptionsScene())
+	def switchToOptionsScene(self):
+		self.SwitchToScene(OptionsScene.OptionsScene(self.game))

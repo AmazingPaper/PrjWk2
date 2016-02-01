@@ -1,7 +1,9 @@
 import pygame
 
+from Board.SurvivorGame import SurvivorGame
 from Board.GraphicsConstants import *
 from Scenes.IntroScene import IntroScene
+
 
 def run_game(width, height, fps, starting_scene):
 	pygame.init()
@@ -20,8 +22,7 @@ def run_game(width, height, fps, starting_scene):
 			if event.type == pygame.QUIT:
 				quit_attempt = True
 			elif event.type == pygame.KEYDOWN:
-				alt_pressed = pressed_keys[pygame.K_LALT] or \
-				pressed_keys[pygame.K_RALT]
+				alt_pressed = pressed_keys[pygame.K_LALT] or pressed_keys[pygame.K_RALT]
 				if event.key == pygame.K_ESCAPE:
 					quit_attempt = True
 				elif event.key == pygame.K_F4 and alt_pressed:
@@ -42,4 +43,7 @@ def run_game(width, height, fps, starting_scene):
 		pygame.display.flip()
 		clock.tick(fps)
 
-run_game(MapWidth * TileSize, MapHeight * TileSize + 200, 30, IntroScene())
+
+game = SurvivorGame()
+
+run_game(MapWidth * TileSize, MapHeight * TileSize + 200, 30, IntroScene(game))
