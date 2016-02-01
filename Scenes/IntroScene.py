@@ -42,9 +42,9 @@ class IntroScene(SceneBase):
 
 		self.buttons = []
 
-		self.buttons.append((button("FIGHT", 450, 700, 100, 50, DIM_RED, RED, screen), self.switchToPlayerSelectScene,
+		self.buttons.append((button("FIGHT", 430, 700, 100, 50, DIM_RED, RED, screen), self.switchToPlayerSelectScene,
 							 self.selectSound))
-		self.buttons.append((button("EXIT", 40, 700, 100, 50, DIM_GREY, GREY, screen), self.quitGame, self.selectSound))
+		self.buttons.append((button("EXIT", 50, 700, 100, 50, DIM_GREY, GREY, screen), self.quitGame, self.selectSound))
 
 	def switchToPlayerSelectScene(self):
 		self.SwitchToScene(PlayerSelectionScene.PlayerSelectionScene(self.game))
