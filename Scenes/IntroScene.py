@@ -14,9 +14,10 @@ class IntroScene(SceneBase):
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
 			if event.type == MOUSEBUTTONDOWN and event.button == 1:
-				for (buttonRect, action) in self.buttons:
+				for (buttonRect, action, sound) in self.buttons:
 					if buttonRect.collidepoint(event.pos):
 						action()
+						sound()
 
 	def Update(self):
 		pass
@@ -41,8 +42,9 @@ class IntroScene(SceneBase):
 
 		self.buttons = []
 
-		self.buttons.append((button("FIGHT", 450, 700, 100, 50, DIM_RED, RED, screen), self.switchToPlayerSelectScene))
-		self.buttons.append((button("EXIT", 40, 700, 100, 50, DIM_GREY, GREY, screen), self.quitGame))
+		self.buttons.append((button("FIGHT", 450, 700, 100, 50, DIM_RED, RED, screen), self.switchToPlayerSelectScene,
+							 self.selectSound))
+		self.buttons.append((button("EXIT", 40, 700, 100, 50, DIM_GREY, GREY, screen), self.quitGame, self.selectSound))
 
 	def switchToPlayerSelectScene(self):
 		self.SwitchToScene(PlayerSelectionScene.PlayerSelectionScene(self.game))

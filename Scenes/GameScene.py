@@ -45,9 +45,10 @@ class GameScene(SceneBase):
 							ChoosePlayerFightScene(self.game, current_player, current_player.otherPlayers()))
 
 			elif event.type == MOUSEBUTTONDOWN and event.button == 1:
-				for (buttonRect, action) in self.buttons:
+				for (buttonRect, action, sound) in self.buttons:
 					if buttonRect.collidepoint(event.pos):
 						action()
+						sound()
 
 	def Update(self):
 		pass
@@ -71,9 +72,9 @@ class GameScene(SceneBase):
 
 		buttonRect = (
 			button("MENU", 250, 630, 100, 50, DIM_YELLOW, YELLOW, screen),
-			lambda: self.SwitchToScene(IntroScene(self.game)))
+			lambda: self.SwitchToScene(IntroScene(self.game)), self.selectSound)
 		self.buttons.append(buttonRect)
 
 		buttonRect = (button("RULES", 250, 700, 100, 50, DIM_YELLOW, YELLOW, screen),
-					  lambda: self.SwitchToScene(RulesScene(self.game)))
+					  lambda: self.SwitchToScene(RulesScene(self.game)), self.selectSound)
 		self.buttons.append(buttonRect)

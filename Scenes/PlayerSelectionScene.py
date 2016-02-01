@@ -16,9 +16,10 @@ class PlayerSelectionScene(SceneBase):
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
 			if event.type == MOUSEBUTTONDOWN and event.button == 1:
-				for (buttonRect, action) in self.buttons:
+				for (buttonRect, action, sound) in self.buttons:
 					if buttonRect.collidepoint(event.pos):
 						action()
+						sound()
 
 	def Update(self):
 		pass
@@ -41,12 +42,12 @@ class PlayerSelectionScene(SceneBase):
 		screen.blit(TextSurf, TextRect)
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
-		TextSurf, TextRect = text_objects2("PRESS HERE TO TURN OFF MUSIC", smallText)
+		TextSurf, TextRect = text_objects2("PRESS HERE TO TURN OFF MUSIC IN GAME", smallText)
 		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 2.5))
 		screen.blit(TextSurf, TextRect)
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
-		TextSurf, TextRect = text_objects2("How many players dare to survive", smallText)
+		TextSurf, TextRect = text_objects2("HOW MANY PLAYERS DARE TO SURVIVE", smallText)
 		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 1.3))
 		screen.blit(TextSurf, TextRect)
 
@@ -65,12 +66,15 @@ class PlayerSelectionScene(SceneBase):
 
 			action = lambda n: (lambda: self.switchToGameScene(n))
 
-			buttonRect = (button(str(n), x, y + (4 - n) * 100, width, height, DIM_YELLOW, YELLOW, screen), action(n))
+			buttonRect = (button(str(n), x, y + (4 - n) * 100, width, height, DIM_YELLOW, YELLOW, screen), action(n),
+						  self.selectSound)
 
 			self.buttons.append(buttonRect)
 
-			self.buttons.append((button("OFF", 150, 300, 100, 50, DIM_YELLOW, YELLOW, screen), self.pauseMusic))
-			self.buttons.append((button("ON", 350, 300, 100, 50, DIM_YELLOW, YELLOW, screen), self.unpauseMusic))
+			self.buttons.append(
+					(button("OFF", 150, 300, 100, 50, DIM_YELLOW, YELLOW, screen), self.pauseMusic, self.selectSound))
+			self.buttons.append(
+					(button("ON", 350, 300, 100, 50, DIM_YELLOW, YELLOW, screen), self.unpauseMusic, self.selectSound))
 
 	def switchToGameScene(self, numberOfPlayers):
 		self.game.Reset(numberOfPlayers)

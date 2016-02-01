@@ -32,11 +32,6 @@ class SurvivorGame:
 			},
 			'conditionPoints' : pygame.image.load('Tiles/Conditionpoints.png'),
 		}
-
-		self.sounds = {
-			'select' : pygame.mixer.music.load("Sounds/SelSound.wav")
-		}
-
 	def Reset(self, numberOfPlayers):
 		self.board = Board()
 		self.__setPlayers(numberOfPlayers)
