@@ -103,11 +103,11 @@ class SurvivorGame:
 
 		# get the list of other players at new location
 		others = player.otherPlayers()
-
 		# if new tile is FIGHT, then has to fight with super fighter
 		if player.tile.tileType == TileType.Fight:
 			fightType = FightType.SuperFighter
-
+		if player.isAtOwnCorner():
+			player.health += 10
 		# if there are other players in new position
 		if len(others) > 0:
 			# if there are more than 1 player, then player has to choose
