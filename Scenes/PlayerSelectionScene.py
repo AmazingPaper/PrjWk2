@@ -52,7 +52,6 @@ class PlayerSelectionScene(SceneBase):
 
 		self.createPlayerCountImages(screen)
 
-
 	# ekrana sirayla butonlari koyuyor ve her botunada tiklangidinda da gamescene sahnesini aciyor
 	# ve parametre larak secilen kullanici sayisini geciriyor
 	def createPlayerCountImages(self, screen):
