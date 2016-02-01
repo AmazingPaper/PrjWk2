@@ -2,12 +2,9 @@
 
 
 from Board.GraphicsConstants import *
-from GraphicsHelpers import *
 from Scenes import OptionsScene
 from Scenes import PlayerSelectionScene
 from Scenes.GameScene import *
-from Scenes.SceneBase import *
-
 
 class IntroScene(SceneBase):
 	def __init__(self, game):

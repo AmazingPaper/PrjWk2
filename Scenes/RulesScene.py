@@ -1,6 +1,7 @@
 from pygame.constants import *
 
-from GraphicsHelpers import SURV_BLUE
+from Board.GraphicsConstants import *
+from GraphicsHelpers import *
 from Scenes.SceneBase import SceneBase
 
 
@@ -18,6 +19,14 @@ class RulesScene(SceneBase):
 		pass
 
 	def Render(self, screen):
+
 		screen.fill(SURV_BLUE)
 
-		screen.blit(self.game.images['rules'], (40, 40))
+		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
+		TextSurf, TextRect = text_objects2("Rules", smallText)
+		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 12))
+		screen.blit(TextSurf, TextRect)
+
+		screen.blit(self.game.images['rules'], (40, 80))
+
+		pygame.display.update()

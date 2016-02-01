@@ -1,7 +1,7 @@
 import pygame
 
-from Board.SurvivorGame import SurvivorGame
 from Board.GraphicsConstants import *
+from Board.SurvivorGame import SurvivorGame
 from Scenes.IntroScene import IntroScene
 
 
@@ -9,12 +9,13 @@ def run_game(width, height, fps, starting_scene):
 	pygame.init()
 	screen = pygame.display.set_mode((width, height))
 	clock = pygame.time.Clock()
+	pygame.mixer.music.load('Sounds/Sandstorm.ogg')
+	pygame.mixer.music.play()
+
 
 	active_scene = starting_scene
-
 	while active_scene is not None:
 		pressed_keys = pygame.key.get_pressed()
-
 		# Event filtering
 		filtered_events = []
 		for event in pygame.event.get():
@@ -37,7 +38,6 @@ def run_game(width, height, fps, starting_scene):
 		active_scene.Update()
 		active_scene.Render(screen)
 
-		pygame.mixer.music.stop()
 		active_scene = active_scene.next
 
 		pygame.display.flip()

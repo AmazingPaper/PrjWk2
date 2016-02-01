@@ -20,7 +20,7 @@ class SurvivorGame:
 			diceImages[n] = pygame.image.load("Tiles/Roll{}.png".format(n))
 
 		self.images = {
-			'rules': pygame.image.load("images/regels.png".format(n)),
+			'rules': pygame.image.load("images/regels v2.5.png".format(n)),
 			'dice': diceImages,
 			'background': pygame.image.load("Tiles/background.png"),
 			'introbackground' : pygame.image.load('images/survivorstockimage.png'),

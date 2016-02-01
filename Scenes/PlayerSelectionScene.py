@@ -41,13 +41,17 @@ class PlayerSelectionScene(SceneBase):
 		screen.blit(TextSurf, TextRect)
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
+		TextSurf, TextRect = text_objects2("PRESS HERE TO TURN OFF MUSIC", smallText)
+		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 2.5))
+		screen.blit(TextSurf, TextRect)
+
+		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
 		TextSurf, TextRect = text_objects2("How many players dare to survive", smallText)
-		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 2))
+		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 1.3))
 		screen.blit(TextSurf, TextRect)
 
 		self.createPlayerCountImages(screen)
 
-		pygame.display.update()
 
 	# ekrana sirayla butonlari koyuyor ve her botunada tiklangidinda da gamescene sahnesini aciyor
 	# ve parametre larak secilen kullanici sayisini geciriyor
@@ -56,17 +60,19 @@ class PlayerSelectionScene(SceneBase):
 
 		for n in range(4, 1, -1):
 			x = 250
-			y = 450
+			y = 520
 			width = 100
 			height = 50
 
 			action = lambda n: (lambda: self.switchToGameScene(n))
 
-			buttonRect = (button(str(n), x, y + (4 - n) * 100, width, height, GREEN, GREEN, screen), action(n))
+			buttonRect = (button(str(n), x, y + (4 - n) * 100, width, height, DIM_YELLOW, YELLOW, screen), action(n))
 
 			self.buttons.append(buttonRect)
+
+			self.buttons.append((button("OFF", 150, 300, 100, 50, DIM_YELLOW, YELLOW, screen), self.pauseMusic))
+			self.buttons.append((button("ON", 350, 300, 100, 50, DIM_YELLOW, YELLOW, screen), self.unpauseMusic))
 
 	def switchToGameScene(self, numberOfPlayers):
 		self.game.Reset(numberOfPlayers)
 		self.SwitchToScene(GameScene(self.game))
-

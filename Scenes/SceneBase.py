@@ -28,6 +28,14 @@ class SceneBase:
 		pygame.quit()
 		quit()
 
+	def pauseMusic(self):
+		pygame.mixer.music.pause()
+
+	def unpauseMusic(self):
+		pygame.mixer.music.unpause()
+
+
+
 	# Ability to roll die.
 	def dieRoll(self):
 		number = random.randint(1, 6)
