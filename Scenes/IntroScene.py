@@ -2,7 +2,6 @@
 
 
 from Board.GraphicsConstants import *
-from Scenes import OptionsScene
 from Scenes import PlayerSelectionScene
 from Scenes.GameScene import *
 
@@ -26,8 +25,9 @@ class IntroScene(SceneBase):
 		# For the sake of brevity, the title scene is a blank red screen
 		screen.fill(SURV_BLUE)
 
-		# TOP TEXT
 		pygame.draw.rect(screen, YELLOW, (20, 70, 570, 100))  # title box
+
+		# TOP TEXT
 		largeText = pygame.font.Font('8-BIT WONDER.TTF', 75)
 		TextSurf, TextRect = text_objects("SURVIVOR", largeText)
 		TextRect.center = (((MapWidth * TileSize) / 1.95), ((MapHeight * TileSize) / 5))
@@ -39,15 +39,43 @@ class IntroScene(SceneBase):
 		screen.blit(TextSurf, TextRect)
 
 		screen.blit(self.game.images['introbackground'], (20, 180))
+		pygame.draw.rect(screen, YELLOW, (10, 630, 110, 300))
+
+		smallText = pygame.font.Font('MINECRAFT.TTF', 15)
+		TextSurf, TextRect = text_objects3("CREATED BY: ", smallText)
+		TextRect.center = 70, 650
+		screen.blit(TextSurf, TextRect)
+		smallText = pygame.font.Font('MINECRAFT.TTF', 15)
+		TextSurf, TextRect = text_objects3("DAMIEN ", smallText)
+		TextRect.center = 65, 680
+		screen.blit(TextSurf, TextRect)
+		smallText = pygame.font.Font('MINECRAFT.TTF', 15)
+		TextSurf, TextRect = text_objects3("MARK ", smallText)
+		TextRect.center = 65, 700
+		screen.blit(TextSurf, TextRect)
+		smallText = pygame.font.Font('MINECRAFT.TTF', 15)
+		TextSurf, TextRect = text_objects3("ALEX ", smallText)
+		TextRect.center = 65, 720
+		screen.blit(TextSurf, TextRect)
+		smallText = pygame.font.Font('MINECRAFT.TTF', 15)
+		TextSurf, TextRect = text_objects3("ELIF ", smallText)
+		TextRect.center = 65, 740
+		screen.blit(TextSurf, TextRect)
+		smallText = pygame.font.Font('MINECRAFT.TTF', 15)
+		TextSurf, TextRect = text_objects3("DAVID ", smallText)
+		TextRect.center = 65, 760
+		screen.blit(TextSurf, TextRect)
+		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
+		TextSurf, TextRect = text_objects("2016 ", smallText)
+		TextRect.center = 65, 790
+		screen.blit(TextSurf, TextRect)
+
 
 		self.buttons = []
 
-		self.buttons.append((button("FIGHT", 430, 700, 100, 50, DIM_RED, RED, screen), self.switchToPlayerSelectScene,
+		self.buttons.append((button("FIGHT", 430, 250, 100, 50, DIM_RED, RED, screen), self.switchToPlayerSelectScene,
 							 self.selectSound))
-		self.buttons.append((button("EXIT", 50, 700, 100, 50, DIM_GREY, GREY, screen), self.quitGame, self.selectSound))
+		self.buttons.append((button("EXIT", 50, 250, 100, 50, DIM_GREY, GREY, screen), self.quitGame, self.selectSound))
 
 	def switchToPlayerSelectScene(self):
 		self.SwitchToScene(PlayerSelectionScene.PlayerSelectionScene(self.game))
-
-	def switchToOptionsScene(self):
-		self.SwitchToScene(OptionsScene.OptionsScene(self.game))

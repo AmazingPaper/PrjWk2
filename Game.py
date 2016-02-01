@@ -9,7 +9,7 @@ def run_game(width, height, fps, starting_scene):
 	pygame.init()
 	screen = pygame.display.set_mode((width, height))
 	clock = pygame.time.Clock()
-	pygame.mixer.music.load('Sounds/Sandstorm.ogg')
+	pygame.mixer.music.load('Sounds/oh_no_he_didnt.ogg')
 	pygame.mixer.music.play()
 	pygame.mixer.music.set_volume(0.4)
 
