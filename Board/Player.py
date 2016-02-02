@@ -1,3 +1,5 @@
+import pygame
+
 from Board.Enumerations import *
 
 
@@ -5,12 +7,17 @@ from Board.Enumerations import *
 # keeps information about player type (red, green, blue, yellow)
 # which tile this is player currently at
 class Player():
-	def __init__(self, playerType, name="", ):
+	def __init__(self, playerType, name):
 		self.playerType = playerType
-		self.tile = None
 		self.name = name
+
+		self.tile = None
 		self.health = 100
 		self.stamina = 15
+
+		imageName = name.replace(' ', '')
+
+		self.image = pygame.image.load("images/Players/{}.png".format(imageName))
 
 	# is this user currently at his/her corner?
 	def isAtOwnCorner(self):
@@ -47,3 +54,10 @@ class Player():
 			return str(self.playerType)
 
 		return "{} @ {}:{}".format(self.playerType, self.tile.posX, self.tile.posY)
+
+
+class Players:
+	MikeTysen = Player(PlayerType.Blue, "Mike Tysen")
+	RockyBelboa = Player(PlayerType.Red, "Rocky Belboa")
+	BadrHerl = Player(PlayerType.Green, "Badr Herl")
+	MannyPecquiao = Player(PlayerType.Yellow, "Manny Pecquiao")

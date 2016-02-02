@@ -3,6 +3,7 @@ from pygame.constants import *
 from Scenes.GameScene import GameScene
 from Scenes.SuperFighterFightScene import SuperFighterFightScene
 
+
 class PickSuperFighterCardScene(GameScene):
 	def __init__(self, game, attacker):
 		GameScene.__init__(self, game)
@@ -16,12 +17,9 @@ class PickSuperFighterCardScene(GameScene):
 		for event in events:
 			if event.type == KEYDOWN:
 				if event.key == K_SPACE:
+					card = self.game.PickSuperFighterCard()
 
-					superfighter = self.game.PickSuperFighterCard()
-
-					print("Superfighter is {}".format(superfighter))
-
-					self.SwitchToScene(SuperFighterFightScene(self.game, self.game.CurrentPlayer(), superfighter))
+					self.SwitchToScene(SuperFighterFightScene(self.game, self.game.CurrentPlayer(), card.superFighter))
 
 	def Update(self):
 		pass

@@ -12,8 +12,6 @@ class SuperFighterFightScene(GameScene):
 		self.attacker = attacker
 		self.superFighter = superFighter
 
-		print("on this screen fight with {}".format(superFighter))
-
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
 			if event.type == KEYDOWN:
@@ -25,7 +23,7 @@ class SuperFighterFightScene(GameScene):
 					self.game.MoveCurrentPlayer(number)
 
 			elif event.type == MOUSEBUTTONDOWN and event.button == 1:
-				for (buttonRect, action) in self.buttons:
+				for (buttonRect, action, d) in self.buttons:
 					if buttonRect.collidepoint(event.pos):
 						action()
 
@@ -41,4 +39,3 @@ class SuperFighterFightScene(GameScene):
 
 		textObj = smallText.render(self.superFighter.name, True, WHITE, BLACK)
 		screen.blit(textObj, (230, 120))
-
