@@ -1,5 +1,6 @@
 import pygame
 
+from Board.Board import Corners
 from Board.Enumerations import *
 
 
@@ -7,9 +8,10 @@ from Board.Enumerations import *
 # keeps information about player type (red, green, blue, yellow)
 # which tile this is player currently at
 class Player():
-	def __init__(self, playerType, name):
+	def __init__(self, playerType, name, corner):
 		self.playerType = playerType
 		self.name = name
+		self.corner = corner
 
 		self.tile = None
 		self.health = 100
@@ -57,7 +59,7 @@ class Player():
 
 
 class Players:
-	MikeTysen = Player(PlayerType.Blue, "Mike Tysen")
-	RockyBelboa = Player(PlayerType.Red, "Rocky Belboa")
-	BadrHerl = Player(PlayerType.Green, "Badr Herl")
-	MannyPecquiao = Player(PlayerType.Yellow, "Manny Pecquiao")
+	MikeTysen = Player(PlayerType.Blue, "Mike Tysen", Corners.TopLeft)
+	RockyBelboa = Player(PlayerType.Red, "Rocky Belboa", Corners.TopRight)
+	BadrHerl = Player(PlayerType.Green, "Badr Herl", Corners.BottomRight)
+	MannyPecquiao = Player(PlayerType.Yellow, "Manny Pecquiao", Corners.BottomLeft)

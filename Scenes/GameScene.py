@@ -61,7 +61,7 @@ class GameScene(SceneBase):
 
 		BoardGraphics(screen, self.game.board).draw()
 
-		StatisticsGraphics(screen, self.game.images, self.game.players).draw()
+		StatisticsGraphics(screen, self.game.images, self.game.players, self.game.CurrentPlayer()).draw()
 
 		screen.blit(self.game.images['background'], (55, 55))
 

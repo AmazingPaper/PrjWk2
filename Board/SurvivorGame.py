@@ -50,27 +50,20 @@ class SurvivorGame:
 			players.append(Players.MikeTysen)
 			players.append(Players.BadrHerl)
 
-			self.board.placePlayer(Players.MikeTysen, 0, 0)
-			self.board.placePlayer(Players.BadrHerl, 10, 10)
-
 		elif numberOfPlayers == 3:
 			players.append(Players.MikeTysen)
 			players.append(Players.RockyBelboa)
 			players.append(Players.BadrHerl)
 
-			self.board.placePlayer(Players.MikeTysen, 0, 0)
-			self.board.placePlayer(Players.RockyBelboa, 0, 10)
-			self.board.placePlayer(Players.BadrHerl, 10, 10)
 		elif numberOfPlayers == 4:
 			players.append(Players.MikeTysen)
 			players.append(Players.RockyBelboa)
 			players.append(Players.BadrHerl)
 			players.append(Players.MannyPecquiao)
 
-			self.board.placePlayer(Players.MikeTysen, 0, 0)
-			self.board.placePlayer(Players.RockyBelboa, 0, 10)
-			self.board.placePlayer(Players.BadrHerl, 10, 10)
-			self.board.placePlayer(Players.MannyPecquiao, 10, 0)
+		for player in players:
+			self.board.placePlayer(player)
+
 
 	def CurrentPlayer(self):
 		return self.players[self.currentPlayer]
