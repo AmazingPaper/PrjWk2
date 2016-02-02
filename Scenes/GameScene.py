@@ -44,7 +44,7 @@ class GameScene(SceneBase):
 						self.SwitchToScene(
 							ChoosePlayerFightScene(self.game, current_player, current_player.otherPlayers()))
 
-			elif event.type == MOUSEBUTTONDOWN and event.button == 1:
+			if event.type == MOUSEBUTTONDOWN and event.button == 1:
 				for (buttonRect, action, sound) in self.buttons:
 					if buttonRect.collidepoint(event.pos):
 						action()
@@ -78,8 +78,3 @@ class GameScene(SceneBase):
 		buttonRect = (button("RULES", 250, 700, 100, 50, DIM_YELLOW, YELLOW, screen),
 					  lambda: self.SwitchToScene(RulesScene(self.game)), self.selectSound)
 		self.buttons.append(buttonRect)
-
-		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
-		textObj = smallText.render(str(self.game.CurrentPlayer().name), True, WHITE, BLACK)
-		screen.blit(textObj, (230, 80))
-

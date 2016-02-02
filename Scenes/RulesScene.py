@@ -14,7 +14,6 @@ class RulesScene(SceneBase):
 			if event.type == KEYDOWN or event.type == MOUSEBUTTONUP:
 				from Scenes.GameScene import GameScene
 				self.SwitchToScene(GameScene(self.game))
-
 	def Update(self):
 		pass
 
