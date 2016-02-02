@@ -4,16 +4,16 @@ from GraphicsHelpers import *
 
 
 class StatisticsGraphics:
-	def __init__(self, screen, images, players):
+	def __init__(self, screen, images, players, currentPlayer):
 		self.images, = images,
 		self.screen = screen
 		self.players = players
+		self.currentPlayer = currentPlayer
 
 	def draw(self):
-		index = 0
 		for player in self.players:
-			row = index // 2
-			column = index % 2
+			row, column = player.corner
 
-			PlayerStatisticsGraphics(self.screen, self.images, player).draw((row, column))
-			index += 1
+			isCurrentPlayer = player == self.currentPlayer
+
+			PlayerStatisticsGraphics(self.screen, self.images, player, isCurrentPlayer).draw((row // 10, column // 10))

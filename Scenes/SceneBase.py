@@ -42,4 +42,7 @@ class SceneBase:
 	# Ability to roll die.
 	def dieRoll(self):
 		number = random.randint(1, 6)
+
+		self.game.lastDice = number
+
 		return number

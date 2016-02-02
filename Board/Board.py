@@ -2,6 +2,13 @@ from Board.Enumerations import *
 from Board.TileNode import *
 
 
+class Corners:
+	TopLeft = (0, 0)
+	TopRight = (0, 10)
+	BottomRight = (10, 10)
+	BottomLeft = (10, 0)
+
+
 # board class
 # this class is for the tiles that players can move ( outer nodes of pyhsical board )
 class Board:
@@ -107,7 +114,9 @@ class Board:
 			if current == self.head: break
 
 	# places a player at specified position
-	def placePlayer(self, player, posX, posY):
+	def placePlayer(self, player):
+		posX, posY = player.corner
+
 		# get the tile at specified position
 		tile = self.getTile(posX, posY)
 

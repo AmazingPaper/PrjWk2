@@ -3,7 +3,7 @@ import pygame
 from Board.Board import Board
 from Board.Enumerations import PlayerType, TileType
 from Board.FightType import FightType
-from Board.Player import Player
+from Board.Player import Player, Players
 from Board.SuperFighterCard import CardDeck
 
 
@@ -13,6 +13,11 @@ class SurvivorGame:
 		self.players = []
 		self.currentPlayer = None
 		self.cardDeck = CardDeck()
+
+		self.defender = None
+		self.superFighterCard = None
+
+		self.lastDice = 0
 
 		pygame.init()
 
@@ -40,30 +45,30 @@ class SurvivorGame:
 		self.__setPlayers(numberOfPlayers)
 
 	def __setPlayers(self, numberOfPlayers):
-		players = [Player(PlayerType.Blue), Player(PlayerType.Red)]
-
-		self.board.placePlayer(players[0], 0, 0)
-		self.board.placePlayer(players[1], 0, 10)
-
-		if numberOfPlayers == 3:
-			players.append(Player(PlayerType.Green))
-
-			self.board.placePlayer(players[2], 10, 10)
-		elif numberOfPlayers == 4:
-			players.append(Player(PlayerType.Green))
-			players.append(Player(PlayerType.Yellow))
-
-			self.board.placePlayer(players[2], 10, 10)
-			self.board.placePlayer(players[3], 10, 0)
-
-		index = 1
-		for player in players:
-			player.name = "Player {} ({})".format(index, player.playerType.name)
-			index += 1
+		players = []
 
 		self.players = players
 
 		self.currentPlayer = 0
+
+		if numberOfPlayers == 2:
+			players.append(Players.MikeTysen)
+			players.append(Players.BadrHerl)
+
+		elif numberOfPlayers == 3:
+			players.append(Players.MikeTysen)
+			players.append(Players.RockyBelboa)
+			players.append(Players.BadrHerl)
+
+		elif numberOfPlayers == 4:
+			players.append(Players.MikeTysen)
+			players.append(Players.RockyBelboa)
+			players.append(Players.BadrHerl)
+			players.append(Players.MannyPecquiao)
+
+		for player in players:
+			self.board.placePlayer(player)
+
 
 	def CurrentPlayer(self):
 		return self.players[self.currentPlayer]
@@ -117,12 +122,12 @@ class SurvivorGame:
 			# which t fight with
 			if len(others) > 1:
 				fightType = FightType.ChoosePlayer
-				#print("FIGHT! there are more players here, choose one of : " + ", ".join(
-				#	[str(player.playerType) for player in others]))
+			#print("FIGHT! there are more players here, choose one of : " + ", ".join(
+			#	[str(player.playerType) for player in others]))
 			# there is one player at new position
 			else:
 				fightType = FightType.SuperFighter
-# if new position is other player's corner then player has to fight with owner
+			# if new position is other player's corner then player has to fight with owner
 		elif player.isAtOtherPlayersCorner() and self.IsPlayerIsInGame(player.tile.cornerOfPlayer):
 			fightType = FightType.Player
 
