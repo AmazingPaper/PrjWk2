@@ -78,3 +78,8 @@ class GameScene(SceneBase):
 		buttonRect = (button("RULES", 250, 700, 100, 50, DIM_YELLOW, YELLOW, screen),
 					  lambda: self.SwitchToScene(RulesScene(self.game)), self.selectSound)
 		self.buttons.append(buttonRect)
+
+		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
+		textObj = smallText.render(str(self.game.CurrentPlayer().name), True, WHITE, BLACK)
+		screen.blit(textObj, (230, 100))
+

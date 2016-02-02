@@ -12,7 +12,7 @@ class PlayerSelectionScene(SceneBase):
 		self.buttons = []
 		self.createdButtons = False
 
-	# kulanicinin yaptigi butun olaylar, tusa basma,fare hareketi burada yaziliyor.
+
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
 			if event.type == MOUSEBUTTONDOWN and event.button == 1:
@@ -24,8 +24,7 @@ class PlayerSelectionScene(SceneBase):
 	def Update(self):
 		pass
 
-	def Render(self, screen):  # cizilecek olan hersey render in icinde duruyor
-		# The game scene is just a blank blue screen
+	def Render(self, screen):
 		screen.fill((0, 0, 255))
 
 		screen.fill(SURV_BLUE)
@@ -53,8 +52,6 @@ class PlayerSelectionScene(SceneBase):
 
 		self.createPlayerCountImages(screen)
 
-	# ekrana sirayla butonlari koyuyor ve her botunada tiklangidinda da gamescene sahnesini aciyor
-	# ve parametre larak secilen kullanici sayisini geciriyor
 	def createPlayerCountImages(self, screen):
 		self.buttons = []
 

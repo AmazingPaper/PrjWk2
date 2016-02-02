@@ -32,6 +32,7 @@ class SurvivorGame:
 			},
 			'conditionPoints' : pygame.image.load('Tiles/Conditionpoints.png'),
 		}
+
 	def Reset(self, numberOfPlayers):
 		self.board = Board()
 		self.__setPlayers(numberOfPlayers)
@@ -52,6 +53,11 @@ class SurvivorGame:
 
 			self.board.placePlayer(players[2], 10, 10)
 			self.board.placePlayer(players[3], 10, 0)
+
+		index = 1
+		for player in players:
+			player.name = "Player {} ({})".format(index, player.playerType.name)
+			index += 1
 
 		self.players = players
 
