@@ -12,7 +12,6 @@ class GameScene(SceneBase):
 	def __init__(self, game):
 		SceneBase.__init__(self, game)
 		self.buttons = []
-		self.lastDice = 0
 
 		self.turnIndex = 0
 
@@ -20,11 +19,9 @@ class GameScene(SceneBase):
 		for event in events:
 			if event.type == KEYDOWN:
 				if event.key == K_SPACE:
-					number = self.dieRoll()
+					self.game.lastDice = self.dieRoll()
 
-					self.lastDice = number
-
-					fightType = self.game.MoveCurrentPlayer(number)
+					fightType = self.game.MoveCurrentPlayer(self.game.lastDice)
 
 					from Scenes.PlayerFightScene import PlayerFightScene
 					from Scenes.PickSuperFighterCardScene import PickSuperFighterCardScene
@@ -65,8 +62,8 @@ class GameScene(SceneBase):
 
 		screen.blit(self.game.images['background'], (55, 55))
 
-		if self.lastDice > 0:
-			screen.blit(self.game.images['dice'][self.lastDice], (275, 275))
+		if self.game.lastDice > 0:
+			screen.blit(self.game.images['dice'][self.game.lastDice], (275, 450))
 
 		self.buttons = []
 

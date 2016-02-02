@@ -14,6 +14,11 @@ class SurvivorGame:
 		self.currentPlayer = None
 		self.cardDeck = CardDeck()
 
+		self.defender = None
+		self.superFighterCard = None
+
+		self.lastDice = 0
+
 		pygame.init()
 
 		diceImages = {}
