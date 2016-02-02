@@ -81,5 +81,5 @@ class GameScene(SceneBase):
 
 		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
 		textObj = smallText.render(str(self.game.CurrentPlayer().name), True, WHITE, BLACK)
-		screen.blit(textObj, (230, 100))
+		screen.blit(textObj, (230, 80))
 

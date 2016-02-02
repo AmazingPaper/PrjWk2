@@ -4,6 +4,7 @@ from Board.Board import Board
 from Board.Enumerations import PlayerType, TileType
 from Board.FightType import FightType
 from Board.Player import Player
+from Board.SuperFighterCard import CardDeck
 
 
 class SurvivorGame:
@@ -11,6 +12,7 @@ class SurvivorGame:
 		self.board = Board()
 		self.players = []
 		self.currentPlayer = None
+		self.cardDeck = CardDeck()
 
 		pygame.init()
 
@@ -127,4 +129,4 @@ class SurvivorGame:
 		return fightType
 
 	def PickSuperFighterCard(self):
-		pass
+		return self.cardDeck.pickCard()

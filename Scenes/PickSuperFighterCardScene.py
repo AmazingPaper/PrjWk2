@@ -8,6 +8,7 @@ class PickSuperFighterCardScene(GameScene):
 		GameScene.__init__(self, game)
 
 		self.attacker = attacker
+		self.superfighter = None
 
 		print("On this screen pick a card")
 
@@ -15,18 +16,12 @@ class PickSuperFighterCardScene(GameScene):
 		for event in events:
 			if event.type == KEYDOWN:
 				if event.key == K_SPACE:
-					number = self.dieRoll()
-
-					self.lastDice = number
 
 					superfighter = self.game.PickSuperFighterCard()
 
-					self.SwitchToScene(SuperFighterFightScene(self.game, self.game.CurrentPlayer(), superfighter))
+					print("Superfighter is {}".format(superfighter))
 
-			elif event.type == MOUSEBUTTONDOWN and event.button == 1:
-				for (buttonRect, action) in self.buttons:
-					if buttonRect.collidepoint(event.pos):
-						action()
+					self.SwitchToScene(SuperFighterFightScene(self.game, self.game.CurrentPlayer(), superfighter))
 
 	def Update(self):
 		pass

@@ -1,5 +1,7 @@
+import pygame
 from pygame.constants import *
 
+from GraphicsHelpers import *
 from Scenes.GameScene import GameScene
 
 
@@ -32,3 +34,11 @@ class SuperFighterFightScene(GameScene):
 
 	def Render(self, screen):
 		super(SuperFighterFightScene, self).Render(screen)
+
+		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
+		textObj = smallText.render("vs", True, WHITE, BLACK)
+		screen.blit(textObj, (280, 100))
+
+		textObj = smallText.render(self.superFighter.name, True, WHITE, BLACK)
+		screen.blit(textObj, (230, 120))
+
