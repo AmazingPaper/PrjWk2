@@ -17,19 +17,26 @@ class PlayerStatisticsGraphics:
 		if self.isCurrentPlayer:
 			namecolor = RED
 
-		INVFONT = pygame.font.Font('Minecraft.ttf', 18)
+		font = pygame.font.Font('Minecraft.ttf', 18)
 
-		position = (column * 430 + 20, MapHeight * TileSize + row * 115)
-		textObj = INVFONT.render(str(self.player.name), True, namecolor, SURV_BLUE)
-		self.screen.blit(textObj, position)
+		posX = column * 430
+		posY = MapHeight * TileSize + row * 115
 
-		position = (column * 430 + 20, MapHeight * TileSize + row * 115 + 22)
+		position = (posX + 20, posY)
+		textObj = font.render(str(self.player.name), True, namecolor, SURV_BLUE)
+
+		rect = self.screen.blit(textObj, position)
+
+		position = (posX + 20, posY + 22)
 
 		self.screen.blit(self.images['points'][self.player.playerType], position)
-		textObj = INVFONT.render(str(self.player.health), True, WHITE, BLACK)
+		textObj = font.render(str(self.player.health), True, WHITE, BLACK)
 		self.screen.blit(textObj, position)
 
-		position = (column * 430 + 100, MapHeight * TileSize + row * 115 + 22)
+		position = (posX + 100, posY + 22)
 		self.screen.blit(self.images['conditionPoints'], position)
-		textObj = INVFONT.render(str(self.player.stamina), True, WHITE, BLACK)
+
+		textObj = font.render(str(self.player.stamina), True, WHITE, BLACK)
 		self.screen.blit(textObj, position)
+
+		return rect

@@ -1,31 +1,31 @@
 import pygame
 from pygame.constants import *
 
-from GraphicsHelpers import *
 from Scenes.GameScene import GameScene
 
 
 class SuperFighterFightScene(GameScene):
-	def __init__(self, game, attacker, superFighter):
+	def __init__(self, game):
 		GameScene.__init__(self, game)
 
-		self.attacker = attacker
-		self.superFighter = superFighter
+		if self.game.lastDice == 0:
+			self.dieRoll()
+
+		if self.game.superFighterCard is None:
+			self.game.superFighterCard = self.game.PickSuperFighterCard()
+
+		self.cardRect = None
+
 
 	def ProcessInput(self, events, pressed_keys):
+		super(SuperFighterFightScene, self).ProcessInput(events, pressed_keys)
+
 		for event in events:
-			if event.type == KEYDOWN:
-				if event.key == K_SPACE:
-					number = self.dieRoll()
+			if event.type == MOUSEBUTTONDOWN and event.button == 1:
+				if self.cardRect is not None and self.cardRect.collidepoint(event.pos):
+					from Scenes.SuperFighterInfoScene import SuperFighterInfoScene
 
-					self.lastDice = number
-
-					self.game.MoveCurrentPlayer(number)
-
-			elif event.type == MOUSEBUTTONDOWN and event.button == 1:
-				for (buttonRect, action, d) in self.buttons:
-					if buttonRect.collidepoint(event.pos):
-						action()
+					self.SwitchToScene(SuperFighterInfoScene(self.game))
 
 	def Update(self):
 		pass
@@ -33,9 +33,9 @@ class SuperFighterFightScene(GameScene):
 	def Render(self, screen):
 		super(SuperFighterFightScene, self).Render(screen)
 
-		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
-		textObj = smallText.render("vs", True, WHITE, BLACK)
-		screen.blit(textObj, (280, 100))
+		if self.game.superFighterCard is not None:
+			image = self.game.superFighterCard.image.convert_alpha()
+			image = pygame.transform.rotozoom(image, 45, .15)
+			screen.blit(image, (210, 210))
 
-		textObj = smallText.render(self.superFighter.name, True, WHITE, BLACK)
-		screen.blit(textObj, (230, 120))
+			self.cardRect = screen.blit(image, (210, 210))

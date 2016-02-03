@@ -5,6 +5,7 @@ from Board.GraphicsConstants import *
 from Scenes import PlayerSelectionScene
 from Scenes.GameScene import *
 
+
 class IntroScene(SceneBase):
 	def __init__(self, game):
 		SceneBase.__init__(self, game)
@@ -70,11 +71,10 @@ class IntroScene(SceneBase):
 		TextRect.center = 65, 790
 		screen.blit(TextSurf, TextRect)
 
-
 		self.buttons = []
 
 		self.buttons.append((button("FIGHT", 430, 250, 100, 50, DIM_RED, RED, screen), self.switchToPlayerSelectScene,
-							 self.selectSound))
+		                     self.selectSound))
 		self.buttons.append((button("EXIT", 50, 250, 100, 50, DIM_GREY, GREY, screen), self.quitGame, self.selectSound))
 
 	def switchToPlayerSelectScene(self):

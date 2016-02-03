@@ -13,7 +13,6 @@ def run_game(width, height, fps, starting_scene):
 	pygame.mixer.music.play()
 	pygame.mixer.music.set_volume(0.4)
 
-
 	active_scene = starting_scene
 	while active_scene is not None:
 		pressed_keys = pygame.key.get_pressed()
