@@ -22,7 +22,7 @@ class PlayerFightScene(GameScene):
 
 					self.game.MoveCurrentPlayer(number)
 
-		self.ProcessButtonEvents()
+		self.ProcessButtonEvents(events)
 
 
 	def Update(self):
