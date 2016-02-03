@@ -92,18 +92,15 @@ class GameScene(SceneBase):
 	def __drawButtons(self, screen):
 		from Scenes.IntroScene import IntroScene
 
-		buttons = []
 		buttonRect = (
 			button("MENU", 250, 650, 100, 50, DIM_YELLOW, YELLOW, screen),
 			lambda: self.SwitchToScene(IntroScene(self.game)), self.selectSound)
 
-		buttons.append(buttonRect)
+		self.addButton(buttonRect)
 
 		buttonRect = (button("RULES", 250, 720, 100, 50, DIM_YELLOW, YELLOW, screen),
 		              lambda: self.SwitchToScene(RulesScene(self.game)), self.selectSound)
-		buttons.append(buttonRect)
-
-		self.addButtons(buttons)
+		self.addButton(buttonRect)
 
 	def switchToPlayerInfoScene(self, player):
 		from Scenes.PlayerInfoScene import PlayerInfoScene
