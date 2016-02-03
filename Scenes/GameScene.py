@@ -6,7 +6,6 @@ from Board.PlayerStatisticsGraphics import PlayerStatisticsGraphics
 from GraphicsHelpers import *
 from Scenes.RulesScene import RulesScene
 from Scenes.SceneBase import *
-from Board.SurvivorGame import SurvivorGame
 
 
 class GameScene(SceneBase):
@@ -93,12 +92,12 @@ class GameScene(SceneBase):
 		self.buttons = []
 
 		buttonRect = (
-			button("MENU", 250, 630, 100, 50, DIM_YELLOW, YELLOW, screen),
+			button("MENU", 250, 650, 100, 50, DIM_YELLOW, YELLOW, screen),
 			lambda: self.SwitchToScene(IntroScene(self.game)), self.selectSound)
 		self.buttons.append(buttonRect)
 
-		buttonRect = (button("RULES", 250, 700, 100, 50, DIM_YELLOW, YELLOW, screen),
-		              lambda: self.SwitchToScene(RulesScene(self.game)), self.selectSound)
+		buttonRect = (button("RULES", 250, 720, 100, 50, DIM_YELLOW, YELLOW, screen),
+					  lambda: self.SwitchToScene(RulesScene(self.game)), self.selectSound)
 		self.buttons.append(buttonRect)
 
 		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
