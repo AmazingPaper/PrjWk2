@@ -127,7 +127,7 @@ class SurvivorGame:
 			#	[str(player.playerType) for player in others]))
 			# there is one player at new position
 			else:
-				fightType = FightType.SuperFighter
+				fightType = FightType.Player
 			# if new position is other player's corner then player has to fight with owner
 		elif player.isAtOtherPlayersCorner() and self.IsPlayerIsInGame(player.tile.cornerOfPlayer):
 			fightType = FightType.Player
