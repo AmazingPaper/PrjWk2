@@ -2,6 +2,8 @@ import random
 
 import pygame
 
+from GraphicsHelpers import FONT_BLUE
+
 
 class SceneBase:
 	def __init__(self, game):
@@ -17,7 +19,8 @@ class SceneBase:
 		print("uh-oh, you didn't override Update in the child class")
 
 	def Render(self, screen):
-		print("uh-oh, you didn't override Render in the child class")
+		# The game scene is just a blank blue screen
+		screen.fill(FONT_BLUE)  # maakt achtergrond weer blauw ipv menu achtergrond
 
 	def SwitchToScene(self, next_scene):
 		if next_scene is not None:

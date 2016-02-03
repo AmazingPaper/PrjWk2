@@ -2,6 +2,7 @@ from Board.BoardTextures import *
 from Board.Enumerations import TileType
 from Board.GraphicsConstants import *
 from Board.PlayerGraphics import PlayerGraphics
+from Scenes.Resources import Images
 
 
 def getTileTexture(tile):
@@ -33,4 +34,7 @@ class BoardGraphics():
 
 		for player in tile.players:
 			playerGraphics.draw(player)
+
+		self.screen.blit(Images.background, (55, 55))
+
 

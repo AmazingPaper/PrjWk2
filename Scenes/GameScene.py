@@ -2,8 +2,8 @@ from pygame.constants import *
 
 from Board.BoardGraphics import BoardGraphics
 from Board.FightType import FightType
-from Board.PlayerStatisticsGraphics import PlayerStatisticsGraphics
 from GraphicsHelpers import *
+from Scenes.Resources import Images
 from Scenes.RulesScene import RulesScene
 from Scenes.SceneBase import *
 
@@ -60,22 +60,28 @@ class GameScene(SceneBase):
 		pass
 
 	def Render(self, screen):
-		from Scenes.IntroScene import IntroScene
-
-		# The game scene is just a blank blue screen
-		screen.fill(FONT_BLUE)  # maakt achtergrond weer blauw ipv menu achtergrond
+		super(GameScene, self).Render(screen)
 
 		BoardGraphics(screen, self.game.board).draw()
 
-		# StatisticsGraphics(screen, self.game.images, self.game.players, self.game.CurrentPlayer()).draw()
+		self.__drawPlayerStatistics(screen)
+		self.__drawDice(screen)
+		self.__drawButtons(screen)
+		self.__drawSuperFighterCard(screen)
+		self.__drawPlayerName(screen)
 
+	def __drawDice(self, screen):
+		if self.game.lastDice > 0:
+			screen.blit(Images.dice[self.game.lastDice], (275, 450))
+
+	def __drawPlayerStatistics(self, screen):
 		self.rectangles = []
-
 		for player in self.game.players:
 			row, column = player.corner
 
 			isCurrentPlayer = player == self.game.CurrentPlayer()
 
+			from Board.PlayerStatisticsGraphics import PlayerStatisticsGraphics
 			rect = PlayerStatisticsGraphics(screen, self.game.images, player, isCurrentPlayer).draw(
 				(row // 10, column // 10))
 
@@ -85,25 +91,27 @@ class GameScene(SceneBase):
 
 			self.rectangles.append(rectangle)
 
-		screen.blit(self.game.images['background'], (55, 55))
+	def __drawPlayerName(self, screen):
+		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
+		textObj = smallText.render(str(self.game.CurrentPlayer().name), True, WHITE, FONT_BLUE)
+		screen.blit(textObj, (230, 80))
 
-		if self.game.lastDice > 0:
-			screen.blit(self.game.images['dice'][self.game.lastDice], (275, 450))
+	def __drawSuperFighterCard(self, screen):
+		image = Images.superfightercard.convert_alpha()
+		image = pygame.transform.rotozoom(image, 45, .15)
+		self.cardRect = screen.blit(image, (210, 210))
+
+	def __drawButtons(self, screen):
+		from Scenes.IntroScene import IntroScene
 
 		self.buttons = []
-
 		buttonRect = (
 			button("MENU", 250, 650, 100, 50, DIM_YELLOW, YELLOW, screen),
 			lambda: self.SwitchToScene(IntroScene(self.game)), self.selectSound)
 		self.buttons.append(buttonRect)
-
 		buttonRect = (button("RULES", 250, 720, 100, 50, DIM_YELLOW, YELLOW, screen),
-					  lambda: self.SwitchToScene(RulesScene(self.game)), self.selectSound)
+		              lambda: self.SwitchToScene(RulesScene(self.game)), self.selectSound)
 		self.buttons.append(buttonRect)
-
-		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
-		textObj = smallText.render(str(self.game.CurrentPlayer().name), True, WHITE, FONT_BLUE)
-		screen.blit(textObj, (230, 80))
 
 	def switchToPlayerInfoScene(self, player):
 		from Scenes.PlayerInfoScene import PlayerInfoScene
