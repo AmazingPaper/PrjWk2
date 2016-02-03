@@ -82,5 +82,5 @@ class CardDeck:
 		card = self.cards[self._topcardindex]
 
 		self._topcardindex += random.randint(1, 18)
-		self._topcardindex %= len(self.cards)R
+		self._topcardindex %= len(self.cards)
 		return card
