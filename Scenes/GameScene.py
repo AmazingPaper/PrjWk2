@@ -3,7 +3,6 @@ from pygame.constants import *
 from Board.BoardGraphics import BoardGraphics
 from Board.FightType import FightType
 from GraphicsHelpers import *
-from Scenes.Resources import Images
 from Scenes.RulesScene import RulesScene
 from Scenes.SceneBase import *
 
@@ -62,7 +61,7 @@ class GameScene(SceneBase):
 	def Render(self, screen):
 		super(GameScene, self).Render(screen)
 
-		BoardGraphics(screen, self.game.board).draw()
+		BoardGraphics(self.game.images, screen, self.game.board).draw()
 
 		self.__drawPlayerStatistics(screen)
 		self.__drawDice(screen)
@@ -72,7 +71,7 @@ class GameScene(SceneBase):
 
 	def __drawDice(self, screen):
 		if self.game.lastDice > 0:
-			screen.blit(Images.dice[self.game.lastDice], (275, 450))
+			screen.blit(self.game.images['dice'][self.game.lastDice], (275, 450))
 
 	def __drawPlayerStatistics(self, screen):
 		self.rectangles = []
@@ -97,7 +96,7 @@ class GameScene(SceneBase):
 		screen.blit(textObj, (230, 80))
 
 	def __drawSuperFighterCard(self, screen):
-		image = Images.superfightercard.convert_alpha()
+		image = self.game.images['superfightercard'].convert_alpha()
 		image = pygame.transform.rotozoom(image, 45, .15)
 		self.cardRect = screen.blit(image, (210, 210))
 

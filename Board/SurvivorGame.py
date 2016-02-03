@@ -38,6 +38,7 @@ class SurvivorGame:
 				PlayerType.Yellow : pygame.image.load('Tiles/LifepointsYellow.png'),
 			},
 			'conditionPoints' : pygame.image.load('Tiles/Conditionpoints.png'),
+			'superfightercard' : pygame.image.load('images/SuperFighterCard.png'),
 		}
 
 	def Reset(self, numberOfPlayers):
