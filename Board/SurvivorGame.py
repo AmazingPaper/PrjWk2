@@ -3,7 +3,7 @@ import pygame
 from Board.Board import Board
 from Board.Enumerations import PlayerType, TileType
 from Board.FightType import FightType
-from Board.Player import Player, Players
+from Board.Player import Players
 from Board.SuperFighterCard import CardDeck
 
 
@@ -90,8 +90,9 @@ class SurvivorGame:
 
 	# move this player n times on the board
 	def MovePlayer(self, player, n):
-
 		fightType = FightType.NoFight
+		movesound = pygame.mixer.Sound("Sounds/MoveSound.ogg")
+		pygame.mixer.Sound.play(movesound)
 
 		# if player is not placed on board then display message
 		if player.tile is None:

@@ -6,7 +6,10 @@ from Scenes.GameScene import GameScene
 
 class SuperFighterFightScene(GameScene):
 	def __init__(self, game):
+
 		GameScene.__init__(self, game)
+		superfightsound = pygame.mixer.Sound("Sounds/StartFight.ogg")
+		pygame.mixer.Sound.play(superfightsound)
 
 		if self.game.lastDice == 0:
 			self.dieRoll()
@@ -35,6 +38,7 @@ class SuperFighterFightScene(GameScene):
 		pass
 
 	def Render(self, screen):
+
 		super(SuperFighterFightScene, self).Render(screen)
 
 		if self.game.superFighterCard is not None:

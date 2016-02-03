@@ -19,6 +19,7 @@ class GameScene(SceneBase):
 		for event in events:
 			if event.type == KEYDOWN:
 				if event.key == K_SPACE:
+
 					self.game.lastDice = self.dieRoll()
 
 					fightType = self.game.MoveCurrentPlayer(self.game.lastDice)

@@ -47,7 +47,6 @@ class SceneBase:
 		selectsound = pygame.mixer.Sound("Sounds/selectsound2.ogg")
 		pygame.mixer.Sound.play(selectsound)
 
-
 	# Ability to roll die.
 	def dieRoll(self):
 		number = random.randint(1, 6)
