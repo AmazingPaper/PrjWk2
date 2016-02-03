@@ -12,7 +12,7 @@ class PlayerStatisticsGraphics:
 	def draw(self, pos):
 		(row, column) = pos
 
-		namecolor = RED
+		namecolor = GREY
 
 		if self.isCurrentPlayer:
 			namecolor = WHITE
