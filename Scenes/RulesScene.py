@@ -11,7 +11,7 @@ class RulesScene(SceneBase):
 
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
-			if event.type == KEYDOWN or event.type == MOUSEBUTTONUP:
+			if event.type == KEYDOWN or event.type == MOUSEBUTTONDOWN:
 				from Scenes.GameScene import GameScene
 				self.SwitchToScene(GameScene(self.game))
 	def Update(self):
