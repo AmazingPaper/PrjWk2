@@ -6,7 +6,7 @@ from Board.PlayerStatisticsGraphics import PlayerStatisticsGraphics
 from GraphicsHelpers import *
 from Scenes.RulesScene import RulesScene
 from Scenes.SceneBase import *
-from Board.SurvivorGame import SurvivorGame
+from Board.SurvivorGame import *
 
 
 class GameScene(SceneBase):
@@ -71,6 +71,9 @@ class GameScene(SceneBase):
 
 		self.rectangles = []
 
+
+
+
 		for player in self.game.players:
 			row, column = player.corner
 
@@ -89,6 +92,9 @@ class GameScene(SceneBase):
 
 		if self.game.lastDice > 0:
 			screen.blit(self.game.images['dice'][self.game.lastDice], (275, 450))
+
+
+
 
 		self.buttons = []
 
@@ -109,3 +115,10 @@ class GameScene(SceneBase):
 		from Scenes.PlayerInfoScene import PlayerInfoScene
 
 		self.SwitchToScene(PlayerInfoScene(self.game, player))
+
+	def switchToPlayerDiedScene(self, player):
+		from Scenes.HeDiedScene import HeDiedScene
+
+		self.SwitchToScene(HeDiedScene)
+
+

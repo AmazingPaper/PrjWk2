@@ -8,6 +8,8 @@ from Board.Enumerations import *
 # keeps information about player type (red, green, blue, yellow)
 # which tile this is player currently at
 class Player():
+	health = None
+
 	def __init__(self, playerType, name, corner):
 		self.playerType = playerType
 		self.name = name
