@@ -9,9 +9,6 @@ from Scenes.SceneBase import *
 class PlayerSelectionScene(SceneBase):
 	def __init__(self, game):
 		SceneBase.__init__(self, game)
-		self.buttons = []
-		self.createdButtons = False
-
 
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
@@ -25,9 +22,7 @@ class PlayerSelectionScene(SceneBase):
 		pass
 
 	def Render(self, screen):
-		screen.fill((0, 0, 255))
-
-		screen.fill(SURV_BLUE)
+		super(PlayerSelectionScene, self).Render(screen)
 
 		pygame.draw.rect(screen, YELLOW, (20, 70, 570, 100))  # title box
 		largeText = pygame.font.Font('8-BIT WONDER.TTF', 75)
@@ -53,8 +48,6 @@ class PlayerSelectionScene(SceneBase):
 		self.createPlayerCountImages(screen)
 
 	def createPlayerCountImages(self, screen):
-		self.buttons = []
-
 		for n in range(4, 1, -1):
 			x = 250
 			y = 520
@@ -66,11 +59,11 @@ class PlayerSelectionScene(SceneBase):
 			buttonRect = (button(str(n), x, y + (4 - n) * 100, width, height, DIM_YELLOW, YELLOW, screen), action(n),
 						  self.selectSound)
 
-			self.buttons.append(buttonRect)
+			self.addButton(buttonRect)
 
-			self.buttons.append(
+			self.addButton(
 					(button("OFF", 150, 300, 100, 50, DIM_YELLOW, YELLOW, screen), self.pauseMusic, self.selectSound))
-			self.buttons.append(
+			self.addButton(
 					(button("ON", 350, 300, 100, 50, DIM_YELLOW, YELLOW, screen), self.unpauseMusic, self.selectSound))
 
 	def switchToGameScene(self, numberOfPlayers):

@@ -22,10 +22,8 @@ class PlayerFightScene(GameScene):
 
 					self.game.MoveCurrentPlayer(number)
 
-			elif event.type == MOUSEBUTTONDOWN and event.button == 1:
-				for (buttonRect, action, x) in self.buttons:
-					if buttonRect.collidepoint(event.pos):
-						action()
+		self.ProcessButtonEvents()
+
 
 	def Update(self):
 		pass

@@ -2,10 +2,11 @@ from pygame.constants import *
 
 from Board.GraphicsConstants import *
 from GraphicsHelpers import *
+from Scenes import GameScene
 from Scenes.SceneBase import SceneBase
 
 
-class PlayerWinScene(SceneBase):
+class PlayerWinScene(GameScene):
 	def __init__(self, game):
 		SceneBase.__init__(self, game)
 
@@ -19,8 +20,7 @@ class PlayerWinScene(SceneBase):
 		pass
 
 	def Render(self, screen):
-
-		screen.fill(SURV_BLUE)
+		super(GameScene, self).Render(screen)
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
 		TextSurf, TextRect = text_objects2("Player Win Screen", smallText)
@@ -28,5 +28,3 @@ class PlayerWinScene(SceneBase):
 		screen.blit(TextSurf, TextRect)
 
 		screen.blit(self.game.images['rules'], (40, 80))
-
-		pygame.display.update()

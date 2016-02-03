@@ -18,8 +18,7 @@ class RulesScene(SceneBase):
 		pass
 
 	def Render(self, screen):
-
-		screen.fill(SURV_BLUE)
+		super(SceneBase, self).Render(screen)
 
 		pygame.draw.rect(screen, YELLOW, (245, 0, 115, 70))
 		pygame.draw.rect(screen, YELLOW, (105, 750, 400, 80))
@@ -46,5 +45,3 @@ class RulesScene(SceneBase):
 
 
 		screen.blit(self.game.images['rules'], (40, 80))
-
-		pygame.display.update()

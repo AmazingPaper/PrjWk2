@@ -10,9 +10,6 @@ from Scenes.SceneBase import *
 class GameScene(SceneBase):
 	def __init__(self, game):
 		SceneBase.__init__(self, game)
-		self.buttons = []
-
-		self.rectangles = []
 
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
@@ -42,18 +39,7 @@ class GameScene(SceneBase):
 						self.SwitchToScene(
 							ChoosePlayerFightScene(self.game, current_player, current_player.otherPlayers()))
 
-			elif event.type == MOUSEBUTTONDOWN and event.button == 1:
-				for (rect, action, sound) in self.buttons:
-					if rect.collidepoint(event.pos):
-						action()
-						sound()
-						break
-
-				for (rect, action) in self.rectangles:
-					if rect.collidepoint(event.pos):
-						pygame.event.clear(MOUSEBUTTONDOWN)
-						action()
-						break
+		self.ProcessButtonEvents(events)
 
 	def Update(self):
 		pass
@@ -74,7 +60,8 @@ class GameScene(SceneBase):
 			screen.blit(self.game.images['dice'][self.game.lastDice], (275, 450))
 
 	def __drawPlayerStatistics(self, screen):
-		self.rectangles = []
+		rectangles = []
+
 		for player in self.game.players:
 			row, column = player.corner
 
@@ -86,9 +73,11 @@ class GameScene(SceneBase):
 
 			action = lambda p: (lambda: self.switchToPlayerInfoScene(p))
 
-			rectangle = (rect, action(player))
+			rectangle = (rect, action(player), None)
 
-			self.rectangles.append(rectangle)
+			rectangles.append(rectangle)
+
+		self.addButtons(rectangles)
 
 	def __drawPlayerName(self, screen):
 		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
@@ -103,14 +92,18 @@ class GameScene(SceneBase):
 	def __drawButtons(self, screen):
 		from Scenes.IntroScene import IntroScene
 
-		self.buttons = []
+		buttons = []
 		buttonRect = (
 			button("MENU", 250, 650, 100, 50, DIM_YELLOW, YELLOW, screen),
 			lambda: self.SwitchToScene(IntroScene(self.game)), self.selectSound)
-		self.buttons.append(buttonRect)
+
+		buttons.append(buttonRect)
+
 		buttonRect = (button("RULES", 250, 720, 100, 50, DIM_YELLOW, YELLOW, screen),
 		              lambda: self.SwitchToScene(RulesScene(self.game)), self.selectSound)
-		self.buttons.append(buttonRect)
+		buttons.append(buttonRect)
+
+		self.addButtons(buttons)
 
 	def switchToPlayerInfoScene(self, player):
 		from Scenes.PlayerInfoScene import PlayerInfoScene
