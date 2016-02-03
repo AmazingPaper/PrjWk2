@@ -6,6 +6,7 @@ from Scenes.GameScene import GameScene
 
 class SuperFighterFightScene(GameScene):
 	def __init__(self, game):
+
 		GameScene.__init__(self, game)
 
 		if self.game.lastDice == 0:
@@ -13,6 +14,8 @@ class SuperFighterFightScene(GameScene):
 
 		if self.game.superFighterCard is None:
 			self.game.superFighterCard = self.game.PickSuperFighterCard()
+			superfightsound = pygame.mixer.Sound("Sounds/StartFight.ogg")
+			pygame.mixer.Sound.play(superfightsound)
 
 		self.cardRect = None
 
@@ -26,11 +29,16 @@ class SuperFighterFightScene(GameScene):
 					from Scenes.SuperFighterInfoScene import SuperFighterInfoScene
 
 					self.SwitchToScene(SuperFighterInfoScene(self.game))
+			elif event.type == KEYDOWN:
+					from Scenes.GameScene import GameScene
+
+					self.SwitchToScene(GameScene(self.game))
 
 	def Update(self):
 		pass
 
 	def Render(self, screen):
+
 		super(SuperFighterFightScene, self).Render(screen)
 
 		if self.game.superFighterCard is not None:

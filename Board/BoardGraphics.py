@@ -16,7 +16,8 @@ def getTileTexture(tile):
 
 
 class BoardGraphics():
-	def __init__(self, surface, board):
+	def __init__(self, images, surface, board):
+		self.images = images
 		self.screen = surface
 		self.board = board
 
@@ -33,4 +34,7 @@ class BoardGraphics():
 
 		for player in tile.players:
 			playerGraphics.draw(player)
+
+		self.screen.blit(self.images['background'], (55, 55))
+
 

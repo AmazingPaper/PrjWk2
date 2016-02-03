@@ -63,7 +63,7 @@ def button(text, x, y, w, h, ac, ic, scene):
 	textRectangle.center = ((x + (w / 2)), (y + (h / 2)))
 
 	if ellipseRectangle.collidepoint(mouseLocation):
-		scene.blit(boxingHandImage, ((x - 50), y))
+		scene.blit(boxingHandImage, ((x - 50), (y + 4)))
 		pygame.draw.ellipse(scene, ic, (x, y, w, h))
 
 	scene.blit(textSurface, textRectangle)

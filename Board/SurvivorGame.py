@@ -3,7 +3,7 @@ import pygame
 from Board.Board import Board
 from Board.Enumerations import PlayerType, TileType
 from Board.FightType import FightType
-from Board.Player import Player, Players
+from Board.Player import Players
 from Board.SuperFighterCard import CardDeck
 
 
@@ -38,6 +38,7 @@ class SurvivorGame:
 				PlayerType.Yellow : pygame.image.load('Tiles/LifepointsYellow.png'),
 			},
 			'conditionPoints' : pygame.image.load('Tiles/Conditionpoints.png'),
+			'superfightercard' : pygame.image.load('images/SuperFighterCard.png'),
 		}
 
 	def Reset(self, numberOfPlayers):
@@ -90,8 +91,9 @@ class SurvivorGame:
 
 	# move this player n times on the board
 	def MovePlayer(self, player, n):
-
 		fightType = FightType.NoFight
+		movesound = pygame.mixer.Sound("Sounds/MoveSound.ogg")
+		pygame.mixer.Sound.play(movesound)
 
 		# if player is not placed on board then display message
 		if player.tile is None:
@@ -127,7 +129,7 @@ class SurvivorGame:
 			#	[str(player.playerType) for player in others]))
 			# there is one player at new position
 			else:
-				fightType = FightType.SuperFighter
+				fightType = FightType.Player
 			# if new position is other player's corner then player has to fight with owner
 		elif player.isAtOtherPlayersCorner() and self.IsPlayerIsInGame(player.tile.cornerOfPlayer):
 			fightType = FightType.Player

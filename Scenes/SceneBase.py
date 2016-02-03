@@ -1,6 +1,9 @@
 import random
 
 import pygame
+from pygame.constants import MOUSEBUTTONDOWN
+
+from GraphicsHelpers import FONT_BLUE
 
 
 class SceneBase:
@@ -8,8 +11,10 @@ class SceneBase:
 		self.game = game
 		self.next = self
 		self.previous = None
+		self.buttons = []
 
 		print("IN SCENE : {}".format(type(self).__name__))
+
 	def ProcessInput(self, events, pressed_keys):
 		print("uh-oh, you didn't override ProcessInput in the child class")
 
@@ -17,7 +22,10 @@ class SceneBase:
 		print("uh-oh, you didn't override Update in the child class")
 
 	def Render(self, screen):
-		print("uh-oh, you didn't override Render in the child class")
+		# The game scene is just a blank blue screen
+		screen.fill(FONT_BLUE)  # maakt achtergrond weer blauw ipv menu achtergrond
+
+		self.buttons = []
 
 	def SwitchToScene(self, next_scene):
 		if next_scene is not None:
@@ -29,6 +37,24 @@ class SceneBase:
 			self.previous.previous = None
 			self.previous.next = self.previous
 			self.next = self.previous
+
+	def ProcessButtonEvents(self, events):
+		for event in events:
+			if event.type == MOUSEBUTTONDOWN and event.button == 1:
+				for (rect, action, sound) in self.buttons:
+					if rect.collidepoint(event.pos):
+						action()
+						if sound is not None:
+							sound()
+
+						break
+
+	def addButton(self, button):
+		self.buttons.append(button)
+
+	def addButtons(self, buttons):
+		for button in buttons:
+			self.addButton(button)
 
 	def Terminate(self):
 		self.SwitchToScene(None)
@@ -46,7 +72,6 @@ class SceneBase:
 	def selectSound(self):
 		selectsound = pygame.mixer.Sound("Sounds/selectsound2.ogg")
 		pygame.mixer.Sound.play(selectsound)
-
 
 	# Ability to roll die.
 	def dieRoll(self):

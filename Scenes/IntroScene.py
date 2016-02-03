@@ -9,21 +9,16 @@ from Scenes.GameScene import *
 class IntroScene(SceneBase):
 	def __init__(self, game):
 		SceneBase.__init__(self, game)
-		self.buttons = []
 
 	def ProcessInput(self, events, pressed_keys):
-		for event in events:
-			if event.type == MOUSEBUTTONDOWN and event.button == 1:
-				for (buttonRect, action, sound) in self.buttons:
-					if buttonRect.collidepoint(event.pos):
-						action()
-						sound()
+		self.ProcessButtonEvents(events)
 
 	def Update(self):
 		pass
 
 	def Render(self, screen):
-		# For the sake of brevity, the title scene is a blank red screen
+		super(IntroScene, self).Render(screen)
+
 		screen.fill(SURV_BLUE)
 
 		pygame.draw.rect(screen, YELLOW, (20, 70, 570, 100))  # title box
@@ -71,11 +66,9 @@ class IntroScene(SceneBase):
 		TextRect.center = 65, 790
 		screen.blit(TextSurf, TextRect)
 
-		self.buttons = []
-
-		self.buttons.append((button("FIGHT", 430, 250, 100, 50, DIM_RED, RED, screen), self.switchToPlayerSelectScene,
+		self.addButton((button("FIGHT", 430, 250, 100, 50, DIM_RED, RED, screen), self.switchToPlayerSelectScene,
 		                     self.selectSound))
-		self.buttons.append((button("EXIT", 50, 250, 100, 50, DIM_GREY, GREY, screen), self.quitGame, self.selectSound))
+		self.addButton((button("EXIT", 50, 250, 100, 50, DIM_GREY, GREY, screen), self.quitGame, self.selectSound))
 
 	def switchToPlayerSelectScene(self):
 		self.SwitchToScene(PlayerSelectionScene.PlayerSelectionScene(self.game))
