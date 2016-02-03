@@ -67,7 +67,7 @@ class IntroScene(SceneBase):
 		TextRect.center = 65, 760
 		screen.blit(TextSurf, TextRect)
 		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
-		TextSurf, TextRect = text_objects("2016 ", smallText)
+		TextSurf, TextRect = text_objects(" 2016 ", smallText)
 		TextRect.center = 65, 790
 		screen.blit(TextSurf, TextRect)
 
