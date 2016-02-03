@@ -6,7 +6,7 @@ from Board.PlayerStatisticsGraphics import PlayerStatisticsGraphics
 from GraphicsHelpers import *
 from Scenes.RulesScene import RulesScene
 from Scenes.SceneBase import *
-
+from Board.SurvivorGame import SurvivorGame
 
 class GameScene(SceneBase):
 	def __init__(self, game):
