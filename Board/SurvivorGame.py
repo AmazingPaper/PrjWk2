@@ -79,10 +79,11 @@ class SurvivorGame:
 		# player.moveTimes(n)
 		fightType = self.MovePlayer(player, n)
 
+		return fightType
+
+	def NextPlayer(self):
 		self.currentPlayer += 1
 		self.currentPlayer %= len(self.players)
-
-		return fightType
 
 	def IsPlayerIsInGame(self, playerType):
 		len([player for player in self.players if player.playerType == playerType]) == 1

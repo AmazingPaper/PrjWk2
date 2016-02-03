@@ -67,5 +67,5 @@ def button(text, x, y, w, h, ac, ic, scene):
 
 	scene.blit(textSurface, textRectangle)
 
-	return ellipseRectangle
+	return ellipseRectangle.inflate(100, 50)
 
