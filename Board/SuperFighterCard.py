@@ -1,4 +1,5 @@
 import pygame
+import random
 
 
 class SuperFighter:
@@ -75,12 +76,11 @@ class CardDeck:
 			SuperFighterCard(SuperFighters.BruceHee, (20, 15, 5, 7, 8, 26))
 		]
 
-		self._topcardindex = 0
+		self._topcardindex = random.randint(1, 18)
 
 	def pickCard(self):
 		card = self.cards[self._topcardindex]
 
-		self._topcardindex += 1
-		self._topcardindex %= len(self.cards)
-
+		self._topcardindex += random.randint(1, 18)
+		self._topcardindex %= len(self.cards)R
 		return card
