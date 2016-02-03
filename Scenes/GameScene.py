@@ -8,6 +8,7 @@ from Scenes.RulesScene import RulesScene
 from Scenes.SceneBase import *
 from Board.SurvivorGame import SurvivorGame
 
+
 class GameScene(SceneBase):
 	def __init__(self, game):
 		SceneBase.__init__(self, game)
@@ -62,7 +63,7 @@ class GameScene(SceneBase):
 		from Scenes.IntroScene import IntroScene
 
 		# The game scene is just a blank blue screen
-		screen.fill(SURV_BLUE)  # maakt achtergrond weer blauw ipv menu achtergrond
+		screen.fill(FONT_BLUE)  # maakt achtergrond weer blauw ipv menu achtergrond
 
 		BoardGraphics(screen, self.game.board).draw()
 
@@ -101,7 +102,7 @@ class GameScene(SceneBase):
 		self.buttons.append(buttonRect)
 
 		smallText = pygame.font.Font('MINECRAFT.TTF', 24)
-		textObj = smallText.render(str(self.game.CurrentPlayer().name), True, WHITE, BLACK)
+		textObj = smallText.render(str(self.game.CurrentPlayer().name), True, WHITE, FONT_BLUE)
 		screen.blit(textObj, (230, 80))
 
 	def switchToPlayerInfoScene(self, player):

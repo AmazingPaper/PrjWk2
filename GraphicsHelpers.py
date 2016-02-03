@@ -3,6 +3,7 @@ import pygame
 GRAY = (100, 100, 100)
 NAVYBLUE = (60, 60, 100)
 SURV_BLUE = (16, 66, 111)
+FONT_BLUE = (51, 60, 90)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 DIM_RED = (200, 0, 0)

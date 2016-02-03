@@ -12,10 +12,10 @@ class PlayerStatisticsGraphics:
 	def draw(self, pos):
 		(row, column) = pos
 
-		namecolor = WHITE
+		namecolor = RED
 
 		if self.isCurrentPlayer:
-			namecolor = RED
+			namecolor = WHITE
 
 		font = pygame.font.Font('Minecraft.ttf', 18)
 
@@ -23,7 +23,7 @@ class PlayerStatisticsGraphics:
 		posY = MapHeight * TileSize + row * 115
 
 		position = (posX + 20, posY)
-		textObj = font.render(str(self.player.name), True, namecolor, SURV_BLUE)
+		textObj = font.render(str(self.player.name), True, namecolor, FONT_BLUE)
 
 		rect = self.screen.blit(textObj, position)
 
