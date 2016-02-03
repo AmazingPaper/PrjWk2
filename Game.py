@@ -46,4 +46,4 @@ def run_game(width, height, fps, starting_scene):
 
 game = SurvivorGame()
 
-run_game(MapWidth * TileSize + 300, MapHeight * TileSize + 200, 30, IntroScene(game))
+run_game(MapWidth * TileSize, MapHeight * TileSize + 200, 30, IntroScene(game))
