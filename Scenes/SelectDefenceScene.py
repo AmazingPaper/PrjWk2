@@ -1,5 +1,6 @@
 from GraphicsHelpers import *
 from Scenes.GameScene import GameScene
+from Scenes.SceneBase import SceneBase
 
 
 class SelectDefenceScene(GameScene):
@@ -64,10 +65,14 @@ class SelectDefenceScene(GameScene):
 			self.addButton(buttonRect)
 
 	def selectDefense(self, health, condition):
+
 		self.player.stamina += condition
 		super_fighter = self.game.superFighterCard.superFighter
 		if super_fighter.damage[self.game.lastDice -1] >= health:
 			self.player.health -= (self.game.superFighterCard.superFighter.damage[self.game.lastDice -1] - health)
+		self.SwitchToPreviousScene()
+
+
 
 		# print(self.game.lastDice)
 		# print(super_fighter.damage)
