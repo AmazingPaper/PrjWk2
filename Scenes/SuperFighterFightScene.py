@@ -4,9 +4,13 @@ from pygame.constants import *
 from Scenes.GameScene import GameScene
 
 
-
 class SuperFighterFightScene(GameScene):
 	def __init__(self, game):
+		superfightsound = pygame.mixer.Sound("Sounds/StartFight.ogg")
+		pygame.mixer.Sound.play(superfightsound)
+
+		voicefightsound = pygame.mixer.Sound("Sounds/VoiceFight.ogg")
+		pygame.mixer.Sound.play(voicefightsound)
 
 		GameScene.__init__(self, game)
 
@@ -15,9 +19,6 @@ class SuperFighterFightScene(GameScene):
 			from Scenes.SelectDefenceScene import SelectDefenceScene
 
 			self.dieRoll()
-
-			superfightsound = pygame.mixer.Sound("Sounds/StartFight.ogg")
-			pygame.mixer.Sound.play(superfightsound)
 
 			self.game.superFighterCard = self.game.PickSuperFighterCard()
 
@@ -36,8 +37,7 @@ class SuperFighterFightScene(GameScene):
 				messageLines = ["You are now on a Fight tile",
 				                "and you have to fight with",
 				                super_fighter.name,
-								"Now take the superfighter card of the board"]
-
+				                "Click card on board to choose your options"]
 
 				self.SwitchToScene(MessageDialogScene(self.game, messageLines, self.switchToDefenseSelectionScene))
 

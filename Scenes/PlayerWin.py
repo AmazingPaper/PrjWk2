@@ -23,8 +23,8 @@ class PlayerWinScene(GameScene):
 		super(GameScene, self).Render(screen)
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
-		TextSurf, TextRect = text_objects2("Player Win Screen", smallText)
+		TextSurf, TextRect = text_objects2("YOU WIN!", smallText)
 		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 12))
 		screen.blit(TextSurf, TextRect)
 
-		screen.blit(self.game.images['rules'], (40, 80))
+		screen.blit(self.game.images['boxwinner'], (40, 500))
