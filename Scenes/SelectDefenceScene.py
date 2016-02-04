@@ -1,5 +1,6 @@
 from GraphicsHelpers import *
 from Scenes.GameScene import GameScene
+from Board.Player import Player
 
 
 class SelectDefenceScene(GameScene):
@@ -64,4 +65,8 @@ class SelectDefenceScene(GameScene):
 			self.addButton(buttonRect)
 
 	def selectDefense(self, health, condition):
+		if abs(condition) > self.player.stamina:
+			print("Unable to execute attack, not enough stamina")
+		else:
+			self.player.stamina += condition
 		print(health, condition)
