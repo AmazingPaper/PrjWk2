@@ -70,3 +70,20 @@ def button(text, x, y, w, h, ac, ic, scene):
 
 	return ellipseRectangle.inflate(100, 50)
 
+def buttonText(text, x, y, w, h, ac, ic, scene):
+	mouseLocation = pygame.mouse.get_pos()
+
+	boxingHandImage = pygame.image.load('images/boximg.png')
+
+	smallTextFont = pygame.font.Font('MINECRAFT.TTF', 24)
+	textSurface, textRectangle = text_objects2(text, smallTextFont)
+	textRectangle.center = (x + (w / 2), y + (h / 2))
+
+	if textRectangle.collidepoint(mouseLocation):
+		scene.blit(boxingHandImage, (x - 50, y + 4))
+		#pygame.draw.ellipse(scene, ic, (x, y, w, h))
+
+	scene.blit(textSurface, textRectangle)
+
+	return textRectangle.inflate(100, 50)
+

@@ -1,7 +1,9 @@
 import pygame
 
 from Board.GraphicsConstants import *
+from Board.Player import Players
 from Board.SurvivorGame import SurvivorGame
+from ImageSlicer import ImageSlicer
 from Scenes.IntroScene import IntroScene
 
 

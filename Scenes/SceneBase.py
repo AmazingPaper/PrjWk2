@@ -13,7 +13,6 @@ class SceneBase:
 		self.previous = None
 		self.buttons = []
 
-		print("IN SCENE : {}".format(type(self).__name__))
 
 	def ProcessInput(self, events, pressed_keys):
 		print("uh-oh, you didn't override ProcessInput in the child class")
@@ -30,6 +29,9 @@ class SceneBase:
 	def SwitchToScene(self, next_scene):
 		if next_scene is not None:
 			next_scene.previous = self
+
+		print("Switched to SCENE : {}".format(type(next_scene).__name__))
+
 		self.next = next_scene
 
 	def SwitchToPreviousScene(self):

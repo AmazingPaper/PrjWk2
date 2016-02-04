@@ -7,13 +7,14 @@ from Board.Enumerations import *
 # player class
 # keeps information about player type (red, green, blue, yellow)
 # which tile this is player currently at
-class Player():
-	health = None
 
-	def __init__(self, playerType, name, corner):
+
+class Player():
+	def __init__(self, playerType, name, corner, damages):
 		self.playerType = playerType
 		self.name = name
 		self.corner = corner
+		self.damages = damages
 
 		self.tile = None
 		self.health = 100
@@ -59,9 +60,15 @@ class Player():
 
 		return "{} @ {}:{}".format(self.playerType, self.tile.posX, self.tile.posY)
 
+	def lostGame(self):
+		return self.health <= 0
 
 class Players:
-	MikeTysen = Player(PlayerType.Blue, "Mike Tysen", Corners.TopLeft)
-	RockyBelboa = Player(PlayerType.Red, "Rocky Belboa", Corners.TopRight)
-	BadrHerl = Player(PlayerType.Green, "Badr Herl", Corners.BottomRight)
-	MannyPecquiao = Player(PlayerType.Yellow, "Manny Pecquiao", Corners.BottomLeft)
+	MikeTysen = Player(PlayerType.Blue, "Mike Tysen", Corners.TopLeft, [[(5, -2),(11, -3),(15, -5)],[(3, -1),(9, -2),(19,-3)],[(2, -1),(4,-2),(6,-3)],
+      [(7, -2),(12,-3),(16, -4)],[(8, -3),(13, -4),(17,-5)],[(10,-3),(20,-3),(30,-3)]])
+	RockyBelboa = Player(PlayerType.Red, "Rocky Belboa", Corners.TopRight, [[(10, -2),(20, -5),(30, -8)],[(8, -3),(13, -4),(17,-5)],[(3, -1),(9,-2),(19,-2)],
+      [(5, -2),(11,-3),(15, -5)],[(7, -2),(12, -3),(16,-4)],[(2,-1),(4,-2),(6,-5)]])
+	BadrHerl = Player(PlayerType.Green, "Badr Herl", Corners.BottomRight, [[(1, -1),(9, -2),(19, -3)],[(5, -2),(11, -3),(15,-5)],[(7, -2),(12,-3),(16,-4)],
+      [(2, -1),(4,-2),(6, -3)],[(10, -2),(20, -5),(30,-8)],[(8,-3),(13,-4),(17,-5)]])
+	MannyPecquiao = Player(PlayerType.Yellow, "Manny Pecquiao", Corners.BottomLeft, [[(8, -3),(13, -4),(17, -5)],[(10, -2),(20, -2),(30,-8)],[(5, -2),(11,-3),(15,-5)],
+      [(3, -1),(9,-2),(19, -3)],[(2, -1),(4, -3),(6,-3)],[(7,-2),(12,-3),(16,-4)]])
