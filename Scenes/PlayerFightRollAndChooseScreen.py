@@ -79,6 +79,8 @@ class PlayerFightRollAndChooseScreen(GameScene):
 				self.player.health -= (health - self.attackerDamage[0])
 			if self.attackerDamage[0] > health:
 				self.defender.health -= (self.attackerDamage[0] - health)
+			if health == self.attackerDamage[0]:
+				return None
 
 
 
