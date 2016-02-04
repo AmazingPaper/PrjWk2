@@ -24,7 +24,6 @@ class PlayerFightScene(GameScene):
 					self.lastDice = number
 
 
-
 		self.ProcessButtonEvents(events)
 
 

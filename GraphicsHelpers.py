@@ -56,6 +56,11 @@ def text_objects3(text, font):
 	return textSurface, textSurface.get_rect()
 
 
+def text_objects4(text, font):
+	textSurface = font.render(text, True, RED)
+	return textSurface, textSurface.get_rect()
+
+
 def button(text, x, y, w, h, ac, ic, scene):
 	mouseLocation = pygame.mouse.get_pos()
 
