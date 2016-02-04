@@ -29,7 +29,7 @@ class PlayerFightRollAndChooseScreen(GameScene):
 		screen.blit(self.game.images['boxpvp'], (50, 160))
 
 		largeText = pygame.font.Font('MINECRAFT.TTF', 32)
-		TextSurf, TextRect = text_objects3("{} vs {}".format(self.player.name, self.defender.name), largeText)
+		TextSurf, TextRect = text_objects3("{} vs {}".format(self.currentPlayer, self.defender.name), largeText)
 		TextRect.center = 300, 80
 		screen.blit(TextSurf, TextRect)
 
