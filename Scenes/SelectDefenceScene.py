@@ -64,4 +64,13 @@ class SelectDefenceScene(GameScene):
 			self.addButton(buttonRect)
 
 	def selectDefense(self, health, condition):
-		print(health, condition)
+		self.player.stamina += condition
+		super_fighter = self.game.superFighterCard.superFighter
+		if super_fighter.damage[self.game.lastDice -1] >= health:
+			self.player.health -= (self.game.superFighterCard.superFighter.damage[self.game.lastDice -1] - health)
+
+		# print(self.game.lastDice)
+		# print(super_fighter.damage)
+		# print(self.game.superFighterCard.superFighter.damage[self.game.lastDice -1])
+		# print(self.player.health)
+		# print(health, condition)
