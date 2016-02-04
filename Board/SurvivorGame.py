@@ -89,7 +89,7 @@ class SurvivorGame:
 		self.currentPlayer %= len(self.players)
 
 	def IsPlayerIsInGame(self, playerType):
-		len([player for player in self.players if player.playerType == playerType]) == 1
+		return len([player for player in self.players if player.playerType == playerType]) == 1
 
 	# move this player n times on the board
 	def MovePlayer(self, player, n):
@@ -101,7 +101,8 @@ class SurvivorGame:
 		if player.tile is None:
 			return
 
-		atOwnCorner = player.isAtOwnCorner()
+		initiallyAtOwnCorner = player.isAtOwnCorner()
+		passedThroughOwnCorner = False
 
 		# will move n times
 		for i in range(1, n + 1):
@@ -114,19 +115,33 @@ class SurvivorGame:
 			# add this player to the players list o new tile
 			player.tile.players.append(player)
 
-		# get the list of other players at new location
-		others = player.otherPlayers()
+			if player.isAtOwnCorner():
+				passedThroughOwnCorner = True
+
 		# if new tile is FIGHT, then has to fight with super fighter
-		if player.tile.tileType == TileType.Fight:
-			fightType = FightType.SuperFighter
 		if player.isAtOwnCorner():
 			OwnCornerBell = pygame.mixer.Sound("Sounds/OwnCornerBell.ogg")
 			pygame.mixer.Sound.play(OwnCornerBell)
 			player.health += 10
-			if player.health >= 100:
-				player.health = 100
+
+		elif not initiallyAtOwnCorner and passedThroughOwnCorner:
+			print("passed from own corner, increasing health/stamina")
+
+			player.stamina += 10
+
+		if player.health > 100:
+			player.health = 100
+
+		if player.stamina > 15:
+			player.stamina = 15
+
+		# get the list of other players at new location
+		others = player.otherPlayers()
+
 		# if there are other players in new position
-		if len(others) > 0:
+		if player.tile.tileType == TileType.Fight:
+			fightType = FightType.SuperFighter
+		elif len(others) > 0:
 			# if there are more than 1 player, then player has to choose
 			# which t fight with
 			if len(others) > 1:
@@ -137,8 +152,12 @@ class SurvivorGame:
 			else:
 				fightType = FightType.Player
 			# if new position is other player's corner then player has to fight with owner
-		elif player.isAtOtherPlayersCorner() and self.IsPlayerIsInGame(player.tile.cornerOfPlayer):
-			fightType = FightType.Player
+		elif player.isAtOtherPlayersCorner():
+			if self.IsPlayerIsInGame(player.tile.cornerOfPlayer):
+				fightType = FightType.Player
+			else:
+				fightType = FightType.NoFight
+				player.health -= 10
 
 		return fightType
 
