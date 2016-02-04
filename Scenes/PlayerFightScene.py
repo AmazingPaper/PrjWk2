@@ -1,6 +1,7 @@
 from pygame.constants import *
 
 from Scenes.GameScene import GameScene
+from Scenes.SelectDefenceScene import SelectDefenceScene
 
 
 class PlayerFightScene(GameScene):
@@ -16,11 +17,13 @@ class PlayerFightScene(GameScene):
 		for event in events:
 			if event.type == KEYDOWN:
 				if event.key == K_SPACE:
+					print(self.attacker)
+					print(self.defender)
 					number = self.dieRoll()
-
+					self.SwitchToScene(SelectDefenceScene(self.game))
 					self.lastDice = number
 
-					self.game.MoveCurrentPlayer(number)
+
 
 		self.ProcessButtonEvents(events)
 
