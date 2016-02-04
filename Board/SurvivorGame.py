@@ -154,7 +154,10 @@ class SurvivorGame:
 				fightType = FightType.Player
 			# if new position is other player's corner then player has to fight with owner
 		elif player.isAtOtherPlayersCorner():
-			if FightType.NoFight:
+			if self.IsPlayerIsInGame(player.tile.cornerOfPlayer):
+				pass
+			else:
+				fightType = FightType.NoFight
 				player.health -= 10
 
 		return fightType
