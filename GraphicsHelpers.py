@@ -41,6 +41,11 @@ def text_objects(text, font):
 	return textSurface, textSurface.get_rect()
 
 
+def text_objects1(text, font):
+	textSurface = font.render(text, True, FONT_BLUE)
+	return textSurface, textSurface.get_rect()
+
+
 def text_objects2(text, font):
 	textSurface = font.render(text, True, WHITE)
 	return textSurface, textSurface.get_rect()

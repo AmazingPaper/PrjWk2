@@ -1,5 +1,3 @@
-from pygame.constants import MOUSEBUTTONDOWN
-
 from Board.GraphicsConstants import *
 from GraphicsHelpers import *
 from Scenes.GameScene import GameScene
@@ -26,7 +24,7 @@ class PlayerSelectionScene(SceneBase):
 
 		pygame.draw.rect(screen, YELLOW, (20, 70, 570, 100))  # title box
 		largeText = pygame.font.Font('8-BIT WONDER.TTF', 75)
-		TextSurf, TextRect = text_objects("SURVIVOR", largeText)
+		TextSurf, TextRect = text_objects1("SURVIVOR", largeText)
 		TextRect.center = (((MapWidth * TileSize) / 1.95), ((MapHeight * TileSize) / 5))
 		screen.blit(TextSurf, TextRect)
 

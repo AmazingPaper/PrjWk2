@@ -24,7 +24,7 @@ class RulesScene(SceneBase):
 		pygame.draw.rect(screen, YELLOW, (105, 750, 400, 80))
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 20)
-		TextSurf, TextRect = text_objects("Rules", smallText)
+		TextSurf, TextRect = text_objects1("RULES", smallText)
 		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 12))
 		screen.blit(TextSurf, TextRect)
 
@@ -39,7 +39,7 @@ class RulesScene(SceneBase):
 		screen.blit(TextSurf, TextRect)
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
-		TextSurf, TextRect = text_objects("PRESS ANY BUTTON TO GO BACK", smallText)
+		TextSurf, TextRect = text_objects1("PRESS ANY BUTTON TO GO BACK", smallText)
 		TextRect.center = (((MapWidth * TileSize) / 2), (780))
 		screen.blit(TextSurf, TextRect)
 
