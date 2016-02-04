@@ -1,9 +1,7 @@
 import pygame
 
 from Board.GraphicsConstants import *
-from Board.Player import Players
 from Board.SurvivorGame import SurvivorGame
-from ImageSlicer import ImageSlicer
 from Scenes.IntroScene import IntroScene
 
 
@@ -13,7 +11,7 @@ def run_game(width, height, fps, starting_scene):
 	clock = pygame.time.Clock()
 	pygame.mixer.music.load('Sounds/oh_no_he_didnt.ogg')
 	pygame.mixer.music.play()
-	pygame.mixer.music.set_volume(0.4)
+	pygame.mixer.music.set_volume(0.2)
 
 	active_scene = starting_scene
 	while active_scene is not None:
