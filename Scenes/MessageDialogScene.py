@@ -14,10 +14,9 @@ class MessageDialogScene(SceneBase):
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
 			if event.type == KEYDOWN or event.type == MOUSEBUTTONDOWN:
-				if self.action is None:
+				# if self.action is None:
+				if True:
 					self.SwitchToPreviousScene()
-				else:
-					self.action()
 
 				break
 		events.clear()

@@ -21,7 +21,7 @@ class SelectDefenceScene(GameScene):
 	def Render(self, screen):
 		super(SelectDefenceScene, self).Render(screen)
 
-		pygame.draw.rect(screen, SURV_BLUE, (55, 50, 500, 600))
+		pygame.draw.rect(screen, SURV_BLUE, (55, 50, 500, 500))
 
 		largeText = pygame.font.Font('MINECRAFT.TTF', 24)
 		TextSurf, TextRect = text_objects2("{} vs {}".format(self.superFighter.name, self.player.name), largeText)
@@ -45,7 +45,7 @@ class SelectDefenceScene(GameScene):
 		damages = self.player.damages[self.game.lastDice - 1]
 
 		for n in range(0, 3):
-			x = 200
+			x = 130
 			y = 300
 			width = 300
 			height = 50
@@ -54,9 +54,9 @@ class SelectDefenceScene(GameScene):
 
 			action = lambda h, c: lambda: self.selectDefense(h, c)
 
-			str = "damage {} condition {}".format(health, abs(condition))
+			str = " Damage = {} and Condition = -{}".format(health, abs(condition))
 
-			button = buttonText(str, x, y + n * 75, width, height, DIM_YELLOW, YELLOW, screen)
+			button = buttonText(str, x, y + n * 80, width + 65, height, DIM_YELLOW, YELLOW, screen)
 
 			buttonRect = (button, action(health, condition), self.selectSound)
 
