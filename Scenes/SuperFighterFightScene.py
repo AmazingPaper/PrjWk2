@@ -6,6 +6,11 @@ from Scenes.GameScene import GameScene
 
 class SuperFighterFightScene(GameScene):
 	def __init__(self, game):
+		superfightsound = pygame.mixer.Sound("Sounds/StartFight.ogg")
+		pygame.mixer.Sound.play(superfightsound)
+
+		voicefightsound = pygame.mixer.Sound("Sounds/VoiceFight.ogg")
+		pygame.mixer.Sound.play(voicefightsound)
 
 		GameScene.__init__(self, game)
 
@@ -14,12 +19,6 @@ class SuperFighterFightScene(GameScene):
 			from Scenes.SelectDefenceScene import SelectDefenceScene
 
 			self.dieRoll()
-
-			superfightsound = pygame.mixer.Sound("Sounds/StartFight.ogg")
-			pygame.mixer.Sound.play(superfightsound)
-
-			voicefightsound = pygame.mixer.Sound("Sounds/VoiceFight.ogg")
-			pygame.mixer.Sound.play(voicefightsound)
 
 			self.game.superFighterCard = self.game.PickSuperFighterCard()
 

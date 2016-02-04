@@ -10,7 +10,7 @@ def run_game(width, height, fps, starting_scene):
 	screen = pygame.display.set_mode((width, height))
 	clock = pygame.time.Clock()
 	pygame.mixer.music.load('Sounds/oh_no_he_didnt.ogg')
-	pygame.mixer.music.play()
+	pygame.mixer.music.play(99)
 	pygame.mixer.music.set_volume(0.2)
 
 	active_scene = starting_scene
