@@ -4,6 +4,7 @@ from pygame.constants import *
 from Scenes.GameScene import GameScene
 
 
+
 class SuperFighterFightScene(GameScene):
 	def __init__(self, game):
 		superfightsound = pygame.mixer.Sound("Sounds/StartFight.ogg")
@@ -20,14 +21,17 @@ class SuperFighterFightScene(GameScene):
 
 			self.dieRoll()
 
+			superfightsound = pygame.mixer.Sound("Sounds/StartFight.ogg")
+			pygame.mixer.Sound.play(superfightsound)
+
 			self.game.superFighterCard = self.game.PickSuperFighterCard()
 
 			player = game.CurrentPlayer()
 
 			super_fighter = self.game.superFighterCard.superFighter
 
-			if player.stamina == 0:
-				messageLines = ["You don't have enough condition points",
+			if player.stamina == 1:
+				messageLines = ["Your condition is not good for fight",
 				                "you can't fight",
 				                super_fighter.name,
 				                "will do {} damage to you".format(super_fighter.damage[self.game.lastDice])]
@@ -36,8 +40,7 @@ class SuperFighterFightScene(GameScene):
 			else:
 				messageLines = ["You are now on a Fight tile",
 				                "and you have to fight with",
-				                super_fighter.name,
-				                "Click card on board to choose your options"]
+				                super_fighter.name]
 
 				self.SwitchToScene(MessageDialogScene(self.game, messageLines, self.switchToDefenseSelectionScene))
 
