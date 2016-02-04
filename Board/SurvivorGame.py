@@ -119,6 +119,8 @@ class SurvivorGame:
 			fightType = FightType.SuperFighter
 		if player.isAtOwnCorner():
 			player.health += 10
+			if player.health >= 100:
+				player.health = 100
 		# if there are other players in new position
 		if len(others) > 0:
 			# if there are more than 1 player, then player has to choose
