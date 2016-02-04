@@ -31,7 +31,7 @@ class MessageDialogScene(SceneBase):
 		pygame.draw.rect(screen, YELLOW, (105, 750, 400, 80))
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 20)
-		TextSurf, TextRect = text_objects1("MESSAGE", smallText)
+		TextSurf, TextRect = text_objects1("TUTORIAL", smallText)
 		TextRect.center = (MapWidth * TileSize / 2, MapHeight * TileSize / 12)
 		screen.blit(TextSurf, TextRect)
 

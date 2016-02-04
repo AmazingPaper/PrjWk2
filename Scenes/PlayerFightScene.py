@@ -30,3 +30,4 @@ class PlayerFightScene(GameScene):
 
 	def Render(self, screen):
 		super(PlayerFightScene, self) .Render(screen)
+
