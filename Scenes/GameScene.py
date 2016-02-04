@@ -56,7 +56,11 @@ class GameScene(SceneBase):
 			#	self.SwitchToScene(PlayerFightScene(self.game, current_player, defender))
 			#else:
 			if not current_player.isAtOtherPlayersCorner():
-				self.SwitchToScene(PlayerFightRollAndChooseScreen(self.game, players[0], current_player))
+				defender = players[0]
+
+				self.SwitchToScene(PlayerFightScene(self.game, current_player, defender))
+
+				#self.SwitchToScene(PlayerFightRollAndChooseScreen(self.game, defender, current_player))
 
 	def Update(self):
 		pass

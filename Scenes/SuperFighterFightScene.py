@@ -4,7 +4,6 @@ from pygame.constants import *
 from Scenes.GameScene import GameScene
 
 
-
 class SuperFighterFightScene(GameScene):
 	def __init__(self, game):
 		superfightsound = pygame.mixer.Sound("Sounds/StartFight.ogg")
@@ -36,13 +35,14 @@ class SuperFighterFightScene(GameScene):
 				                super_fighter.name,
 				                "will do {} damage to you".format(super_fighter.damage[self.game.lastDice])]
 
-				self.SwitchToScene(MessageDialogScene(self.game, messageLines, self.handlePlayerCantFightCase))
+				self.SwitchToScene(TutorialScene(self.game, messageLines, self.handlePlayerCantFightCase))
 			else:
 				messageLines = ["You are now on a Fight tile",
 				                "and you have to fight with",
 				                super_fighter.name]
 
-				self.SwitchToScene(MessageDialogScene(self.game, messageLines, self.switchToDefenseSelectionScene))
+				from Scenes.TutorialScene import TutorialScene
+				self.SwitchToScene(TutorialScene(self.game, messageLines, self.switchToDefenseSelectionScene))
 
 		self.cardRect = None
 

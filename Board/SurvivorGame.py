@@ -167,6 +167,11 @@ class SurvivorGame:
 	def DecreasePlayerHealth(self, player, n):
 		player.health -= n
 
+		if player.health <= 0:
+			player.health = 0
+
+			self.RemovePlayerFromGame(player)
+
 	def RemovePlayerFromGame(self, player):
 		self.players = [p for p in self.players if p is not player]
 

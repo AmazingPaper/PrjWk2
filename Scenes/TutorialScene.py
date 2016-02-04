@@ -5,7 +5,7 @@ from GraphicsHelpers import *
 from Scenes.SceneBase import SceneBase
 
 
-class MessageDialogScene(SceneBase):
+class TutorialScene(SceneBase):
 	def __init__(self, game, messageLines, action = None):
 		SceneBase.__init__(self, game)
 		self.messageLines = messageLines
@@ -25,13 +25,13 @@ class MessageDialogScene(SceneBase):
 		pass
 
 	def Render(self, screen):
-		super(MessageDialogScene, self).Render(screen)
+		super(TutorialScene, self).Render(screen)
 
 		pygame.draw.rect(screen, YELLOW, (205, 0, 195, 70))
 		pygame.draw.rect(screen, YELLOW, (105, 750, 400, 80))
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 20)
-		TextSurf, TextRect = text_objects1("MESSAGE", smallText)
+		TextSurf, TextRect = text_objects1("TUTORIAL", smallText)
 		TextRect.center = (MapWidth * TileSize / 2, MapHeight * TileSize / 12)
 		screen.blit(TextSurf, TextRect)
 
