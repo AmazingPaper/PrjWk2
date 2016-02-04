@@ -33,7 +33,7 @@ class SuperFighterFightScene(GameScene):
 
 				self.SwitchToScene(MessageDialogScene(self.game, messageLines, self.handlePlayerCantFightCase))
 			else:
-				messageLines = ["You are not in Fight tile",
+				messageLines = ["You are now on a Fight tile",
 				                "and you have to fight with",
 				                super_fighter.name]
 
