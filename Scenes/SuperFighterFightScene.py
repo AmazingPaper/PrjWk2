@@ -2,6 +2,7 @@ import pygame
 from pygame.constants import *
 
 from Scenes.GameScene import GameScene
+pass
 
 
 class SuperFighterFightScene(GameScene):
