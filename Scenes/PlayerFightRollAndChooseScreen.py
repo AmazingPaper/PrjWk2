@@ -67,13 +67,22 @@ class PlayerFightRollAndChooseScreen(GameScene):
 		else:
 			self.currentPlayer.stamina += condition
 
-		if self.attackerDamage >= health:
-			pass
 
 
 		if self.currentPlayer == self.defender:
 			print("Attacker {} - {}".format(self.player.name, self.attackerDamage))
 			print("Defender {} - {}".format(self.defender.name, (health, condition)))
+			print(self.attackerDamage[0])
+
+
+			if health > self.attackerDamage[0]:
+				self.player.health -= (health - self.attackerDamage[0])
+			if self.attackerDamage[0] > health:
+				self.defender.health -= (self.attackerDamage[0] - health)
+
+
+
+
 
 			self.SwitchToScene(GameScene(self.game))
 		else:
