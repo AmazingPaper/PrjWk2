@@ -7,7 +7,6 @@ from Scenes import GameScene
 from Scenes.SceneBase import SceneBase
 
 
-
 class PlayerWinScene(GameScene):
 	def __init__(self, game):
 		SceneBase.__init__(self, game)
