@@ -102,7 +102,7 @@ class SurvivorGame:
 		if player.tile is None:
 			return
 
-		initiallyAtOwnCorner = player.isAtOwnCorner()
+		# initiallyAtOwnCorner = player.isAtOwnCorner()
 		passedThroughOwnCorner = False
 
 		# will move n times
@@ -125,10 +125,10 @@ class SurvivorGame:
 			pygame.mixer.Sound.play(OwnCornerBell)
 			player.health += 10
 
-		elif not initiallyAtOwnCorner and passedThroughOwnCorner:
+		elif passedThroughOwnCorner:
 			print("passed from own corner, increasing health/stamina")
 
-			player.stamina += 10
+			player.stamina = 15
 
 		if player.health > 100:
 			player.health = 100
