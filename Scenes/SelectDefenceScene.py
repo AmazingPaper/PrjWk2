@@ -69,13 +69,10 @@ class SelectDefenceScene(GameScene):
 			print("Unable to execute attack, not enough stamina")
 		else:
 			self.player.stamina += condition
-		print(health, condition)
-
-		self.player.stamina += condition
-		super_fighter = self.game.superFighterCard.superFighter
-		if super_fighter.damage[self.game.lastDice -1] >= health:
-			self.player.health -= (self.game.superFighterCard.superFighter.damage[self.game.lastDice -1] - health)
-		self.SwitchToPreviousScene()
+			super_fighter = self.game.superFighterCard.superFighter
+			if super_fighter.damage[self.game.lastDice -1] >= health:
+				self.player.health -= (self.game.superFighterCard.superFighter.damage[self.game.lastDice -1] - health)
+			self.SwitchToPreviousScene()
 
 
 
