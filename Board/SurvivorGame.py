@@ -30,15 +30,15 @@ class SurvivorGame:
 			'rules': pygame.image.load("images/regels v2.5.png".format(n)),
 			'dice': diceImages,
 			'background': pygame.image.load("Tiles/background.png"),
-			'introbackground' : pygame.image.load('images/survivorstockimage.png'),
-			'points' : {
-				PlayerType.Red : pygame.image.load('Tiles/Lifepoints.png'),
-				PlayerType.Blue : pygame.image.load('Tiles/LifepointsBlue.png'),
-				PlayerType.Green : pygame.image.load('Tiles/LifepointsGreen.png'),
-				PlayerType.Yellow : pygame.image.load('Tiles/LifepointsYellow.png'),
+			'introbackground': pygame.image.load('images/survivorstockimage.png'),
+			'points': {
+				PlayerType.Red: pygame.image.load('Tiles/Lifepoints.png'),
+				PlayerType.Blue: pygame.image.load('Tiles/LifepointsBlue.png'),
+				PlayerType.Green: pygame.image.load('Tiles/LifepointsGreen.png'),
+				PlayerType.Yellow: pygame.image.load('Tiles/LifepointsYellow.png'),
 			},
-			'conditionPoints' : pygame.image.load('Tiles/Conditionpoints.png'),
-			'superfightercard' : pygame.image.load('images/SuperFighterCard.png'),
+			'conditionPoints': pygame.image.load('Tiles/Conditionpoints.png'),
+			'superfightercard': pygame.image.load('images/SuperFighterCard.png'),
 		}
 
 	def Reset(self, numberOfPlayers):
@@ -69,7 +69,6 @@ class SurvivorGame:
 
 		for player in players:
 			self.board.placePlayer(player)
-
 
 	def CurrentPlayer(self):
 		return self.players[self.currentPlayer]
@@ -127,7 +126,7 @@ class SurvivorGame:
 			# which t fight with
 			if len(others) > 1:
 				fightType = FightType.ChoosePlayer
-			#print("FIGHT! there are more players here, choose one of : " + ", ".join(
+			# print("FIGHT! there are more players here, choose one of : " + ", ".join(
 			#	[str(player.playerType) for player in others]))
 			# there is one player at new position
 			else:
@@ -140,3 +139,12 @@ class SurvivorGame:
 
 	def PickSuperFighterCard(self):
 		return self.cardDeck.pickCard()
+
+	def DecreasePlayerHealth(self, player, n):
+		player.health -= n
+
+	def RemovePlayerFromGame(self, player):
+		self.players = [p for p in self.players if p is not player]
+
+		if player.tile is not None:
+			player.tile.players.remove(player)
