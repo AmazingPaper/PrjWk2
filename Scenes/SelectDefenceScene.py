@@ -44,6 +44,7 @@ class SelectDefenceScene(GameScene):
 	def createSelectDefenseButtons(self, screen):
 		damages = self.player.damages[self.game.lastDice - 1]
 
+
 		for n in range(0, 3):
 			x = 130
 			y = 300
