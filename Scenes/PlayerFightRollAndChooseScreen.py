@@ -29,7 +29,7 @@ class PlayerFightRollAndChooseScreen(GameScene):
 		screen.blit(self.game.images['boxpvp'], (50, 160))
 
 		largeText = pygame.font.Font('MINECRAFT.TTF', 32)
-		TextSurf, TextRect = text_objects3("{} vs {}".format(self.currentPlayer, self.defender.name), largeText)
+		TextSurf, TextRect = text_objects3("{} vs {}".format(self.currentPlayer.name, self.defender.name), largeText)
 		TextRect.center = 300, 80
 		screen.blit(TextSurf, TextRect)
 
@@ -62,10 +62,14 @@ class PlayerFightRollAndChooseScreen(GameScene):
 			self.addButton(buttonRect)
 
 	def selectDefense(self, health, condition):
-		if abs(condition) > self.player.stamina:
+		if abs(condition) > self.currentPlayer.stamina:
 			print("Unable to execute attack, not enough stamina")
 		else:
-			self.player.stamina += condition
+			self.currentPlayer.stamina += condition
+
+		if self.attackerDamage >= health:
+			pass
+
 
 		if self.currentPlayer == self.defender:
 			print("Attacker {} - {}".format(self.player.name, self.attackerDamage))
