@@ -26,7 +26,7 @@ class SuperFighterFightScene(GameScene):
 			super_fighter = self.game.superFighterCard.superFighter
 
 			if player.stamina == 0:
-				messageLines = ["Your condition is not good for fight",
+				messageLines = ["You don't have enough condition points",
 				                "you can't fight",
 				                super_fighter.name,
 				                "will do {} damage to you".format(super_fighter.damage[self.game.lastDice])]
