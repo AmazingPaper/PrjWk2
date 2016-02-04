@@ -75,7 +75,7 @@ class SelectDefenceScene(GameScene):
 		super_fighter = self.game.superFighterCard.superFighter
 		if super_fighter.damage[self.game.lastDice -1] >= health:
 			self.player.health -= (self.game.superFighterCard.superFighter.damage[self.game.lastDice -1] - health)
-
+		self.game.NextPlayer()
 		self.SwitchToScene(GameScene(self.game))
 
 
