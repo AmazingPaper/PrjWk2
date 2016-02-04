@@ -29,6 +29,7 @@ class GameScene(SceneBase):
 						self.game.NextPlayer()
 					elif fightType == FightType.Player:
 						if current_player.isAtOtherPlayersCorner():
+
 							defender = current_player.tile.cornerOfPlayer
 						else:
 							defender = current_player.otherPlayers()[0]

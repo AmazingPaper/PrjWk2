@@ -46,7 +46,7 @@ class MessageDialogScene(SceneBase):
 		screen.blit(TextSurf, TextRect)
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
-		TextSurf, TextRect = text_objects("PRESS ANY BUTTON TO GO BACK", smallText)
+		TextSurf, TextRect = text_objects1("PRESS ANY BUTTON TO GO BACK", smallText)
 		TextRect.center = (((MapWidth * TileSize) / 2), (780))
 		screen.blit(TextSurf, TextRect)
 

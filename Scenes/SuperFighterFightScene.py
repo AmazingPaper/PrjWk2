@@ -4,7 +4,6 @@ from pygame.constants import *
 from Scenes.GameScene import GameScene
 
 
-
 class SuperFighterFightScene(GameScene):
 	def __init__(self, game):
 
@@ -18,6 +17,9 @@ class SuperFighterFightScene(GameScene):
 
 			superfightsound = pygame.mixer.Sound("Sounds/StartFight.ogg")
 			pygame.mixer.Sound.play(superfightsound)
+
+			voicefightsound = pygame.mixer.Sound("Sounds/VoiceFight.ogg")
+			pygame.mixer.Sound.play(voicefightsound)
 
 			self.game.superFighterCard = self.game.PickSuperFighterCard()
 
