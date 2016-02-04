@@ -1,9 +1,11 @@
+from pygame.Game import *
 from pygame.constants import *
 
 from Board.GraphicsConstants import *
 from GraphicsHelpers import *
 from Scenes import GameScene
 from Scenes.SceneBase import SceneBase
+
 
 
 class PlayerWinScene(GameScene):
@@ -20,6 +22,10 @@ class PlayerWinScene(GameScene):
 		pass
 
 	def Render(self, screen):
+		pygame.mixer.stop()
+		pygame.mixer.music.load("Sounds/Survivor.ogg")
+		pygame.mixer.music.play()
+
 		super(GameScene, self).Render(screen)
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
