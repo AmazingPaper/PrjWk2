@@ -15,7 +15,7 @@ class Player():
 		self.name = name
 		self.corner = corner
 		self.damages = damages
-		pass
+
 
 		self.tile = None
 		self.health = 100
