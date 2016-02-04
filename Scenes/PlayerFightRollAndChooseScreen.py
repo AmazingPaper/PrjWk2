@@ -1,15 +1,17 @@
 from GraphicsHelpers import *
-from Scenes.GameScene import GameScene
 from Scenes.SuperFighterFightScene import *
 
 
-
-class SelectDefenceScene(GameScene):
-	def __init__(self, game):
+class PlayerFightRollAndChooseScreen(GameScene):
+	def __init__(self, game, defender, currentPlayer):
 		GameScene.__init__(self, game)
 
-		self.superFighter = game.superFighterCard.superFighter
 		self.player = game.CurrentPlayer()
+		self.defender = defender
+		self.currentPlayer = currentPlayer
+
+
+		self.attackerDamage = None
 
 		if game.lastDice == 0:
 			self.SwitchToPreviousScene()
@@ -21,31 +23,24 @@ class SelectDefenceScene(GameScene):
 		pass
 
 	def Render(self, screen):
-		super(SelectDefenceScene, self).Render(screen)
+		super(PlayerFightRollAndChooseScreen, self).Render(screen)
 
 		pygame.draw.rect(screen, SURV_BLUE, (55, 50, 500, 500))
 
 		largeText = pygame.font.Font('MINECRAFT.TTF', 24)
-		TextSurf, TextRect = text_objects2("{} vs {}".format(self.superFighter.name, self.player.name), largeText)
+		TextSurf, TextRect = text_objects2("{} vs {}".format(self.player.name, self.defender.name), largeText)
 		TextRect.center = 300, 80
 		screen.blit(TextSurf, TextRect)
 
 		largeText = pygame.font.Font('MINECRAFT.TTF', 24)
-		TextSurf, TextRect = text_objects2(
-			"{} will do {} damage".format(self.superFighter.name, self.superFighter.damage[self.game.lastDice - 1]), largeText)
-		TextRect.center = 300, 140
-		screen.blit(TextSurf, TextRect)
-
-		largeText = pygame.font.Font('MINECRAFT.TTF', 24)
-		TextSurf, TextRect = text_objects2("Select your defense", largeText)
+		TextSurf, TextRect = text_objects2("{} Select".format(self.currentPlayer.name), largeText)
 		TextRect.center = 300, 200
 		screen.blit(TextSurf, TextRect)
 
 		self.createSelectDefenseButtons(screen)
 
 	def createSelectDefenseButtons(self, screen):
-		damages = self.player.damages[self.game.lastDice - 1]
-
+		damages = self.currentPlayer.damages[self.game.lastDice - 1]
 
 		for n in range(0, 3):
 			x = 130
@@ -66,23 +61,18 @@ class SelectDefenceScene(GameScene):
 			self.addButton(buttonRect)
 
 	def selectDefense(self, health, condition):
-
-		if abs(condition) >= self.player.stamina:
+		if abs(condition) > self.player.stamina:
 			print("Unable to execute attack, not enough stamina")
-			return None
 		else:
 			self.player.stamina += condition
 
-		player = self.game.CurrentPlayer()
-		super_fighter = self.game.superFighterCard.superFighter
-		if super_fighter.damage[self.game.lastDice -1] >= health:
-			self.player.health -= (self.game.superFighterCard.superFighter.damage[self.game.lastDice -1] - health)
-			if player.lostGame():
-				SuperFighterFightScene.handlePlayerLostCase(SuperFighterFightScene)
+		if self.currentPlayer == self.defender:
+			print("Attacker {} - {}".format(self.player.name, self.attackerDamage))
+			print("Defender {} - {}".format(self.defender.name, (health, condition)))
 
-		self.game.superFighterCard = None
+			self.SwitchToScene(GameScene(self.game))
+		else:
+			nextScreen = PlayerFightRollAndChooseScreen(self.game, self.defender, self.defender)
+			nextScreen.attackerDamage = (health, condition)
 
-		self.game.NextPlayer()
-		self.SwitchToScene(GameScene(self.game))
-
-
+			self.SwitchToScene(nextScreen)

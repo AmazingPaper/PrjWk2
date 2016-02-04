@@ -14,33 +14,49 @@ class GameScene(SceneBase):
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
 			if event.type == KEYDOWN:
-				if event.key == K_SPACE:
-
-					self.game.lastDice = self.dieRoll()
-
-					fightType = self.game.MoveCurrentPlayer(self.game.lastDice)
-
-					from Scenes.PlayerFightScene import PlayerFightScene
-					from Scenes.SuperFighterFightScene import SuperFighterFightScene
-					from Scenes.ChoosePlayerFightScene import ChoosePlayerFightScene
-
-					current_player = self.game.CurrentPlayer()
-					if fightType == FightType.NoFight:
-						self.game.NextPlayer()
-					elif fightType == FightType.Player:
-						if current_player.isAtOtherPlayersCorner():
-
-							defender = current_player.tile.cornerOfPlayer
-						else:
-							defender = current_player.otherPlayers()[0]
-						self.SwitchToScene(PlayerFightScene(self.game, current_player, defender))
-					elif fightType == FightType.SuperFighter:
-						self.SwitchToScene(SuperFighterFightScene(self.game))
-					elif fightType == FightType.ChoosePlayer:
-						self.SwitchToScene(
-							ChoosePlayerFightScene(self.game, current_player, current_player.otherPlayers()))
+				if event.key == K_1:
+					self.movePlayerNTimes(1)
+				elif event.key == K_2:
+					self.movePlayerNTimes(2)
+				elif event.key == K_3:
+					self.movePlayerNTimes(3)
+				elif event.key == K_4:
+					self.movePlayerNTimes(4)
+				elif event.key == K_5:
+					self.movePlayerNTimes(5)
+				elif event.key == K_6:
+					self.movePlayerNTimes(6)
+				elif event.key == K_SPACE:
+					self.movePlayerNTimes(self.dieRoll())
 
 		self.ProcessButtonEvents(events)
+
+	def movePlayerNTimes(self, n):
+		from Scenes.PlayerFightScene import PlayerFightScene
+		from Scenes.SuperFighterFightScene import SuperFighterFightScene
+		from Scenes.OpponentSelectionScene import OpponentSelectionScene
+		from Scenes.PlayerFightRollAndChooseScreen import PlayerFightRollAndChooseScreen
+
+		self.game.lastDice = n
+
+		fightType = self.game.MoveCurrentPlayer(self.game.lastDice)
+
+		current_player = self.game.CurrentPlayer()
+
+		players = current_player.otherPlayers()
+		if fightType == FightType.NoFight:
+			self.game.NextPlayer()
+		elif fightType == FightType.SuperFighter:
+			self.SwitchToScene(SuperFighterFightScene(self.game))
+		elif fightType == FightType.ChoosePlayer:
+			self.SwitchToScene(OpponentSelectionScene(self.game, current_player, players))
+		elif fightType == FightType.Player:
+			#if current_player.isAtOtherPlayersCorner():
+			#	defender = current_player.tile.cornerOfPlayer
+			#	self.SwitchToScene(PlayerFightScene(self.game, current_player, defender))
+			#else:
+			if not current_player.isAtOtherPlayersCorner():
+				self.SwitchToScene(PlayerFightRollAndChooseScreen(self.game, players[0], current_player))
 
 	def Update(self):
 		pass
