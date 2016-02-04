@@ -70,6 +70,7 @@ class SurvivorGame:
 		for player in players:
 			self.board.placePlayer(player)
 
+
 	def CurrentPlayer(self):
 		return self.players[self.currentPlayer]
 
@@ -117,6 +118,8 @@ class SurvivorGame:
 		if player.tile.tileType == TileType.Fight:
 			fightType = FightType.SuperFighter
 		if player.isAtOwnCorner():
+			OwnCornerBell = pygame.mixer.Sound("Sounds/OwnCornerBell.ogg")
+			pygame.mixer.Sound.play(OwnCornerBell)
 			player.health += 10
 			if player.health >= 100:
 				player.health = 100
