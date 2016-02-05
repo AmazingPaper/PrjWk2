@@ -16,7 +16,7 @@ class PlayerWinScene(GameScene):
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
 			if event.type == KEYDOWN or event.type == MOUSEBUTTONDOWN:
-				from Scenes.GameScene import IntroScene
+				from Scenes.IntroScene import IntroScene
 				self.SwitchToScene(IntroScene(self.game))
 
 	def Update(self):
