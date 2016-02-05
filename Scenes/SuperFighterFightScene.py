@@ -14,6 +14,8 @@ class SuperFighterFightScene(GameScene):
 		voicefightsound = pygame.mixer.Sound("Sounds/VoiceFight.ogg")
 		pygame.mixer.Sound.play(voicefightsound)
 
+		player = self.game.CurrentPlayer()
+		
 		if self.game.superFighterCard is None:
 			from Scenes.SelectDefenceScene import SelectDefenceScene
 
@@ -23,8 +25,6 @@ class SuperFighterFightScene(GameScene):
 			pygame.mixer.Sound.play(superfightsound)
 
 			self.game.superFighterCard = self.game.PickSuperFighterCard()
-
-			player = game.CurrentPlayer()
 
 			super_fighter = self.game.superFighterCard.superFighter
 
