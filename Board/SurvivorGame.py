@@ -34,6 +34,7 @@ class SurvivorGame:
 			'box_glove': pygame.image.load('images/Lboximg.png'),
 			'boxwinner': pygame.image.load('images/boxwinner.png'),
 			'boxpvp': pygame.image.load('images/PVPimg.png'),
+			'laurel': pygame.image.load('images/laurel.png'),
 			'points': {
 				PlayerType.Red: pygame.image.load('Tiles/Lifepoints.png'),
 				PlayerType.Blue: pygame.image.load('Tiles/LifepointsBlue.png'),
