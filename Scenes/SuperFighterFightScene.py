@@ -25,9 +25,9 @@ class SuperFighterFightScene(GameScene):
 
 			self.game.superFighterCard = self.game.PickSuperFighterCard()
 
-			player = game.CurrentPlayer()
+		player = game.CurrentPlayer()
 
-			super_fighter = self.game.superFighterCard.superFighter
+		super_fighter = self.game.superFighterCard.superFighter
 
 		self.cardRect = None
 		if not self.canPlayerDefend(player):

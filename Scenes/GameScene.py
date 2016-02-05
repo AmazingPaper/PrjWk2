@@ -37,8 +37,7 @@ class GameScene(SceneBase):
 		from Scenes.SuperFighterFightScene import SuperFighterFightScene
 		from Scenes.OpponentSelectionScene import OpponentSelectionScene
 		from Scenes.PlayerFightRollAndChooseScreen import PlayerFightRollAndChooseScreen
-		if self.game.CurrentPlayer().health <= 0:
-			self.game.RemovePlayerFromGame(self.game.CurrentPlayer())
+
 
 		self.game.lastDice = n
 
@@ -62,6 +61,8 @@ class GameScene(SceneBase):
 				defender = players[0]
 
 				self.SwitchToScene(PlayerFightScene(self.game, current_player, defender))
+			if self.game.CurrentPlayer().health <= 0:
+				self.game.RemovePlayerFromGame(self.game.CurrentPlayer())
 
 				#self.SwitchToScene(PlayerFightRollAndChooseScreen(self.game, defender, current_player))
 

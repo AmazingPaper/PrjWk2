@@ -126,7 +126,7 @@ class SurvivorGame:
 			pygame.mixer.Sound.play(OwnCornerBell)
 			player.health += 10
 
-		elif not initiallyAtOwnCorner and passedThroughOwnCorner:
+		elif passedThroughOwnCorner:
 			print("passed from own corner, increasing health/stamina")
 
 			player.stamina = 15
@@ -156,7 +156,7 @@ class SurvivorGame:
 			# if new position is other player's corner then player has to fight with owner
 		elif player.isAtOtherPlayersCorner():
 			if self.IsPlayerIsInGame(player.tile.cornerOfPlayer):
-				return None
+				pass
 			else:
 				fightType = FightType.NoFight
 				player.health -= 10
