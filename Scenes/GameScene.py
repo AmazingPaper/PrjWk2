@@ -32,10 +32,13 @@ class GameScene(SceneBase):
 		self.ProcessButtonEvents(events)
 
 	def movePlayerNTimes(self, n):
+
 		from Scenes.PlayerFightScene import PlayerFightScene
 		from Scenes.SuperFighterFightScene import SuperFighterFightScene
 		from Scenes.OpponentSelectionScene import OpponentSelectionScene
 		from Scenes.PlayerFightRollAndChooseScreen import PlayerFightRollAndChooseScreen
+		if self.game.CurrentPlayer().health <= 0:
+			self.game.RemovePlayerFromGame(self.game.CurrentPlayer())
 
 		self.game.lastDice = n
 

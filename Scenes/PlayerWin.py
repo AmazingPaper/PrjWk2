@@ -2,7 +2,8 @@ from pygame.constants import *
 
 from Board.GraphicsConstants import *
 from GraphicsHelpers import *
-from Scenes import GameScene
+from Scenes.GameScene import GameScene
+from Board.SurvivorGame import SurvivorGame
 
 
 class PlayerWinScene(GameScene):

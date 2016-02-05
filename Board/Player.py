@@ -18,7 +18,7 @@ class Player():
 
 
 		self.tile = None
-		self.health = 1
+		self.health = 100
 		self.stamina = 1
 
 		imageName = name.replace(' ', '')
