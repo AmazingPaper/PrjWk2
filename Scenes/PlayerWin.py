@@ -1,13 +1,15 @@
 from pygame.constants import *
 
-from Board.GraphicsConstants import *
-from GraphicsHelpers import *
+from Board.StatisticsGraphics import *
 from Scenes.GameScene import GameScene
-from Board.SurvivorGame import SurvivorGame
+from Scenes.IntroScene import IntroScene
 
 
 class PlayerWinScene(GameScene):
 	def __init__(self, game):
+		pygame.mixer.music.load("Sounds/Survivor.ogg")
+		pygame.mixer.music.play()
+
 		GameScene.__init__(self, game)
 
 	def ProcessInput(self, events, pressed_keys):
@@ -20,15 +22,13 @@ class PlayerWinScene(GameScene):
 		pass
 
 	def Render(self, screen):
-		pygame.mixer.stop()
-		pygame.mixer.music.load("Sounds/Survivor.ogg")
-		pygame.mixer.music.play()
-
 		super(GameScene, self).Render(screen)
 
-		smallText = pygame.font.Font('8-BIT WONDER.TTF', 15)
-		TextSurf, TextRect = text_objects2("YOU WIN!", smallText)
+		pygame.draw.rect(screen, YELLOW, (200, 0, 205, 500))
+
+		smallText = pygame.font.Font('8-BIT WONDER.TTF', 30)
+		TextSurf, TextRect = text_objects3("YOU WIN", smallText)
 		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 12))
 		screen.blit(TextSurf, TextRect)
 
-		screen.blit(self.game.images['boxwinner'], (40, 500))
+		screen.blit(self.game.images['boxwinner'], (-70, 200))

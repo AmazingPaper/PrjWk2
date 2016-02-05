@@ -50,7 +50,7 @@ class MessageDialogScene(SceneBase):
 		TextRect.center = (((MapWidth * TileSize) / 2), (780))
 		screen.blit(TextSurf, TextRect)
 
-		screen.blit(self.game.images['box_glove'], (75, 100))
+		screen.blit(self.game.images['box_glove'], (75, 110))
 
 		y = 200
 

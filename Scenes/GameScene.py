@@ -2,7 +2,6 @@ from pygame.constants import *
 
 from Board.BoardGraphics import BoardGraphics
 from Board.FightType import FightType
-from GraphicsHelpers import *
 from Scenes.RulesScene import RulesScene
 from Scenes.SceneBase import *
 
@@ -36,7 +35,6 @@ class GameScene(SceneBase):
 		from Scenes.PlayerFightScene import PlayerFightScene
 		from Scenes.SuperFighterFightScene import SuperFighterFightScene
 		from Scenes.OpponentSelectionScene import OpponentSelectionScene
-		from Scenes.PlayerFightRollAndChooseScreen import PlayerFightRollAndChooseScreen
 
 
 		self.game.lastDice = n
