@@ -29,7 +29,7 @@ class PlayerWinScene(GameScene):
 		pygame.draw.rect(screen, YELLOW, (200, 0, 205, 500))
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 30)
-		TextSurf, TextRect = text_objects3(winner.name + " YOU WIN", smallText)
+		TextSurf, TextRect = text_objects3(self.winner.name + " YOU WIN", smallText)
 		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 12))
 		screen.blit(TextSurf, TextRect)
 
