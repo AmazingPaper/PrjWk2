@@ -128,7 +128,7 @@ class SceneBase:
 		if len(self.game.players) == 1:
 			from Scenes.PlayerWin import PlayerWinScene
 
-			self.SwitchToScene(PlayerWinScene(self.game))
+			self.SwitchToScene(PlayerWinScene(self.game, self.players[0]))
 		else:
 			messages = ["Player {} died".format(player.name)]
 			self.displayDialog(messages)
