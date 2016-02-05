@@ -3,7 +3,6 @@ from Scenes.GameScene import GameScene
 from Scenes.SuperFighterFightScene import *
 
 
-
 class SelectDefenceScene(GameScene):
 	def __init__(self, game):
 		GameScene.__init__(self, game)
@@ -32,7 +31,8 @@ class SelectDefenceScene(GameScene):
 
 		largeText = pygame.font.Font('MINECRAFT.TTF', 24)
 		TextSurf, TextRect = text_objects2(
-			"{} will do {} damage".format(self.superFighter.name, self.superFighter.damage[self.game.lastDice - 1]), largeText)
+			"{} will do {} damage".format(self.superFighter.name, self.superFighter.damage[self.game.lastDice - 1]),
+			largeText)
 		TextRect.center = 300, 140
 		screen.blit(TextSurf, TextRect)
 
@@ -45,7 +45,6 @@ class SelectDefenceScene(GameScene):
 
 	def createSelectDefenseButtons(self, screen):
 		damages = self.player.damages[self.game.lastDice - 1]
-
 
 		for n in range(0, 3):
 			x = 130
@@ -67,7 +66,7 @@ class SelectDefenceScene(GameScene):
 
 	def selectDefense(self, health, condition):
 
-		if abs(condition) >= self.player.stamina:
+		if abs(condition) > self.player.stamina:
 			print("Unable to execute attack, not enough stamina")
 			return None
 		else:
@@ -75,14 +74,15 @@ class SelectDefenceScene(GameScene):
 
 		player = self.game.CurrentPlayer()
 		super_fighter = self.game.superFighterCard.superFighter
-		if super_fighter.damage[self.game.lastDice -1] >= health:
-			self.player.health -= (self.game.superFighterCard.superFighter.damage[self.game.lastDice -1] - health)
+		if super_fighter.damage[self.game.lastDice - 1] >= health:
+			self.player.health -= (self.game.superFighterCard.superFighter.damage[self.game.lastDice - 1] - health)
 			if player.lostGame():
-				SuperFighterFightScene.handlePlayerLostCase(SuperFighterFightScene)
+				self.game.RemovePlayerFromGame(self.game.CurrentPlayer())
+
+				messages = ["Player {} died".format(player.name)]
+				self.displayDialog(messages)
 
 		self.game.superFighterCard = None
 
 		self.game.NextPlayer()
 		self.SwitchToScene(GameScene(self.game))
-
-

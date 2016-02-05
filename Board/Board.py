@@ -129,7 +129,7 @@ class Board:
 
 			# if this player was placed within another tile already,
 			# remove it from the players list of old tile
-			if player.tile is not None:
+			if player.tile is not None and player in player.tile.players:
 				player.tile.players.remove(player)
 
 			# move player to found tile

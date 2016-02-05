@@ -14,8 +14,10 @@ class TutorialScene(SceneBase):
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
 			if event.type == KEYDOWN or event.type == MOUSEBUTTONDOWN:
-				# if self.action is None:
-				if True:
+				if self.action is not None:
+					self.action()
+					self.action = None
+				else:
 					self.SwitchToPreviousScene()
 
 				break

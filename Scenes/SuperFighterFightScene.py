@@ -6,13 +6,13 @@ from Scenes.GameScene import GameScene
 
 class SuperFighterFightScene(GameScene):
 	def __init__(self, game):
+		GameScene.__init__(self, game)
+
 		superfightsound = pygame.mixer.Sound("Sounds/StartFight.ogg")
 		pygame.mixer.Sound.play(superfightsound)
 
 		voicefightsound = pygame.mixer.Sound("Sounds/VoiceFight.ogg")
 		pygame.mixer.Sound.play(voicefightsound)
-
-		GameScene.__init__(self, game)
 
 		if self.game.superFighterCard is None:
 			from Scenes.MessageDialogScene import MessageDialogScene
@@ -29,30 +29,43 @@ class SuperFighterFightScene(GameScene):
 
 			super_fighter = self.game.superFighterCard.superFighter
 
-			if player.stamina == 1:
-				messageLines = ["Your condition is not good for fight",
-				                "you can't fight",
-				                super_fighter.name,
-				                "will do {} damage to you".format(super_fighter.damage[self.game.lastDice])]
-
-				self.SwitchToScene(TutorialScene(self.game, messageLines, self.handlePlayerCantFightCase))
-			else:
-				messageLines = ["You are now on a Fight tile",
-				                "and you have to fight with",
-				                super_fighter.name]
-
-				from Scenes.TutorialScene import TutorialScene
-				self.SwitchToScene(TutorialScene(self.game, messageLines, self.switchToDefenseSelectionScene))
-
 		self.cardRect = None
+		if not self.canPlayerDefend(player):
+			messageLines = ["Your condition is not good for fight",
+			                "you can't fight",
+			                super_fighter.name,
+			                "will do {} damage to you".format(super_fighter.damage[self.game.lastDice - 1])]
+
+			self.displayDialog(messageLines)
+			self.handlePlayerCantFightCase()
+		elif player.stamina <= 1:
+			messageLines = ["Your condition is not good to defend",
+			                "you can't fight",
+			                super_fighter.name,
+			                "will do {} damage to you".format(super_fighter.damage[self.game.lastDice - 1])]
+			self.displayDialog(messageLines)
+			self.handlePlayerCantFightCase()
+		else:
+			messageLines = ["You are now on a Fight tile",
+			                "and you have to fight with",
+			                super_fighter.name]
+
+			self.displayDialog(messageLines)
+			self.switchToDefenseSelectionScene()
 
 	def switchToDefenseSelectionScene(self):
 		from Scenes.SelectDefenceScene import SelectDefenceScene
 
 		self.SwitchToScene(SelectDefenceScene(self.game))
 
-	def ProcessInput(self, events, pressed_keys):
+	def canPlayerDefend(self, player):
+		damages = player.damages[self.game.lastDice - 1]
 
+		damages = [(health, condition) for (health, condition) in damages if abs(condition) <= player.stamina]
+
+		return len(damages) > 0
+
+	def ProcessInput(self, events, pressed_keys):
 		super(SuperFighterFightScene, self).ProcessInput(events, pressed_keys)
 
 		for event in events:
@@ -79,27 +92,21 @@ class SuperFighterFightScene(GameScene):
 
 			self.cardRect = screen.blit(image, (210, 210))
 
-	def handlePlayerCantFightCase(self):
+		self.renderDialog(screen)
 
+	def handlePlayerCantFightCase(self):
 		player = self.game.CurrentPlayer()
 
 		super_fighter = self.game.superFighterCard.superFighter
 
-		player.health -= super_fighter.damage[self.game.lastDice]
+		superFighterDamage = super_fighter.damage[self.game.lastDice - 1]
 
-		self.game.DecreasePlayerHealth(super_fighter.damage[self.game.lastDice])
+		self.game.DecreasePlayerHealth(player, superFighterDamage)
+
+		self.game.superFighterCard = None
 
 		if player.lostGame():
-			self.handlePlayerLostCase()
+			self.handlePlayerLostCase(player)
 		else:
 			self.game.NextPlayer()
 			self.SwitchToScene(GameScene(self.game))
-
-	def handlePlayerLostCase(self):
-		self.game.RemovePlayerFromGame(self.game.CurrentPlayer())
-
-		from Scenes.MessageDialogScene import MessageDialogScene
-		messageLines = ["You have lost!"]
-
-		self.SwitchToScene(
-			MessageDialogScene(self.game, messageLines, lambda: self.SwitchToScene(GameScene(self.game))))

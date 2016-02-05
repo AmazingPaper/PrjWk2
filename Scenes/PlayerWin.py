@@ -1,15 +1,13 @@
-from pygame.Game import *
 from pygame.constants import *
 
 from Board.GraphicsConstants import *
 from GraphicsHelpers import *
 from Scenes import GameScene
-from Scenes.SceneBase import SceneBase
 
 
 class PlayerWinScene(GameScene):
 	def __init__(self, game):
-		SceneBase.__init__(self, game)
+		GameScene.__init__(self, game)
 
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:

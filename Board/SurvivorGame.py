@@ -73,8 +73,9 @@ class SurvivorGame:
 		for player in players:
 			self.board.placePlayer(player)
 
-
 	def CurrentPlayer(self):
+		self.currentPlayer %= len(self.players)
+
 		return self.players[self.currentPlayer]
 
 	def MoveCurrentPlayer(self, n):
@@ -102,7 +103,7 @@ class SurvivorGame:
 		if player.tile is None:
 			return
 
-		# initiallyAtOwnCorner = player.isAtOwnCorner()
+		initiallyAtOwnCorner = player.isAtOwnCorner()
 		passedThroughOwnCorner = False
 
 		# will move n times
@@ -125,7 +126,7 @@ class SurvivorGame:
 			pygame.mixer.Sound.play(OwnCornerBell)
 			player.health += 10
 
-		elif passedThroughOwnCorner:
+		elif not initiallyAtOwnCorner and passedThroughOwnCorner:
 			print("passed from own corner, increasing health/stamina")
 
 			player.stamina = 15
@@ -176,5 +177,5 @@ class SurvivorGame:
 	def RemovePlayerFromGame(self, player):
 		self.players = [p for p in self.players if p is not player]
 
-		if player.tile is not None:
+		if player.tile is not None and player in player.tile.players:
 			player.tile.players.remove(player)

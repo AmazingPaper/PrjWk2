@@ -14,7 +14,19 @@ class GameScene(SceneBase):
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
 			if event.type == KEYDOWN:
-				if event.key == K_SPACE:
+				if event.key == K_1:
+					self.movePlayerNTimes(1)
+				elif event.key == K_2:
+					self.movePlayerNTimes(2)
+				elif event.key == K_3:
+					self.movePlayerNTimes(3)
+				elif event.key == K_4:
+					self.movePlayerNTimes(4)
+				elif event.key == K_5:
+					self.movePlayerNTimes(5)
+				elif event.key == K_6:
+					self.movePlayerNTimes(6)
+				elif event.key == K_SPACE:
 					self.movePlayerNTimes(self.dieRoll())
 
 		self.ProcessButtonEvents(events)
@@ -63,6 +75,8 @@ class GameScene(SceneBase):
 		self.__drawButtons(screen)
 		self.__drawSuperFighterCard(screen)
 		self.__drawPlayerName(screen)
+
+		self.renderDialog(screen)
 
 	def __drawDice(self, screen):
 		if self.game.lastDice > 0:

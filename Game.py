@@ -18,8 +18,13 @@ def run_game(width, height, fps, starting_scene):
 		pressed_keys = pygame.key.get_pressed()
 		# Event filtering
 		filtered_events = []
+		keyboardOrMouseEvent = False
+
 		for event in pygame.event.get():
 			quit_attempt = False
+
+			keyboardOrMouseEvent = event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN
+
 			if event.type == pygame.QUIT:
 				quit_attempt = True
 			elif event.type == pygame.KEYDOWN:
@@ -34,7 +39,11 @@ def run_game(width, height, fps, starting_scene):
 			else:
 				filtered_events.append(event)
 
-		active_scene.ProcessInput(filtered_events, pressed_keys)
+		if active_scene.displayingDialog and keyboardOrMouseEvent:
+			active_scene.closeDialog()
+		else:
+			active_scene.ProcessInput(filtered_events, pressed_keys)
+
 		active_scene.Update()
 		active_scene.Render(screen)
 
