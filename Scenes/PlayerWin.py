@@ -6,11 +6,12 @@ from Scenes.IntroScene import IntroScene
 
 
 class PlayerWinScene(GameScene):
-	def __init__(self, game):
+	def __init__(self, game, winner):
 		pygame.mixer.music.load("Sounds/Survivor.ogg")
 		pygame.mixer.music.play()
 
 		GameScene.__init__(self, game)
+		self.winner = winner
 
 	def ProcessInput(self, events, pressed_keys):
 		for event in events:
@@ -27,7 +28,7 @@ class PlayerWinScene(GameScene):
 		pygame.draw.rect(screen, YELLOW, (200, 0, 205, 500))
 
 		smallText = pygame.font.Font('8-BIT WONDER.TTF', 30)
-		TextSurf, TextRect = text_objects3("YOU WIN", smallText)
+		TextSurf, TextRect = text_objects3(self.winner.name + "YOU WIN", smallText)
 		TextRect.center = (((MapWidth * TileSize) / 2), ((MapHeight * TileSize) / 12))
 		screen.blit(TextSurf, TextRect)
 
