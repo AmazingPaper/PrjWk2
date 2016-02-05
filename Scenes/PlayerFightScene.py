@@ -1,5 +1,4 @@
 from Scenes.GameScene import GameScene
-from Scenes.MessageDialogScene import MessageDialogScene
 
 
 class PlayerFightScene(GameScene):
@@ -32,6 +31,6 @@ class PlayerFightScene(GameScene):
 
 	def handleBothDoNotHaveConditionCase(self):
 		self.game.DecreasePlayerHealth(self.defender, 15)
+
 		if self.defender.lostGame():
 			self.handlePlayerLostCase(self.defender)
-		self.SwitchToScene(GameScene(self.game))

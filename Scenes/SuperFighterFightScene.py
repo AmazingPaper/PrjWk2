@@ -15,7 +15,6 @@ class SuperFighterFightScene(GameScene):
 		pygame.mixer.Sound.play(voicefightsound)
 
 		if self.game.superFighterCard is None:
-			from Scenes.MessageDialogScene import MessageDialogScene
 			from Scenes.SelectDefenceScene import SelectDefenceScene
 
 			self.dieRoll()
@@ -25,9 +24,9 @@ class SuperFighterFightScene(GameScene):
 
 			self.game.superFighterCard = self.game.PickSuperFighterCard()
 
-		player = game.CurrentPlayer()
+			player = game.CurrentPlayer()
 
-		super_fighter = self.game.superFighterCard.superFighter
+			super_fighter = self.game.superFighterCard.superFighter
 
 		self.cardRect = None
 		if not self.canPlayerDefend(player):

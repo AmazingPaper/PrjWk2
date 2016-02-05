@@ -126,7 +126,7 @@ class SurvivorGame:
 			pygame.mixer.Sound.play(OwnCornerBell)
 			player.health += 10
 
-		elif passedThroughOwnCorner:
+		elif not initiallyAtOwnCorner and passedThroughOwnCorner:
 			print("passed from own corner, increasing health/stamina")
 
 			player.stamina = 15
@@ -175,9 +175,6 @@ class SurvivorGame:
 			self.RemovePlayerFromGame(player)
 
 	def RemovePlayerFromGame(self, player):
-		if len(self.players) <= 1:
-			return
-		
 		self.players = [p for p in self.players if p is not player]
 
 		if player.tile is not None and player in player.tile.players:
